@@ -1,12 +1,11 @@
 <?php
 
-use App\Controllers\Controller;
 use Kurumi\Route\Route;
 
-Route::get("/", function () {
-  echo 'home';
+Route::get('/', function () {
+  return view('views/home');
 });
 
-Route::get("/about", function () {
-  echo 'about';
+Route::get('/about', function () {
+  return view('views/about');
 });
