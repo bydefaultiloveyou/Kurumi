@@ -12,6 +12,7 @@ class View
     if (!file_exists("./public/views/" . $filename . ".php")) {
       self::errorFileHandling($filename);
     }
+
     require_once "./public/views/" . $filename . ".php";
   }
 

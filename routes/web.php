@@ -5,11 +5,9 @@ use Kurumi\Route\Route;
 
 Route::get("/", function () {
   View::render("home", [
-    "title" => "kurumi framework"
+    "title" => "Kurumi Framework"
   ]);
 });
 
-
-Route::view("/about", ["about", ["title" => "About Page"]]);
-
-Route::view("/test", ["test", ["title" => "Test Page"]]);
+Route::view('/about', ["about", ["title" => "about"]]);
+Route::view('/about/', ["about", ["title" => "About/"]]);
