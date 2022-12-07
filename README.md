@@ -1,3 +1,5 @@
 # Kurumi
+
 Mini Framwork for PHP Native ://
-My Name Lutfi
+
+The Team Aulia chan and Miku Chan
