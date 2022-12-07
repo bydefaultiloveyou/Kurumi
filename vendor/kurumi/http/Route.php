@@ -4,12 +4,18 @@ namespace Kurumi\Route;
 
 use app\controllers\Controllers;
 
+
+/*
+  nanti code code nya lu rapihin lagi, sengaja gua
+  komentari dulu code nya takut salah nge hapus  
+ */
+
 class Route
 {
 
   private static $routes = [];
 
-  private static $url;
+  // private static $url;
 
   /**
    * Get method
@@ -40,19 +46,19 @@ class Route
   /**
    * validasi path dan buat mengisi variabel $routes
    */
-  private static function addRoute(string $paths, $callback)
+  private static function addRoute(string $path, $callback)
   {
-    foreach ([$paths] as $path) {
-      if (strlen($path) >= 2) {
-        self::$url = rtrim($path, "/");
-      }
-    }
+    // foreach ([$paths] as $path) {
+    //   if (strlen($path) >= 2) {
+    //     self::$url = rtrim($path, "/");
+    //   }
+    // }
 
-    if ($path !== $_SERVER["REQUEST_URI"]) {
-      self::$routes[self::$url . "/"] = $callback;
-    };
-
-    self::$routes[self::$url] = $callback;
+    // if ($path !== $_SERVER["REQUEST_URI"]) {
+    //   self::$routes[self::$url . "/"] = $callback;
+    // };
+    self::$routes = []; /* untuk membersihkan array, supaya tidak terjadi duplikat  */
+    // self::$routes[self::$url] = $callback;
     self::$routes[$path] = $callback;
 
     self::run();
@@ -66,7 +72,7 @@ class Route
   {
     $uri = $_SERVER['REQUEST_URI'];
     foreach (self::$routes as $path => $callback) {
-      if ($uri !== $path) continue;
+      if ($uri !== $path xor $uri == $path . '/') continue; // untuk mengatsi bug nya yang xor bre 
       if ($callback == null) continue;
       return $callback();
     }
