@@ -15,30 +15,9 @@ class Route
    * Get method
    * ini adalah http get method
    */
-
-  private static $controller;
-  private static $method = "index";
-
   public static function get(string $paths, $callback)
   {
-    if (gettype($callback) === 'array') {
-
-      $spliceController = explode("\\", $callback[0]);
-      self::$controller = end($spliceController);
-
-      if (file_exists("./app/controllers/" . self::$controller . ".php")) {
-
-        require_once "./app/controllers/" . self::$controller . ".php";
-
-        if (isset($callback[1])) {
-          if (method_exists(new self::$controller, $callback[1])) {
-            call_user_func_array([new self::$controller, $callback[1]], []);
-          }
-        }
-      }
-    } else {
-      static::addRoute($paths, $callback);
-    }
+    static::addRoute($paths, $callback);
   }
 
   /**
@@ -61,7 +40,7 @@ class Route
   /**
    * validasi path dan buat mengisi variabel $routes
    */
-  private static function addRoute(string $paths, callable $callback)
+  private static function addRoute(string $paths, $callback)
   {
     foreach ([$paths] as $path) {
       if (strlen($path) >= 2) {
@@ -88,6 +67,7 @@ class Route
     $uri = $_SERVER['REQUEST_URI'];
     foreach (self::$routes as $path => $callback) {
       if ($uri !== $path) continue;
+      if ($callback == null) continue;
       return $callback();
     }
   }
