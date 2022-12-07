@@ -7,8 +7,6 @@ class Route
 
   private static $routes = [];
 
-  private static $view = [];
-
   private static $url;
 
   /**
@@ -17,25 +15,26 @@ class Route
    */
   public static function get(string $paths, callable $callback)
   {
-    self::addRoute($paths, $callback);
+    static::addRoute($paths, $callback);
   }
 
 
   /**
    * function buat menrender html secara otomatis
    */
-  public static function view(string $path, array $view = [])
-  {
-    self::$view[$path] = $view;
-    self::addRoute($path, function () {
-      if (isset(self::$view[1])) {
-        $data = self::$view[1];
-      }
 
-      foreach (self::$view as $path => $array) {
-        if ($_SERVER["REQUEST_URI"] != $path) continue;
-        View::render($array[0]);
+  protected static $action;
+
+  public static function view(string $path, array $action = [])
+  {
+    self::$action = $action;
+    static::addRoute($path, function () {
+      if (isset(self::$action[1])) {
+        $data = self::$action[1];
       }
+      // $data;
+      View::render(self::$action[0], $data);
+      // require_once "./public/views/" . self::$action[0] . ".php";
     });
   }
 
@@ -44,11 +43,16 @@ class Route
    */
   private static function addRoute(string $paths, callable $callback)
   {
+    // work
     foreach ([$paths] as $path) {
       if (strlen($path) >= 2) {
         self::$url = rtrim($path, "/");
       }
     }
+
+    if ($path !== $_SERVER["REQUEST_URI"]) {
+      self::$routes[self::$url . "/"] = $callback;
+    };
 
     self::$routes[self::$url] = $callback;
     self::$routes[$path] = $callback;
