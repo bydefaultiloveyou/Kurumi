@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\Controller;
 use Kurumi\Route\View;
 use Kurumi\Route\Route;
 
@@ -9,5 +10,4 @@ Route::get("/", function () {
   ]);
 });
 
-Route::view('/about', ["about", ["title" => "about"]]);
-Route::view('/about/', ["about", ["title" => "About/"]]);
+Route::get("/testing", [Controller::class, 'index']);

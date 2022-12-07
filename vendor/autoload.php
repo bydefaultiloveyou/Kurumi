@@ -2,7 +2,11 @@
 spl_autoload_register(function ($class) {
   $class = explode('\\', $class);
   $class = end($class);
-  require_once './vendor/kurumi/http/' . $class . '.php';
+  if (file_exists('./vendor/kurumi/http/' . $class . '.php')) {
+    require_once './vendor/kurumi/http/' . $class . '.php';
+  } else {
+    require_once './app/controllers/' . $class . '.php';
+  }
 });
 
 /*
