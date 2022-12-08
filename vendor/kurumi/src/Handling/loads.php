@@ -1,5 +1,7 @@
 <?php
 
+namespace Kurumi\Handling;
+
 class loads
 {
   public static function showError(string $filename)

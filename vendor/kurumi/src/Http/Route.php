@@ -1,6 +1,6 @@
 <?php
 
-namespace Kurumi\Route;
+namespace Kurumi\Http;
 
 use app\controllers\Controllers;
 
