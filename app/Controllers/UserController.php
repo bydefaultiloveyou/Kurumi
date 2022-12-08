@@ -12,6 +12,8 @@ class UserController
 
   public static function about()
   {
-    return view('views/about');
+    return view('views/about', [
+      "title" => "About Page"
+    ]);
   }
 }
