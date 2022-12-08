@@ -1,12 +1,12 @@
 <?php
 
-use Kurumi\Handling\loads;
+use Kurumi\Handling\Loads;
 
 function view(string $path, $data = [])
 {
   $paths = './public/' . $path . '.php';
   if (!file_exists($paths)) {
-    die(loads::showError($path));
+    die(Loads::showError($path));
   }
   require $paths;
 }
