@@ -5,7 +5,7 @@ spl_autoload_register(function ($class) {
   if (file_exists('./vendor/kurumi/http/' . $class . '.php')) {
     require_once './vendor/kurumi/http/' . $class . '.php';
   } else {
-    require_once './app/controllers/' . $class . '.php';
+    require_once './app/Controllers/' . $class . '.php';
   }
 });
 
