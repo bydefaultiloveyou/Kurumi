@@ -2,7 +2,7 @@
 
 namespace Kurumi\Handling;
 
-class loads
+class Loads
 {
   public static function showError(string $filename)
   {

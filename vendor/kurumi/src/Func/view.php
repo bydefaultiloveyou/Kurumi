@@ -1,5 +1,7 @@
 <?php
 
+use Kurumi\Handling\loads;
+
 function view(string $path, $data = [])
 {
   $paths = './public/' . $path . '.php';

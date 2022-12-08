@@ -15,8 +15,6 @@
       background: #E5E7EB;
     }
 
-    /* 079669 */
-    /*#E5E7EB*/
     .container.section {
       position: absolute;
       left: 50%;

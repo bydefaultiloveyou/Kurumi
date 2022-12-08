@@ -2,9 +2,6 @@
 
 namespace Kurumi\Http;
 
-use app\controllers\Controllers;
-
-
 /*
   nanti code code nya lu rapihin lagi, sengaja gua
   komentari dulu code nya takut salah nge hapus
@@ -14,8 +11,6 @@ class Route
 {
 
   private static $routes = [];
-
-  // private static $url;
 
   /**
    * Get method

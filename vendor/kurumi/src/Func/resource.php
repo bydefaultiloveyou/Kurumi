@@ -1,6 +1,5 @@
 <?php
 
-//hallo kebaca gak cuk
 /**
  *  section digunakan untuk include components di folder
  *  public/views/**

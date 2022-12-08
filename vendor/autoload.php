@@ -1,6 +1,5 @@
 <?php
 
-
 spl_autoload_register(function ($class) {
   $class = explode('\\', $class);
   $class = $class[1] . '/' . end($class);
@@ -17,6 +16,5 @@ spl_autoload_register(function ($class) {
 
 
 require_once "./vendor/kurumi/src/Func/resource.php";
-require_once './vendor/kurumi/src/Handling/loads.php';
 require_once './vendor/kurumi/src/Func/view.php';
 require_once './routes/web.php';
