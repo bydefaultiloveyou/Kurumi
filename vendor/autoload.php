@@ -15,5 +15,6 @@ spl_autoload_register(function ($class) {
  */
 
 require_once "./vendor/kurumi/resource/resource.php";
+require_once './vendor/kurumi/handling/loads.php';
 require_once './vendor/kurumi/Func/view.php';
 require_once './routes/web.php';

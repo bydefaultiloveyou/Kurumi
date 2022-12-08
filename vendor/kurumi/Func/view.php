@@ -2,5 +2,9 @@
 
 function view(string $path, $data = [])
 {
-  require './public/' . $path . '.php';
+  $paths = './public/' . $path . '.php';
+  if (!file_exists($paths)) {
+    die(loads::showError($path));
+  }
+  require $paths;
 }
