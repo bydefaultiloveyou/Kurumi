@@ -2,8 +2,8 @@
 spl_autoload_register(function ($class) {
   $class = explode('\\', $class);
   $class = end($class);
-  if (file_exists('./vendor/Kurumi/src/Http/' . $class . '.php')) {
-    require_once './vendor/Kurumi/src/Http/' . $class . '.php';
+  if (file_exists($path = './vendor/kurumi/src/Http/' . $class . '.php')) {
+    require_once $path;
   } else {
     require_once './app/Controllers/' . $class . '.php';
   }
