@@ -1,6 +1,6 @@
 <?php
 
-use Kurumi\Route\Route;
+use Kurumi\Http\Route;
 use App\Controllers\UserController;
 
 

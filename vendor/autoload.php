@@ -1,18 +1,20 @@
 <?php
+
+
 spl_autoload_register(function ($class) {
   $class = explode('\\', $class);
-  $class = end($class);
-  if (file_exists($path = './vendor/kurumi/src/Http/' . $class . '.php')) {
+  $class = $class[1] . '/' . end($class);
+  if (file_exists($path = './vendor/kurumi/src/' . $class . '.php')) {
     require_once $path;
-  } else {
-    require_once './app/Controllers/' . $class . '.php';
   }
 });
 
-/*
-  | harus dibawah bre nyeimpen nya kalau di atas
-  | si function spl_autoload_register ngak jalan
- */
+spl_autoload_register(function ($class) {
+  $class = explode('\\', $class);
+  $class = $class[1] . '/' . end($class);
+  require_once './app/' . $class . '.php';
+});
+
 
 require_once "./vendor/kurumi/src/Func/resource.php";
 require_once './vendor/kurumi/src/Handling/loads.php';
