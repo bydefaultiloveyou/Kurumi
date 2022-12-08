@@ -7,7 +7,7 @@ use app\controllers\Controllers;
 
 /*
   nanti code code nya lu rapihin lagi, sengaja gua
-  komentari dulu code nya takut salah nge hapus  
+  komentari dulu code nya takut salah nge hapus
  */
 
 class Route
@@ -39,7 +39,7 @@ class Route
         $data = self::$action[1];
       }
 
-      View::render(self::$action[0], $data);
+      view(self::$action[0], $data);
     });
   }
 
@@ -61,7 +61,7 @@ class Route
   {
     $uri = $_SERVER['REQUEST_URI'];
     foreach (self::$routes as $path => $callback) {
-      if ($uri !== $path xor $uri == $path . '/' xor $uri . '/' == $path) continue; // untuk mengatsi bug nya yang xor bre 
+      if ($uri !== $path xor $uri == $path . '/' xor $uri . '/' == $path) continue; // untuk mengatsi bug nya yang xor bre
       if ($callback == null) continue;
       return $callback();
     }
