@@ -1,13 +1,30 @@
 <?php
 
-$short_options = "c:h:";
+$short_options = "c:";
 
 $long_options = [
-  "help:",
   "make::Controller:"
 ];
 
 $options = getopt($short_options, $long_options);
+
+if ($options === []) {
+  echo "
+Welcome to Kurumi Framework
+
+Mini Framework for PHP Native, project open source!!
+Lets contribute https://github.com/bydefaultiloveyou/Kurumi.git
+
+if you get this output on your input, that mean your command wrong
+please check in bottom for your input
+
+===== kurumi command =====
+
+--make::Controller <NameController>           for make a file controller handler
+  | -c <NameController>                       -> same function, for make a file controller handler
+
+";
+}
 
 if (isset($options["c"]) || isset($options["make::Controller"])) {
   $filename = isset($options["c"]) ? $options["c"] : $options["make::Controller"];
@@ -44,14 +61,15 @@ class " . $filename . "
 
     ";
   }
-} else {
-  echo "
-  please give a name controller
-
-  php kurumi --make::Controller <name controller>
-
-  example :
-
-  php kurumi --make::Controller UserController
-  ";
 }
+//  else {
+//   echo "
+//   please give a name controller
+
+//   php kurumi --make::Controller <name controller>
+
+//   example :
+
+//   php kurumi --make::Controller UserController
+//   ";
+// }

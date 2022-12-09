@@ -2,12 +2,13 @@
 
 namespace App\Controllers;
 
-class UserController
+class HomeController
 {
-
-  public static function home()
+  public static function index()
   {
-    return view('views/home');
+    return view("views/home", [
+      "title" => "Kurumi Framework"
+    ]);
   }
 
   public static function about()

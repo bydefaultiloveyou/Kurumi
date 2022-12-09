@@ -18,7 +18,6 @@ class Route
    */
   public static function get(string $paths, $callback)
   {
-
     static::addRoute($paths, $callback);
   }
 

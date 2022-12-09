@@ -13,8 +13,4 @@ return [
    */
   "PORT" => "" ?? "3306",
 
-  /**
- * username database kalian
- * defaulnya
- */
 ];
