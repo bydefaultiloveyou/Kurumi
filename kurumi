@@ -48,10 +48,10 @@ class " . $filename . "
   echo "
   please give a name controller
 
-  php kurumi --make::controller <name controller>
+  php kurumi --make::Controller <name controller>
 
   example :
 
-  php kurumi --make::controller UserController
+  php kurumi --make::Controller UserController
   ";
 }
