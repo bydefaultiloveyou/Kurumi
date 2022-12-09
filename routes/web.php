@@ -6,3 +6,7 @@ use Kurumi\Http\Route;
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/about', [HomeController::class, 'about']);
+
+Route::post('/about', [HomeController::class, 'post']);
+
+Route::run();

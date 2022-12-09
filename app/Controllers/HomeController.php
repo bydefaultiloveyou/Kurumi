@@ -17,4 +17,9 @@ class HomeController
       "title" => "About Page"
     ]);
   }
+
+  public static function post($params)
+  {
+    var_dump($params);
+  }
 }
