@@ -1,0 +1,57 @@
+<?php
+
+$short_options = "c:h:";
+
+$long_options = [
+  "help:",
+  "make::Controller:"
+];
+
+$options = getopt($short_options, $long_options);
+
+if (isset($options["c"]) || isset($options["make::Controller"])) {
+  $filename = isset($options["c"]) ? $options["c"] : $options["make::Controller"];
+  if (file_exists("./" . $filename . ".php")) {
+    echo "
+
+    File Al Ready Exist
+
+    ";
+    die;
+  }
+  try {
+    $newFile = fopen('./app/Controllers/' . $filename . ".php", "w");
+    $string  = "<?php
+
+namespace App\Controllers;
+
+class " . $filename . "
+{
+  // write method in here
+}";
+
+    fwrite($newFile, $string);
+    fclose($newFile);
+    echo "
+
+    File Creating Success
+
+    ";
+  } catch (\Throwable $th) {
+    echo "
+
+    Cannot Create File
+
+    ";
+  }
+} else {
+  echo "
+  please give a name controller
+
+  php kurumi --make::controller <name controller>
+
+  example :
+
+  php kurumi --make::controller UserController
+  ";
+}
