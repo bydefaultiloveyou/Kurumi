@@ -121,7 +121,7 @@ class Route
     // menampilkan pesan 404 jika handler kosong
     if (!$handler) {
       $handler = function () {
-        include './vendor/kurumi/src/Http/404.phtml';
+        include './vendor/kurumi/src/Handling/Web/404.phtml';
       };
     }
 
