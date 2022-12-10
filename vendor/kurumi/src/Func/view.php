@@ -11,7 +11,7 @@ function view(string $path, $data = [])
   } else if (file_exists($dir . '.php')) {
     include $dir  . '.php';
   } else if ($dir . '.kurumi.php') {
-    $kurumi = new \Templates\Kurumi\Kurumi();
+    $kurumi = new Kurumi\Templates\Kurumi();
     include $dir  . '.kurumi.php';
   }
 }

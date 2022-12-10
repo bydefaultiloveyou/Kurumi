@@ -20,6 +20,6 @@ class HomeController
 
   public static function post($params)
   {
-    var_dump($params);
+    echo $params["nama"];
   }
 }
