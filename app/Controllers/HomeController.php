@@ -2,12 +2,18 @@
 
 namespace App\Controllers;
 
+use App\Models\Home;
+
 class HomeController
 {
+
+  protected $DB;
+
   public static function index()
   {
     return view("views/home", [
-      "title" => "Kurumi Framework"
+      "title" => "Kurumi Framework",
+      "test" => Home::getData(),
     ]);
   }
 

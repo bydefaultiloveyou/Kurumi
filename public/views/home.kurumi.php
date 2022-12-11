@@ -15,6 +15,11 @@
   <main class="container p-5">
     <h2>Selamat Datang Di <?= $data["title"] ?></h2>
     <p>Framework buat orang yang sakit dihina karena koneksi.php</p>
+    <?php foreach ($data["test"] as $key => $value) : ?>
+      <p>
+        <?= $value["name"] ?>
+      </p>
+    <?php endforeach ?>
   </main>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
