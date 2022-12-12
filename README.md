@@ -30,7 +30,7 @@ Fitur-fitur yang kami sediakan :
  git clone https://github.com/bydefaultiloveyou/Kurumi.git & cd Kurumi
 ```
 
-Untuk menjalankan server, ketik ``` php kurumi serve ``` di terminal / cmd
+Untuk menjalankan server, ketik ``` php kurumi server ``` di terminal / cmd
 
 <h2>🔫 Kurumi</h2>
 
