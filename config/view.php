@@ -8,6 +8,5 @@ return [
    *
    */
 
-
   'path' => 'views',
 ];

@@ -14,6 +14,11 @@
   <?php $kurumi->include("components/header") ?>
   <main class="container p-5">
     <h2>Selamat Datang di About</h2>
+    <form action="/login" method="POST">
+      <input type="text" name="username" placeholder="username" autocomplete="off">
+      <input type="text" name="password" placeholder="password" autocomplete="off">
+      <button type="submit">Login</button>
+    </form>
   </main>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>

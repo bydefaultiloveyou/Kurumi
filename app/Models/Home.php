@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Kurumi\Orm\DB;
+use Kurumi\Database\DB;
 
 class Home
 {
@@ -11,11 +11,16 @@ class Home
     return new DB();
   }
 
-  public static function getData()
+  public static function show()
   {
     return self::DB()->select([
       "column" => "name",
       "table" => "test"
     ])->fetchAll();
+  }
+
+  public static function store(array $query)
+  {
+    return self::DB()->create($query);
   }
 }

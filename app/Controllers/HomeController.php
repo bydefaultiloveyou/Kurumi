@@ -3,12 +3,10 @@
 namespace App\Controllers;
 
 use App\Models\Home;
+use Kurumi\Database\DB;
 
 class HomeController
 {
-
-  protected $DB;
-
   public static function index()
   {
     return view("home", [
@@ -23,8 +21,24 @@ class HomeController
     ]);
   }
 
-  public static function post($params)
+  public static function login()
   {
-    echo $params["nama"];
+    return view('login', [
+      "title" => "Login Page"
+    ]);
+  }
+
+  public static function store($params)
+  {
+    return Home::store([
+      "column" => "username, password",
+      "table" => "user",
+      "value" => [
+        [
+          "username" => $params["username"],
+          "password" => $params["password"]
+        ]
+      ]
+    ]);
   }
 }

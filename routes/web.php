@@ -7,6 +7,7 @@ Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/about', [HomeController::class, 'about']);
 
-Route::post('/about', [HomeController::class, 'post']);
+Route::get('/login', [HomeController::class, 'login']);
+Route::post('/login', [HomeController::class, 'store']);
 
 Route::run();

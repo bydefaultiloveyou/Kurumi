@@ -1,6 +1,6 @@
 <?php
 
-namespace Kurumi\Orm;
+namespace Kurumi\Database;
 
 use PDO;
 use PDOException;
@@ -28,6 +28,7 @@ class DB
   protected $table;
   protected $where;
   protected $by;
+  protected $value;
 
   public function __construct()
   {
@@ -41,6 +42,26 @@ class DB
     $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     return $this->connect = $connect;
+  }
+
+  public function create(array $query)
+  {
+    //table 
+    if (isset($query["table"]) and is_string($query["table"])) {
+      $this->table = $query["table"];
+    }
+
+    // column
+    if (isset($query["column"]) and is_string($query["column"])) {
+      $this->column = $query["column"];
+    }
+
+    // value
+    if (isset($query["value"]) and is_array($query["value"])) {
+      $this->value = $query["value"];
+    }
+
+    return $this->query("INSERT");
   }
 
   public function select(array $query)
@@ -148,6 +169,18 @@ class DB
         } catch (PDOException $error) {
           echo $query . "<br>" . $error->getMessage();
         }
+      }
+      /**
+       * INSERT method
+       */
+    } elseif ($type === "INSERT") {
+      try {
+        foreach ($this->value as $value) {
+          $query =  "INSERT INTO $this->table ( $this->column ) VALUES ( '" . implode("' , '", array_values($value)) . "');";
+          return $this->connect->exec($query);
+        }
+      } catch (PDOException $error) {
+        echo $query . "<br>" . $error->getMessage();
       }
     }
 
