@@ -34,9 +34,7 @@ Untuk menjalankan server, ketik ``` php kurumi server ``` di terminal / cmd
 
 <h2>🔫 Kurumi</h2>
 
-Kami mempunyai kurumi ```kurumi```, dia adalah sebuah program simple yang akan membantu masa development aplikasi kalian. Di dalamnya command yang bisa kalian gunakan
+Kami mempunyai ```kurumi```, dia adalah sebuah program simple yang akan membantu masa development aplikasi kalian. Di dalamnya ada berbagai macam command yang bisa kalian gunakan
 
 ketikan ``` php kurumi -h ``` ini untuk melihat command apa aja yang tersedia
  
-
-Like this library? Just star this repository.
