@@ -18,3 +18,4 @@ spl_autoload_register(function ($class) {
 
 require_once './vendor/kurumi/src/Func/view.php';
 require_once './routes/web.php';
+require_once './config/view.php';

@@ -11,15 +11,14 @@ class HomeController
 
   public static function index()
   {
-    return view("views/home", [
-      "title" => "Kurumi Framework",
-      "test" => Home::getData(),
+    return view("home", [
+      "title" => "Kurumi Framework"
     ]);
   }
 
   public static function about()
   {
-    return view('views/about', [
+    return view('about', [
       "title" => "About Page"
     ]);
   }

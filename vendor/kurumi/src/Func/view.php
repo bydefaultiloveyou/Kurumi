@@ -4,7 +4,7 @@ use Kurumi\Handling\Loads;
 
 function view(string $path, $data = [])
 {
-  $dir = './public/' . $path;
+  $dir = './resources/views/' . $path;
 
   if (!file_exists($dir . '.php') and !file_exists($dir . '.kurumi.php')) {
     die(Loads::showError($path));
