@@ -7,8 +7,7 @@ class Kurumi
 
   private $short_options = "c:",
     $long_options = [
-      "make::Controller:",
-      "server:"
+      "make::Controller:"
     ],
     $options;
 
@@ -113,7 +112,11 @@ class " . $filename . "
    Tokisaki Kurumi:
    {$this->randQuetes()}
 ";
-      system('php -S localhost:3000 > /dev/null 2>&1');
+      if (PHP_OS == 'Linux') {
+        system('php -S localhost:3000 > /dev/null 2>&1');
+      } else {
+        system('php -S localhost:3000 > NUL');
+      }
     }
   }
 }
