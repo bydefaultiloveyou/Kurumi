@@ -5,8 +5,9 @@ namespace Kurumi\Consoles;
 class Kurumi
 {
 
-  private $short_options = "c:",
+  private $short_options = "c:m:",
     $long_options = [
+      "make::Model:",
       "make::Controller:"
     ],
     $options;
@@ -21,6 +22,7 @@ class Kurumi
   {
     $this->handleError();
     $this->createController();
+    $this->createModels();
     $this->server();
   }
 
@@ -64,7 +66,7 @@ please check in bottom for your input
   {
     if (isset($this->options["c"]) or isset($this->options["make::Controller"])) {
       $filename = isset($this->options["c"]) ? $this->options["c"] : $this->options["make::Controller"];
-      if (file_exists("./" . $filename . ".php")) {
+      if (file_exists("./app/Controllers/" . $filename . ".php")) {
         echo "
 
     File Al Ready Exist
@@ -99,6 +101,54 @@ class " . $filename . "
       }
     }
   }
+
+  public function createModels()
+  {
+    if (isset($this->options["m"]) or isset($this->options["make::Model"])) {
+      $filename = isset($this->options["m"]) ? $this->options["m"] : $this->options["make::Model"];
+      if (file_exists("./app/Models/" . $filename . ".php")) {
+        echo "
+
+    File Al Ready Exist
+
+    ";
+        die;
+      }
+      try {
+        $newFile = fopen('./app/Models/' . $filename . ".php", "w");
+        $string  = "<?php
+
+namespace App\Models;
+
+use Kurumi\Database\DB;
+
+class $filename
+{
+  public static function DB()
+  {
+    return new DB();
+  }
+
+
+}";
+
+        fwrite($newFile, $string);
+        fclose($newFile);
+        echo "
+
+    File Creating Success
+
+    ";
+      } catch (\Throwable $th) {
+        echo "
+
+    Cannot Create File
+
+    ";
+      }
+    }
+  }
+
   public function server()
   {
     global $argv;

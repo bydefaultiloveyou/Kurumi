@@ -171,7 +171,7 @@ class DB
         }
       }
       /**
-       * INSERT method
+       * Insert method
        */
     } elseif ($type === "INSERT") {
       try {

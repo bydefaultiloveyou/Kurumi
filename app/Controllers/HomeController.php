@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\Home;
-use Kurumi\Database\DB;
 
 class HomeController
 {
