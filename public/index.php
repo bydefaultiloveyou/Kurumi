@@ -1,4 +1,4 @@
 <?php
 
 // load auto load
-require "./vendor/autoload.php";
+require __DIR__ . "/../vendor/autoload.php";
