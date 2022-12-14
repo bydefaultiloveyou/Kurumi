@@ -24,6 +24,9 @@ class DB
 
 
   // query
+  protected $join;
+  protected $joinTable;
+  protected $joinOn;
   protected $column = "*";
   protected $table;
   protected $where;
@@ -66,6 +69,13 @@ class DB
 
   public function select(array $query)
   {
+    // join
+    if (isset($query["join"]) and is_array($query["join"])) {
+      $this->join = $query["join"];
+      $this->joinTable = $query["join"]["table"];
+      $this->joinOn = $query["join"]["on"];
+    }
+
     // column
     if (isset($query["column"]) and is_string($query["column"])) {
       $this->column = $query["column"];
@@ -135,6 +145,10 @@ class DB
       $query = "SELECT $this->column FROM $this->table ";
       if (isset($this->where)) {
         $query .= "WHERE " . $this->where[0] . " " . $this->where[1] . " " . (string)$this->where[2];
+      }
+
+      if (isset($this->join)) {
+        $query .= " JOIN " . $this->joinTable . " ON " . $this->joinOn[0] . " = " . $this->joinOn[1];
       }
 
       if (isset($this->by)) {
