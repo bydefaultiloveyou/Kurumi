@@ -1,29 +1,28 @@
 <?php
 
-namespace App\Templates;
+namespace Kurumi\Templates;
 
-class Layouts
+use Kurumi\Templates\Kurumi;
+
+class Layouts extends Kurumi
 {
-
-  private $filename;
+  protected $filename;
 
   public function __construct($filename, $data)
   {
     $this->filename = $filename;
-    $this->render(
-      $data
-    );
-  }
-
-  private function dir(string $path)
-  {
-    return "./resources/views/" . $path . ".kurumi.php";
+    $this->render($data);
   }
 
   public function render($data)
   {
-    $kurumi = new \Kurumi\Templates\Kurumi();
-    $slot = $this->dir($this->filename);
-    include $this->dir("components/layouts");
+    $configLayout = require_once __DIR__ . '/../../../../config/layout.php';
+    $kurumi = new Kurumi();
+    $main = $this->path($this->filename);
+    if ($configLayout['enable']) {
+      include $this->path($configLayout['path']);
+    } else {
+      include $this->path($this->filename);
+    }
   }
 }

@@ -152,7 +152,7 @@ class $filename
   public function server()
   {
     global $argv;
-    if (@$argv[1] == 'server') {
+    if (@$argv[1] == 'desah') {
       echo "
  Kurumi server running:
 
