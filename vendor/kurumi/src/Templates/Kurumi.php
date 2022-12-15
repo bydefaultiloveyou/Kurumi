@@ -4,15 +4,15 @@ namespace Kurumi\Templates;
 
 class Kurumi
 {
-  const directoy =  __DIR__ . '/../../../../resources/';
+  const directoy =  __DIR__ . '/../../../../resources/views/';
 
   public function include(string $path)
   {
-    include self::directoy . $path . '.php';
+    include self::directoy . $path . '.kurumi.php';
   }
 
   public function asset(string $path)
   {
-    echo  self::directoy . $path . '.php';
+    echo  __DIR__ . '/../../../../resources/' . $path . '.kurumi.php';
   }
 }

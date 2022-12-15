@@ -15,3 +15,8 @@ function view(string $path, $data = [])
     include $dir  . '.kurumi.php';
   }
 }
+
+function layouts(string $filename, $data = [])
+{
+  new App\Templates\Layouts($filename, $data);
+}
