@@ -15,4 +15,9 @@ class Kurumi
   {
     echo  __DIR__ . '/../../../../resources/' . $path . '.kurumi.php';
   }
+
+  public function path(string $path)
+  {
+    return self::directoy . $path . '.kurumi.php';
+  }
 }
