@@ -21,7 +21,7 @@ function view(string $path, $data = [])
   } else if ($dir . '.kurumi.php') {
 
     // jiks ada maka tampilkan bersama fiturnya
-    new \Kurumi\Templates\Layouts($path, $data);
     new \Kurumi\Templates\Template($dir, $path, $data);
+    new \Kurumi\Templates\Layouts($path, $data);
   }
 }
