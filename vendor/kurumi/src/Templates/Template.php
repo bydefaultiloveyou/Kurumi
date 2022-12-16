@@ -18,12 +18,19 @@ class Template
 
   private function regex($contents)
   {
-    $contents = preg_replace('/\{{ (.*) \}}/', '<?= $1 ?>', $contents);
+    //  syntax php echo 
+    $contents = preg_replace('/\{{ (.*) \}}/', '<?php echo $1 ?>', $contents);
+    $contents = preg_replace('/(.*) \{{/', '<?php echo $1', $contents);
+    $contents = preg_replace('/(.*) \}}/', '$1 ?>', $contents);
+    // syntax php no echo 
     $contents = preg_replace('/\{ (.*) \}/', '<?php $1 ?>', $contents);
-    $contents = preg_replace('/^@if(.*)/m', '<?php if($1): ?>', $contents);
-    $contents = preg_replace('/@elseif(.*)/m', '<?php elseif($1): ?>', $contents);
-    $contents = preg_replace('/@else(.*)/m', '<?php else: ?>', $contents);
-    $contents = preg_replace('/@endif/m', '<?php endif; ?>', $contents);
+    $contents = preg_replace('/(.*) \{/', '<?php $1', $contents);
+    $contents = preg_replace('/(.*) \}/', '$1 ?>', $contents);
+    // syntax if else 
+    $contents = preg_replace('/\@if (.*) \:/', '<?php if ($1): ?>', $contents);
+    $contents = preg_replace('/@elif (.*) \:/', '<?php elseif ($1): ?>', $contents);
+    $contents = preg_replace('/\@else/', '<?php else: ?>', $contents);
+    $contents = preg_replace('/@endif/', '<?php endif; ?>', $contents);
     return $contents;
   }
 
