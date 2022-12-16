@@ -6,9 +6,11 @@ class Route
 {
   private static array $routes;
 
+  protected static $param;
+
   public static function get(string $path, $handler)
   {
-    self::addRoute("GET", $path, $handler);
+    self::addRoute("GET", self::segmen($path), $handler);
   }
 
   public static function post(string $path, $handler)
@@ -27,14 +29,28 @@ class Route
     ];
   }
 
-  // private static function validationUrl($path, $uri)
-  // {
-  //   $path = explode('/', $path);
-  //   $uri = explode('/', $uri);
+  private static function segmen($path)
+  {
+    // ngeregex anjg
+    if (preg_match('/{.*}/i', $path)) {
 
-  //   if (preg_match()) {
-  //   }
-  // }
+      // explode
+      $p = explode("/", $path);
+      $q = explode('/', parse_url($_SERVER["REQUEST_URI"])["path"]);
+
+      // ambil nilai dari yang di berikan
+      $d = array_search('{:segmen}', $p);
+    }
+
+    // kita rubah string dari path
+    $path = preg_replace('/{.*}/i', @$q[$d], $path);
+
+    // simpan paramsnya
+    self::$param =  @$q[$d];
+
+    // return path baru
+    return $path;
+  }
 
   public static function run()
   {
@@ -48,8 +64,6 @@ class Route
     $handler = null;
     // looping semua array $routes
     foreach (self::$routes as $route) {
-
-      // self::validationUrl($route["path"], $RequestUri);
 
       // check apakah url browser sama seperti di routes
       if ($route["path"] === $RequestPath xor $route["path"] . "/" === $RequestPath) {
@@ -71,7 +85,7 @@ class Route
 
     // jalankan method yang di beri di route
     call_user_func_array($handler, [
-
+      self::$param,
       // yang penting disini gabungan get dan post
       array_merge($_GET, $_POST)
     ]);
