@@ -18,6 +18,13 @@ class HomeController
     ]);
   }
 
+  public static function testSegmen($id)
+  {
+    view("test", [
+      "id" => $id
+    ]);
+  }
+
   public static function service()
   {
     view("service", [

@@ -9,6 +9,6 @@ Route::get('/about', [HomeController::class, 'about']);
 
 Route::get('/service', [HomeController::class, 'service']);
 
-Route::get('/about/{id}/detail', [HomeController::class, 'hallo']);
+Route::get('/about/{:segmen}/detail', [HomeController::class, 'testSegmen']);
 
 Route::run();
