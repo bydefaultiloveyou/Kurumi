@@ -18,6 +18,7 @@
 Fitur-fitur yang kami sediakan :
 
 *   Mudah di gunakan
+*   Template Engine yang simpel
 *   Query Orm Simple
 *   Mengunakan Patern MVC ala Laravel
 *   Magic Function yang memudahkan proses development
