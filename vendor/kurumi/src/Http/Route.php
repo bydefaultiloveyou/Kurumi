@@ -27,6 +27,15 @@ class Route
     ];
   }
 
+  // private static function validationUrl($path, $uri)
+  // {
+  //   $path = explode('/', $path);
+  //   $uri = explode('/', $uri);
+
+  //   if (preg_match()) {
+  //   }
+  // }
+
   public static function run()
   {
 
@@ -35,9 +44,12 @@ class Route
     $RequestPath = $RequestUri['path'];
     $method = $_SERVER["REQUEST_METHOD"];
 
+
     $handler = null;
     // looping semua array $routes
     foreach (self::$routes as $route) {
+
+      // self::validationUrl($route["path"], $RequestUri);
 
       // check apakah url browser sama seperti di routes
       if ($route["path"] === $RequestPath xor $route["path"] . "/" === $RequestPath) {

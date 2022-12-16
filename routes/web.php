@@ -9,4 +9,6 @@ Route::get('/about', [HomeController::class, 'about']);
 
 Route::get('/service', [HomeController::class, 'service']);
 
+Route::get('/about/{id}/detail', [HomeController::class, 'hallo']);
+
 Route::run();

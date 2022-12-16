@@ -11,10 +11,16 @@ function view(string $path, $data = [])
   $dir = __DIR__ . '/../../../../resources/' . $config_view['path'] . '/' .  $path;
 
   if (!file_exists($dir . '.php') and !file_exists($dir . '.kurumi.php')) {
+
+    // jika file nya tidak ada maka keluarkan pesan error
     die(Loads::showError($path));
   } else if (file_exists($dir . '.php')) {
+
+    // jika file ada tapi tidak di barengi dengan extensi .kurumi.php maka tampilkan
     include $dir  . '.php';
   } else if ($dir . '.kurumi.php') {
-    new \Kurumi\Templates\Layouts($path, $data, $config_view['path']);
+
+    // jiks ada maka tampilkan bersama fiturnya
+    new \Kurumi\Templates\Layouts($path, $data);
   }
 }

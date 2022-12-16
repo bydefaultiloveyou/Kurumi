@@ -8,42 +8,34 @@ class Layouts extends Kurumi
 {
   protected $filename;
 
-  public function __construct($filename, $data, $config_view)
+  // menjalankan function render
+  public function __construct($filename, $data)
   {
     $this->filename = $filename;
     $this->render($data);
-    $this->syntax($filename, $data, $config_view);
   }
 
   public function render($data)
   {
-    $config_layout = require_once __DIR__ . '/../../../../config/layout.php';
+    // mengambil config dari ./config/layouts
+    $view = require_once __DIR__ . '/../../../../config/layout.php';
 
+    // intansiasi class kurumi
     $kurumi = new Kurumi();
 
+    // root di rectory
+    $dir =  __DIR__ . '/../../../../resources/views/';
 
-    if ($config_layout['enable']) {
+    // check apakah fitur layouts di aktifkan / tidak
+    if ($view["enable"]) {
 
-      include $this->path($config_layout['path']);
+      // jika iyha buat layoutsnya
+      $slot = $dir . $this->filename . '.kurumi.php';
+      include $dir . $view["path"] . '.kurumi.php';
     } else {
 
-      include $this->path($this->filename);
+      // jika tidak jangan buat layoutsnya
+      include $dir . $this->filename . '.kurumi.php';
     }
-  }
-
-  public function syntax($filename, $data, $config_view)
-  {
-    $path = __DIR__ . '/../../../../resources/' . $config_view . '/' . $filename . '.kurumi.php';
-    $contents = file_get_contents($path);
-    $contents = preg_replace('/\{{ (.*) \}}/', '<?= $1 ?>', $contents);
-    $contents = preg_replace('/(.*) \{{/', '<?= $1', $contents);
-    $contents = preg_replace('/(.*) \}}/', '$1 ?>', $contents);
-    $contents = preg_replace('/(.*) \{/', '<?php $1', $contents);
-    $contents = preg_replace('/(.*) \}/', '$1 ?>', $contents);
-    $contents = preg_replace('/\ @if (.*) \:/', 'if ($1) :', $contents);
-    $contents = preg_replace('/\ @elif (.*) \:/', 'elseif ($1) :', $contents);
-    $contents = preg_replace('/\ @else \:/', 'else :', $contents);
-    $contents = preg_replace('/\ @endif /', 'endif', $contents);
-    eval('?>' . $contents . '<?php');
   }
 }
