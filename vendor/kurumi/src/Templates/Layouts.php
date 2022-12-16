@@ -24,14 +24,12 @@ class Layouts extends Kurumi
     $kurumi = new Kurumi();
 
     // root di rectory
-    $dir =  __DIR__ . '/../../../../resources/views/';
-    // ntar benerin lagi bre sama lu , rapihin 
-    $dir2 = __DIR__ . '/../../../../storage/framework/views/';
+    $dir =  __DIR__ . '/../../../../storage/framework/views/';
     // check apakah fitur layouts di aktifkan / tidak
     if ($view["enable"]) {
 
       // jika iyha buat layoutsnya
-      $slot = $dir2 . $this->filename . '.kurumi.php';
+      $slot = $dir . $this->filename . '.kurumi.php';
       include $dir . $view["path"] . '.kurumi.php';
     } else {
 

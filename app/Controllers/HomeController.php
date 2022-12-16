@@ -7,7 +7,8 @@ class HomeController
   public static function index()
   {
     view("home", [
-      "title" => "Kurumi Framework"
+      "title" => "Kurumi Framework",
+      "test" => 3,
     ]);
   }
 

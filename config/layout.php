@@ -7,6 +7,6 @@ return [
    *  kalian cukup perlu merubah enable ke true
    */
 
-  "path" => "components/layouts",
+  "path" => "layouts",
   "enable" => true,
 ];

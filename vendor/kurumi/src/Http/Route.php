@@ -43,7 +43,7 @@ class Route
     }
 
     // kita rubah string dari path
-    $path = preg_replace('/{.*}/i', @$q[$d], $path);
+    $path = @preg_replace('/{.*}/i', @$q[$d], $path);
 
     // simpan paramsnya
     self::$param =  @$q[$d];
