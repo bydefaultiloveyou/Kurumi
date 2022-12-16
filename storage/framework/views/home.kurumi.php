@@ -1,7 +1,9 @@
-<?php if( ($data['test'] === 1)): ?>
-<p>bener miko sayang</p>
-<?php elseif( ($data['test'] === 2)): ?>
-<p>anjay</p>
-<?php else: ?>
-<p>anjay mabar</p>
-<?php endif; ?>
+<div>
+  <?php if (1 == 1): ?>
+  <h1><?php echo $data['title'] ?></h1>
+  <?php elseif (1 == 1): ?>
+  <h1>ok</h1>
+  <?php else: ?>
+  <h1>salah!</h1>
+  <?php endif; ?>
+</div>

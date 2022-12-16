@@ -1,7 +1,9 @@
-@if ($data['test'] === 1)
-<p>bener miko sayang</p>
-@elseif ($data['test'] === 2)
-<p>anjay</p>
-@else
-<p>anjay mabar</p>
-@endif
+<div>
+  @if 1 == 1 :
+  <h1>{{ $data['title'] }}</h1>
+  @elif 1 == 1 :
+  <h1>ok</h1>
+  @else
+  <h1>salah!</h1>
+  @endif
+</div>
