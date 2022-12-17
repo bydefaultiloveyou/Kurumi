@@ -28,9 +28,13 @@ class Layouts extends Kurumi
     // check apakah fitur layouts di aktifkan / tidak
     if ($view["enable"]) {
 
+      foreach ($data as $key => $value) {
+        eval('$$key = $value;');
+      }
+
       // jika iyha buat layoutsnya
       $slot = $dir . $this->filename . '.kurumi.php';
-      include $dir . $view["path"] . '.kurumi.php';
+      include $dir . 'components.' . $view["path"] . '.kurumi.php';
     } else {
 
       // jika tidak jangan buat layoutsnya

@@ -10,9 +10,4 @@ class Kurumi
   {
     include self::directoy . $path . '.kurumi.php';
   }
-
-  public function asset(string $path)
-  {
-    echo  __DIR__ . '/../../../../resources/' . $path . '.kurumi.php';
-  }
 }

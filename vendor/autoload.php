@@ -17,5 +17,6 @@ spl_autoload_register(function ($class) {
 });
 
 require_once __DIR__ . '/kurumi/src/Functions/view.php';
+require_once __DIR__ . '/kurumi/src/Functions/asset.php';
 require_once __DIR__ . '/../routes/web.php';
 require_once __DIR__ . '/../config/view.php';

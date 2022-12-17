@@ -2,13 +2,13 @@
 
 use Kurumi\Handling\Loads;
 
-$config_view = require __DIR__ . '/../../../../config/view.php';
-
 function view(string $path, $data = [])
 {
   global $config_view;
 
-  $dir = __DIR__ . '/../../../../resources/' . $config_view['path'] . '/' .  $path;
+  $dir = __DIR__ . '/../../../../storage/framework/views/' .  $path;
+
+  new \Kurumi\Templates\Template($dir, $data);
 
   if (!file_exists($dir . '.php') and !file_exists($dir . '.kurumi.php')) {
 
@@ -21,7 +21,6 @@ function view(string $path, $data = [])
   } else if ($dir . '.kurumi.php') {
 
     // jiks ada maka tampilkan bersama fiturnya
-    new \Kurumi\Templates\Template($dir, $data);
     new \Kurumi\Templates\Layouts($path, $data);
   }
 }

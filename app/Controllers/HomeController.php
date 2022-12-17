@@ -6,9 +6,9 @@ class HomeController
 {
   public static function index()
   {
-    view("home", [
+    view("pages.home", [
       "title" => "Kurumi Framework",
-      "hewan" => [
+      "hewans" => [
         "gurita",
         "buaya",
         "betina",
@@ -19,21 +19,14 @@ class HomeController
 
   public static function about()
   {
-    view("about", [
+    view("pages.about", [
       "title" => "PAGE ABOUT"
-    ]);
-  }
-
-  public static function testSegmen($id)
-  {
-    view("test", [
-      "id" => $id
     ]);
   }
 
   public static function service()
   {
-    view("service", [
+    view("pages.service", [
       "title" => "PAGE SERVICE"
     ]);
   }
