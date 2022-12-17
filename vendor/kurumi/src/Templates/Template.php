@@ -31,6 +31,10 @@ class Template
     $contents = preg_replace('/@elif (.*) \:/', '<?php elseif ($1): ?>', $contents);
     $contents = preg_replace('/\@else/', '<?php else: ?>', $contents);
     $contents = preg_replace('/@endif/', '<?php endif; ?>', $contents);
+    // syntax for each
+    $contents = preg_replace('/\@each (.*) \:/', '<?php foreach($1 $2): ?>', $contents);
+    $contents = preg_replace('/@endeach/', '<?php endforeach; ?>', $contents);
+
     return $contents;
   }
 

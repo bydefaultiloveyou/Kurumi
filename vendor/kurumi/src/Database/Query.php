@@ -9,7 +9,9 @@ class Query
 
   private function Select()
   {
-    $query = "SELECT $this->column FROM $this->table ";
+
+    ($this->distinct) ? $query = "SELECT DISTINCT $this->column FROM $this->table " : $query = "SELECT $this->column FROM $this->table ";
+
     if (isset($this->where)) {
       $query .= "WHERE " . $this->where[0] . " " . $this->where[1] . " " . (string)$this->where[2];
     }

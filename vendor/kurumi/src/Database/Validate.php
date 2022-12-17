@@ -7,8 +7,12 @@ use Kurumi\Database\Query;
 class Validate extends Query
 {
 
-  protected $join, $joinTable, $joinOn, $column = "*", $table, $where, $by, $value;
+  protected $join, $joinTable, $joinOn, $column = "*", $table, $where, $by, $value, $distinct = false, $in;
 
+  protected function distinct($query)
+  {
+    if (isset($query["distinct"]) and is_bool($query["distinct"])) $this->distinct = $query["distinct"];
+  }
 
   protected function table($query)
   {
