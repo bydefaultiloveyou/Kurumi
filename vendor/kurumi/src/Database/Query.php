@@ -4,6 +4,11 @@ namespace Kurumi\Database;
 
 use PDOException;
 
+/** -------------
+ *  new Query
+ *  sebuah method untuk Query database
+ */
+
 class Query
 {
 

@@ -5,6 +5,11 @@ namespace Kurumi\Database;
 use PDO;
 use Kurumi\Database\Validate;
 
+/** -------------
+ *  new DB
+ *  sebuah method inti untuk Database system
+ *  system ini kami sebut LurumiQ
+ */
 
 class DB extends Validate
 {
@@ -36,16 +41,20 @@ class DB extends Validate
   public function select(array $query)
   {
     $this->distinct($query);
+
     $this->join($query);
+
     $this->table($query);
+
     $this->where($query);
+
     $this->by($query);
+
     return $this->query("SELECT");
   }
 
   public function delete(array $query)
   {
-
     $this->table($query);
 
     $this->where($query);

@@ -4,6 +4,12 @@ namespace Kurumi\Database;
 
 use Kurumi\Database\Query;
 
+/** -------------
+ *  new Validate
+ *  sebuah method untuk menangani validasi pada gaya penulisan DB
+ *  disini juga di untuk mengawasi Aturan dalam penulisan LurumiQ
+ */
+
 class Validate extends Query
 {
 

@@ -2,25 +2,28 @@
 
 use Kurumi\Handling\Loads;
 
-function view(string $path, $data = [])
+/** -----------------
+ *  view
+ *  digunakan untuk menampilkan design ke website
+ *  
+ *  @param string $filename
+ *  menentukan nama file
+ *  @param array $data
+ *  data yang di beri di view ( optional )
+ */
+
+function view(string $filename, array $data = [])
 {
-  global $config_view;
 
-  $dir = __DIR__ . '/../../../../storage/framework/views/' .  $path;
+  $dir = "./storage/framework/views/" . $filename;
 
-  new \Kurumi\Templates\Template($dir, $data);
+  new \Kurumi\Kurumi\Generate();
 
   if (!file_exists($dir . '.php') and !file_exists($dir . '.kurumi.php')) {
-
-    // jika file nya tidak ada maka keluarkan pesan error
-    die(Loads::showError($path));
+    die(Loads::showError($filename));
   } else if (file_exists($dir . '.php')) {
-
-    // jika file ada tapi tidak di barengi dengan extensi .kurumi.php maka tampilkan
-    include $dir  . '.php';
-  } else if ($dir . '.kurumi.php') {
-
-    // jiks ada maka tampilkan bersama fiturnya
-    new \Kurumi\Templates\Layouts($path, $data);
+    include $dir . '.php';
+  } else if (file_exists($dir . '.kurumi.php')) {
+    new \Kurumi\Kurumi\Layouts($filename, $data);
   }
 }
