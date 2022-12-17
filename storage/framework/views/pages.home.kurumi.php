@@ -8,7 +8,7 @@
   <?php endif; ?>
 </div>
 
-<?php include __DIR__ . "/" . "pages.about" . ".kurumi.php" ?>
+<?php include __DIR__ . "/" . "pages.about" . ".kurumi.php" ?>
 
 <?php foreach($hewans as $hewan ): ?>
 <h1>

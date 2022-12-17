@@ -45,6 +45,9 @@ class Template
     $contents = preg_replace('/\@include (.*)/', '<?php include __DIR__ . "/" . $1 . ".kurumi.php" ?>', $contents);
     // view yield 
     $contents = preg_replace('/\@slot(.*)/', '<?php include $slot ?>', $contents);
+    // view asset 
+    $contents = preg_replace('/\@asset (.*)\;/', '<?php echo "./public/" . $1 ?>', $contents);
+
     return $contents;
   }
 
