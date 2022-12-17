@@ -61,11 +61,7 @@ class Route
     }
 
     if (!$handler) {
-      if (explode('/', $RequestPath)[1] === 'public') {
-        $handler = fn () => require '.' . $RequestPath;
-      } else {
-        $handler = fn () => include './../vendor/kurumi/src/Handling/Web/404.phtml';
-      }
+      $handler = fn () => include './../vendor/kurumi/src/Handling/Web/404.phtml';
     }
 
     call_user_func_array($handler, [
