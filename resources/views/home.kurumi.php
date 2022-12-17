@@ -1,6 +1,6 @@
 <div>
-  @if 1 == 1 :
-  <h1>Selamat Datang Di {{ $data['title'] }}</h1>
+  @if 1 == 1 and 2 == 2 :
+  <h1>Selamat Datang Di {{ !title! }}</h1>
   @elif 1 == 1 :
   <h1>ok</h1>
   @else
@@ -8,7 +8,10 @@
   @endif
 </div>
 
+@include "about"
 
-@each $data['hewan'] as $hewan :
-{{ $hewan }} <br />
-@endeach
+@foreach !hewan! as $hewan :
+<h1>
+  {{ $hewan }}
+</h1>
+@endforeach

@@ -1,6 +1,6 @@
 <div>
-  <?php if (1 == 1): ?>
-  <h1>Selamat Datang Di <?php echo $data['title'] ?></h1>
+  <?php if (1 == 1 and 2 == 2): ?>
+  <h1>Selamat Datang Di <?php echo htmlspecialchars($data["title"]) ?></h1>
   <?php elseif (1 == 1): ?>
   <h1>ok</h1>
   <?php else: ?>
@@ -8,7 +8,10 @@
   <?php endif; ?>
 </div>
 
+<?php include __DIR__ . "/" . "about" . ".kurumi.php" ?>
 
-<?php foreach($data['hewan'] as $hewan ): ?>
-<?php echo $hewan ?> <br />
+<?php foreach($data["hewan"] as $hewan ): ?>
+<h1>
+  <?php echo htmlspecialchars($hewan) ?>
+</h1>
 <?php endforeach; ?>
