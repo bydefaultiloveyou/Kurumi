@@ -163,9 +163,11 @@ class $filename
    {$this->randQuetes()}
 ";
       if (PHP_OS == 'Linux') {
-        system('php -S localhost:3000 public/index.php > /dev/null 2>&1');
+        exec('cd public/ && php -S localhost:3000 > /dev/null 2>&1');
+        // system('php -S localhost:3000 public/index.php > /dev/null 2>&1');
       } else {
-        system('php -S localhost:3000 public/index.php > NUL');
+        exec('cd public/ && php -S localhost:3000 > NUL');
+        // system('php -S localhost:3000 public/index.php > NUL');
       }
     }
   }

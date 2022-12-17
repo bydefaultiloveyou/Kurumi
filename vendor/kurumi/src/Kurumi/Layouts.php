@@ -12,7 +12,7 @@ namespace Kurumi\Kurumi;
 class Layouts
 {
 
-  private string $dir = "./storage/framework/views/";
+  private string $dir = "./../storage/framework/views/";
 
   public function __construct(string $filename, array $data = [])
   {
@@ -21,9 +21,10 @@ class Layouts
 
   private function render(string $filename, array $data = [])
   {
-    $config = require './config/layout.php';
+    $config = require './../config/layout.php';
 
     if ($config['enable']) {
+
       foreach ($data as $key => $value) {
         eval('$$key = $value;');
       }
@@ -31,6 +32,10 @@ class Layouts
       $slot = $this->dir . $filename . '.kurumi.php';
       include $this->dir . $config['filename'] . '.kurumi.php';
     } else {
+      foreach ($data as $key => $value) {
+        eval('$$key = $value;');
+      }
+
       include $this->dir . $filename . '.kurumi.php';
     }
   }

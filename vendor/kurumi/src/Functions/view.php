@@ -12,10 +12,10 @@ use Kurumi\Handling\Loads;
  *  data yang di beri di view ( optional )
  */
 
-function view(string $filename, array $data = [])
+function view(string $filename, $data = [])
 {
 
-  $dir = "./storage/framework/views/" . $filename;
+  $dir = "./../storage/framework/views/" . $filename;
 
   new \Kurumi\Kurumi\Generate();
 

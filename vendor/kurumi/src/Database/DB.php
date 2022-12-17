@@ -18,7 +18,7 @@ class DB extends Validate
 
   public function __construct()
   {
-    $databaseConfig = require "./config/database.php";
+    $databaseConfig = require "./../config/database.php";
 
     $connect = new PDO($databaseConfig["dialect"] . ":host=" . $databaseConfig["host"] . ";dbname=" . $databaseConfig["database"], $databaseConfig["user"], $databaseConfig["password"]);
 

@@ -7,5 +7,5 @@ return [
    *  kalian cukup perlu merubah enable ke true
    */
   "filename" => "components.layouts",
-  "enable" => false,
+  "enable" => true,
 ];

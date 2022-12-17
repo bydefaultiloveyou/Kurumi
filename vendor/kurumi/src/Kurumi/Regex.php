@@ -14,8 +14,6 @@ class Regex
 {
   protected function run($contents)
   {
-    $config = require './config/asset.php';
-
     // add htmlspecialchars
     $contents = preg_replace('/\{{ (.*) \}}/', '<?php echo htmlspecialchars($1) ?>', $contents);
     $contents = preg_replace('/(.*) \{{/', '<?php echo htmlspecialchars($1', $contents);
@@ -41,7 +39,7 @@ class Regex
     // view include 
     $contents = preg_replace('/\@include (.*)/', '<?php require "./storage/framework/views/" . $1 . ".kurumi.php" ?>', $contents);
     // asset
-    $contents = preg_replace('/\@asset (.*)/', '<style><?php include "./' . $config['dir'] . '/" . $1  ?></style>', $contents);
+    $contents = preg_replace('/\@asset (.*)\:/', '<?php echo $1 ?>', $contents);
     // view yield 
     $contents = preg_replace('/\@slot(.*)/', '<?php include $slot ?>', $contents);
 
