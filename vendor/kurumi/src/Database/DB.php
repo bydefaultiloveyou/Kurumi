@@ -35,14 +35,11 @@ class DB extends Validate
 
   public function select(array $query)
   {
+    $this->distinct($query);
     $this->join($query);
-
     $this->table($query);
-
     $this->where($query);
-
     $this->by($query);
-
     return $this->query("SELECT");
   }
 

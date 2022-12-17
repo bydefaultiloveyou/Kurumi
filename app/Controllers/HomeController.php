@@ -8,7 +8,12 @@ class HomeController
   {
     view("home", [
       "title" => "Kurumi Framework",
-      "test" => 3,
+      "hewan" => [
+        "gurita",
+        "buaya",
+        "betina",
+        "kuda"
+      ]
     ]);
   }
 
