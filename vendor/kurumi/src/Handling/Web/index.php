@@ -49,6 +49,8 @@
       border-radius: 5px;
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/themes/prism-tomorrow.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/plugins/line-numbers/prism-line-numbers.min.css" />
 </head>
 
 <body>
@@ -58,7 +60,20 @@
       <h2><?= $message; ?></h2>
       <span><?= $filename; ?>.php Not Found!</span>
     </div>
+    <div>
+      <pre class="line-numbers"><code class="language-php">namespace Kurumi\Handling;
+class Loads{
+  public static function showError(string $filename)
+  {
+    $message = "trying to access a file that doesn't exist.";
+    include __DIR__ . "/Web/index.php";
+  }
+}</code></pre>
+    </div>
   </section>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/components/prism-core.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>
 
 </html>

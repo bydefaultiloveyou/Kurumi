@@ -4,10 +4,7 @@ use App\Controllers\HomeController;
 use Kurumi\Http\Route;
 
 Route::get('/', function () {
-  view('welcome');
+  return view('welcom');
 });
-
-// example
-Route::get('/test', [HomeController::class, 'test']);
 
 Route::run();
