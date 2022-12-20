@@ -1,9 +1,9 @@
 <?php
 
-use Kurumi\Handling\Loads;
+use Kurumi\Handlers\Loads;
 
 /** -----------------
- *  view
+ *  Los
  *  digunakan untuk menampilkan design ke website
  *  
  *  @param string $filename
@@ -14,16 +14,20 @@ use Kurumi\Handling\Loads;
 
 function view(string $filename, $data = [])
 {
-
   $dir = "./../storage/framework/views/" . $filename;
 
   new \Kurumi\Kurumi\Generate();
 
-  if (!file_exists($dir . '.php') and !file_exists($dir . '.kurumi.php')) {
-    die(Loads::showError($filename));
-  } else if (file_exists($dir . '.php')) {
-    include $dir . '.php';
-  } else if (file_exists($dir . '.kurumi.php')) {
-    new \Kurumi\Kurumi\Layouts($filename, $data);
+  try {
+    if (!file_exists($dir . '.php') and !file_exists($dir . '.kurumi.php')) {
+      throw new Exception('trying to access a file that doesnt exist.');
+    } else if (file_exists($dir . '.php')) {
+      include $dir . '.php';
+    } else if (file_exists($dir . '.kurumi.php')) {
+      include $dir . '.kurumi.php';
+      new \Kurumi\Kurumi\Layouts($filename, $data);
+    }
+  } catch (Exception $error) {
+    new Loads($error->getTrace(), $filename, $error->getMessage());
   }
 }
