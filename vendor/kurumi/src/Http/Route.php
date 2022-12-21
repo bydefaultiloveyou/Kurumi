@@ -22,7 +22,17 @@ class Route
 
   public static function post(string $path, $handler)
   {
-    self::addRoute("POST", $path, $handler);
+    self::addRoute("POST", self::segmen($path), $handler);
+  }
+
+  public static function put(string $path, $handler)
+  {
+    self::addRoute("PUT", self::segmen($path), $handler);
+  }
+
+  public static function delete(string $path, $handler)
+  {
+    self::addRoute("DELETE", self::segmen($path), $handler);
   }
 
   private static function addRoute(string $method, string $path, $handler)
@@ -56,17 +66,19 @@ class Route
 
     foreach (self::$routes as $route) {
       if ($route["path"] === $RequestPath xor $route["path"] . "/" === $RequestPath) {
-        if ($route["method"] === $method) $handler = $route["handler"];
+        if ($route["method"] === $method or $route['method'] === $_POST[0]['_method']) $handler = $route["handler"];
       }
     }
 
     if (!$handler) {
-      $handler = fn () => include './../vendor/kurumi/src/Handling/Web/404.phtml';
+      $handler = fn () => include './../vendor/kurumi/src/Handlers/Web/404.phtml';
     }
 
     call_user_func_array($handler, [
-      self::$param,
-      array_merge($_GET, $_POST)
+      [
+        self::$param,
+        array_merge($_GET, $_POST)
+      ]
     ]);
   }
 }
