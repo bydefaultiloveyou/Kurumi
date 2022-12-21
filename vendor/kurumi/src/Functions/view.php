@@ -24,7 +24,6 @@ function view(string $filename, $data = [])
     } else if (file_exists($dir . '.php')) {
       include $dir . '.php';
     } else if (file_exists($dir . '.kurumi.php')) {
-      include $dir . '.kurumi.php';
       new \Kurumi\Kurumi\Layouts($filename, $data);
     }
   } catch (Exception $error) {
