@@ -4,34 +4,24 @@ namespace Kurumi\Handlers;
 
 class Loads
 {
-  private $list_error = [];
-  private $filename;
-  private $message;
-
-  public function __construct($get_error, $filename, $message)
+  public function __construct($get_error)
   {
-    foreach ($get_error as $key => $value) {
-      $this->list_error[$key] = @$value;
-    }
-    $this->getError($filename, $message);
+    $this->message = $get_error["message"];
+    $this->file = $get_error["file"];
+    $this->line = $get_error["line"];
+
+    $this->getCode();
   }
 
   public function getCode()
   {
-    $path = $this->list_error[0]['file'];
+    $path = $this->file;
     $content = file_get_contents($path);
     $content = preg_replace('/(<?|php|)/', '',  $content);
-    return $content;
+    $this->showWebsite($this->message, $this->file, $this->line, $content);
   }
 
-  public function getError($filename, $message)
-  {
-    $this->filename = $filename;
-    $this->message = $message;
-    $this->showWebsite();
-  }
-
-  public function showWebsite()
+  public function showWebsite($message, $file, $line, $content)
   {
     include __DIR__ . "/Web/index.php";
   }

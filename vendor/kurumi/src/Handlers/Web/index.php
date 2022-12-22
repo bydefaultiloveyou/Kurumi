@@ -17,12 +17,12 @@
 <body>
   <section class="container section">
     <div>
-      <p><?= $this->list_error[0]['file'] ?></p>
-      <h2><?= $this->message ?></h2>
-      <span><?= $this->filename ?></span>
+      <p><?= $file ?></p>
+      <h2><?= $message ?></h2>
+      <!-- <span><?= $file ?></span> !-->
     </div>
     <div>
-      <pre class="line-number" data-line="<?= $this->list_error[0]['line'] ?>"><code class="language-php"><?= $this->getCode() ?></code></pre>
+      <pre class="line-number" data-line="<?= $line ?>"><code class="language-php"><?= $content ?></code></pre>
     </div>
   </section>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-highlight/prism-line-highlight.min.js" integrity="sha512-bteQ1XlrEhUJh3mGgo0bneDWpfAAfGxE2lIVPNUolk26uqqsMwHiH+CeWCCURtT3yrCsvgQP7xrdjWTMMopObQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

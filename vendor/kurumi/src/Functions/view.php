@@ -1,6 +1,6 @@
 <?php
 
-use Kurumi\Handlers\Loads;
+/* use Kurumi\Handlers\Loads; */
 
 /** -----------------
  *  Los
@@ -18,15 +18,15 @@ function view(string $filename, $data = [])
 
   new \Kurumi\Kurumi\Generate();
 
-  try {
-    if (!file_exists($dir . '.php') and !file_exists($dir . '.kurumi.php')) {
-      throw new Exception('trying to access a file that doesnt exist.');
-    } else if (file_exists($dir . '.php')) {
-      include $dir . '.php';
-    } else if (file_exists($dir . '.kurumi.php')) {
-      new \Kurumi\Kurumi\Layouts($filename, $data);
-    }
-  } catch (Exception $error) {
-    new Loads($error->getTrace(), $filename, $error->getMessage());
+  /*   try { */
+  if (!file_exists($dir . '.php') and !file_exists($dir . '.kurumi.php')) {
+    throw new Exception('trying to access a file that doesnt exist.');
+  } else if (file_exists($dir . '.php')) {
+    include $dir . '.php';
+  } else if (file_exists($dir . '.kurumi.php')) {
+    new \Kurumi\Kurumi\Layouts($filename, $data);
   }
+  // } catch (Exception $error) {
+  //   new Loads($error->getTrace(), $filename, $error->getMessage());
+  // }
 }
