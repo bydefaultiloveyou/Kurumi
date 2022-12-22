@@ -10,7 +10,7 @@
 |
  */
 
-require __DIR__ . "./../vendor/kurumi/src/Shutdown/Err_reporting.php";
+require __DIR__ . "/../vendor/kurumi/src/Shutdown/Err_reporting.php";
 
 new \Kurumi\Shutdown\Err_reporting();
 

@@ -71,13 +71,15 @@ class Route
     }
 
     if (!$handler) {
-      $handler = fn () => include './../vendor/kurumi/src/Handlers/Web/404.phtml';
+      $handler = fn () => include __DIR__ . '/../Handlers/Web/404.phtml';
     }
 
     call_user_func_array($handler, [
       [
-        self::$param,
-        array_merge($_GET, $_POST)
+        [
+          array_merge($_GET, $_POST),
+          self::$param
+        ]
       ]
     ]);
   }

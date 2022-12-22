@@ -12,7 +12,7 @@ namespace Kurumi\Kurumi;
 class Layouts
 {
 
-  private string $dir = "./../storage/framework/views/";
+  private string $dir = __DIR__ . "/../../../../storage/framework/views/";
 
   public function __construct(string $filename, array $data = [])
   {
@@ -21,7 +21,7 @@ class Layouts
 
   private function render(string $filename, array $data = [])
   {
-    $config = require './../config/layout.php';
+    $config = require __DIR__ . '/../../../../config/layout.php';
 
     if ($config['enable']) {
 

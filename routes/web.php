@@ -15,13 +15,13 @@ use Kurumi\Http\Route;
 |          antara Routing, View, dan Models (MVC)
 |
 |          CONTOH 
-|          Route::get('/', 'PageControllers::class', 'home')
+|          Route::get('/', ['PageControllers::class', 'home'])
 |
  */
 
 
 Route::get('/', function () {
-  return view('welcom');
+  return view('welcome');
 });
 
 Route::run();

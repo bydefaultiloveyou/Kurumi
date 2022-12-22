@@ -14,7 +14,7 @@
 
 function view(string $filename, $data = [])
 {
-  $dir = "./../storage/framework/views/" . $filename;
+  $dir = __DIR__ . "/../../../../storage/framework/views/" . $filename;
 
   new \Kurumi\Kurumi\Generate();
 
@@ -26,7 +26,4 @@ function view(string $filename, $data = [])
   } else if (file_exists($dir . '.kurumi.php')) {
     new \Kurumi\Kurumi\Layouts($filename, $data);
   }
-  // } catch (Exception $error) {
-  //   new Loads($error->getTrace(), $filename, $error->getMessage());
-  // }
 }
