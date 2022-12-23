@@ -19,9 +19,11 @@ class DB extends Validate
   {
     $databaseConfig = require __DIR__ . "/../../../../config/database.php";
 
-    $connection = new PDO("$databaseConfig[dialect]:
+    $connection = new PDO(
+      "$databaseConfig[dialect]:
       host=$databaseConfig[host];dbname=$databaseConfig[database]",
-      $databaseConfig['user'], $databaseConfig['password']
+      $databaseConfig['user'],
+      $databaseConfig['password']
     );
 
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

@@ -12,7 +12,7 @@ use Kurumi\Database\Query;
 class Validate extends Query
 {
   protected $join, $joinTable, $joinOn, $table, $where, $by, $value,
-  $in, $column = '*', $distinct = false;
+    $in, $column = '*', $distinct = false;
 
 
   protected function distinct($query)
@@ -71,6 +71,4 @@ class Validate extends Query
       $this->by = $query['by'];
     }
   }
-
-
 }

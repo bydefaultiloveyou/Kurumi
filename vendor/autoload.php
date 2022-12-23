@@ -17,4 +17,5 @@ spl_autoload_register(function ($class) {
 });
 
 require __DIR__ . '/kurumi/src/Functions/view.php';
+require __DIR__ . '/kurumi/src/Functions/redirect.php';
 require __DIR__ . '/../routes/web.php';

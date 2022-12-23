@@ -18,7 +18,6 @@ function view(string $filename, $data = [])
 
   new \Kurumi\Kurumi\Generate();
 
-  /*   try { */
   if (!file_exists($dir . '.php') and !file_exists($dir . '.kurumi.php')) {
     throw new Exception('trying to access a file that doesnt exist.');
   } else if (file_exists($dir . '.php')) {
