@@ -37,7 +37,7 @@ class Regex
     $contents = preg_replace('/\@each (.*) \:/', '<?php foreach($1 $2): ?>', $contents);
     $contents = preg_replace('/@endeach/', '<?php endforeach; ?>', $contents);
     // view include 
-    $contents = preg_replace('/\@include (.*)/', '<?php require __DIR__ . "/../../../../storage/framework/views/" . $1 . ".kurumi.php" ?>', $contents);
+    $contents = preg_replace('/\@include (.*)/', '<?php require __DIR__ . "/" . $1 . ".kurumi.php" ?>', $contents);
     // asset
     $contents = preg_replace('/\@asset (.*)\:/', '<?php echo $1 ?>', $contents);
     // view yield 
