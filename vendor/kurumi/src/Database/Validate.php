@@ -9,48 +9,68 @@ use Kurumi\Database\Query;
  *  sebuah method untuk menangani validasi pada gaya penulisan DB
  *  disini juga di untuk mengawasi Aturan dalam penulisan LurumiQ
  */
-
 class Validate extends Query
 {
+  protected $join, $joinTable, $joinOn, $table, $where, $by, $value,
+  $in, $column = '*', $distinct = false;
 
-  protected $join, $joinTable, $joinOn, $column = "*", $table, $where, $by, $value, $distinct = false, $in;
 
   protected function distinct($query)
   {
-    if (isset($query["distinct"]) and is_bool($query["distinct"])) $this->distinct = $query["distinct"];
-  }
-
-  protected function table($query)
-  {
-    if (isset($query["table"]) and is_string($query["table"])) $this->table = $query["table"];
-  }
-
-  protected function column($query)
-  {
-    if (isset($query["column"]) and is_string($query["column"])) $this->column = $query["column"];
-  }
-
-  protected function value($query)
-  {
-    if (isset($query["value"]) and is_array($query["value"])) $this->value = $query["value"];
-  }
-
-  protected function join($query)
-  {
-    if (isset($query["join"]) and is_array($query["join"])) {
-      $this->join = $query["join"];
-      $this->joinTable = $query["join"]["table"];
-      $this->joinOn = $query["join"]["on"];
+    if (isset($query['distinct']) and is_bool($query['distinct'])) {
+      $this->distinct = $query['distinct'];
     }
   }
 
+
+  protected function table($query)
+  {
+    if (isset($query['table']) and is_string($query['table'])) {
+      $this->table = $query['table'];
+    }
+  }
+
+
+  protected function column($query)
+  {
+    if (isset($query['column']) and is_string($query['column'])) {
+      $this->column = $query['column'];
+    }
+  }
+
+
+  protected function value($query)
+  {
+    if (isset($query['value']) and is_array($query['value'])) {
+      $this->value = $query['value'];
+    }
+  }
+
+
+  protected function join($query)
+  {
+    if (isset($query['join']) and is_array($query['join'])) {
+      $this->join = $query['join'];
+      $this->joinTable = $query['join']['table'];
+      $this->joinOn = $query['join']['on'];
+    }
+  }
+
+
   protected function where($query)
   {
-    if (isset($query["where"]) and is_array($query["where"])) $this->where = $query["where"];
+    if (isset($query['where']) and is_array($query['where'])) {
+      $this->where = $query['where'];
+    }
   }
+
 
   protected function by($query)
   {
-    if (isset($query["by"]) and is_string($query["by"])) $this->by = $query["by"];
+    if (isset($query['by']) and is_string($query['by'])) {
+      $this->by = $query['by'];
+    }
   }
+
+
 }
