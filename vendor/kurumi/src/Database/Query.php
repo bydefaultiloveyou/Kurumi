@@ -35,7 +35,8 @@ class Query
 
   private function delete()
   {
-    $query = "DELETE FROM {$this->table} WHERE {$this->where[0]} {$this->where[1]} " . (string)$this->where[2];
+    $query = "DELETE FROM {$this->table}
+      WHERE {$this->where[0]} {$this->where[1]} " . (string)$this->where[2];
     try {
       $this->connection->exec("$query;");
     } catch (PDOException $error) {
@@ -47,7 +48,9 @@ class Query
   private function update()
   {
     if (is_array($this->column)) {
-      $query = "UPDATE {$this->table} SET {$this->column[0]} = '{$this->column[1]}' WHERE {$this->where[0]} {$this->where[1]} " . (string)$this->where[2];
+      $query = "UPDATE {$this->table}
+        SET {$this->column[0]} = '{$this->column[1]}'
+        WHERE {$this->where[0]} {$this->where[1]} " . (string)$this->where[2];
       try {
         $result = $this->connect->prepare("$query;");
         $result->execute();
