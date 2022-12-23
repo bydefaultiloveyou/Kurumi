@@ -24,7 +24,6 @@ class Layouts
     $config = require __DIR__ . '/../../../../config/layout.php';
 
     if ($config['enable']) {
-
       foreach ($data as $key => $value) {
         eval('$$key = $value;');
       }

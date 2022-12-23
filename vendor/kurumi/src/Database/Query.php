@@ -79,14 +79,12 @@ class Query
   protected function query(string $type)
   {
     [
-      'select' => fn() => $this->select(),
-      'delete' => fn() => $this->delete(),
-      'update' => fn() => $this->update(),
-      'insert' => fn() => $this->insert(),
+      'select' => fn () => $this->select(),
+      'delete' => fn () => $this->delete(),
+      'update' => fn () => $this->update(),
+      'insert' => fn () => $this->insert(),
     ][$type]();
 
     $this->connection = null;
   }
-
-
 }
