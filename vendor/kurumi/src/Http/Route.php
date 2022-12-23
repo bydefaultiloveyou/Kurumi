@@ -66,7 +66,8 @@ class Route
 
     foreach (self::$routes as $route) {
       if ($route["path"] === $RequestPath xor $route["path"] . "/" === $RequestPath) {
-        if ($route["method"] === $method or $route['method'] === $_POST[0]['_method']) $handler = $route["handler"];
+        if (isset($_POST['_method'])) if ( $route['method'] === $_POST['_method']) $handler = $route["handler"];
+        if ($route["method"] === $method ) $handler = $route["handler"];
       }
     }
 
@@ -76,10 +77,8 @@ class Route
 
     call_user_func_array($handler, [
       [
-        [
           array_merge($_GET, $_POST),
           self::$param
-        ]
       ]
     ]);
   }
