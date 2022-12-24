@@ -35,7 +35,7 @@ Kami menyediakan 2 cara instalasi, yaitu dengan :
 ```
 
 <p></p>
-Untuk menjalankan server, ketik `php kurumi server` di terminal / cmd
+Untuk menjalankan server, ketik ` php kurumi server ` di terminal / cmd
 
 <h2>🔫 Kurumi</h2>
 
