@@ -13,3 +13,6 @@
     </figcaption>
   </figure>
 </main>
+<audio controls loop>
+  <source type="audio/ogg" src="@asset 'music/backsound-kurumi.mp3':">
+</audio>

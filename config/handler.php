@@ -2,9 +2,8 @@
 
 /* 
 |--------------------------------------------------------------------------
-| layout config 
+| handler config 
 |--------------------------------------------------------------------------
-|
 | 
 |
 |
@@ -12,18 +11,21 @@
 |
  */
 
+
 return [
 
+
   /**
+   * @mode [ "PrettyPageHandler", "PlainTextHandler",
+   *        "XmlResponseHandler", "JsonResponseHandler",
+   *        "CallbackHandler" ]
    *
-   * @filename components => folder
-   *                 .    => /
-   *               layout => filename 
    *
    * @enable [ true, false ] 
    *
    */
 
-  "filename" => "components.layouts",
-  "enable" => true,
+
+  "mode" => "PrettyPageHandler",
+  "enable" => true
 ];

@@ -184,6 +184,12 @@ public static function DB()
    */
   public function server()
   {
+<<<<<<< HEAD
+    global $argv;
+    if (@$argv[1] == 'server') {
+      echo "
+ Kurumi server running:
+=======
     echo "
   Kurumi server is running:
 
@@ -193,6 +199,7 @@ public static function DB()
 
     Tokisaki Kurumi:
     {$this->randQuotes()}
+>>>>>>> a5a7e582691e56e6cca4ed0d88251295cb41b2e9
 
 ";
     if (PHP_OS === 'Linux') {
