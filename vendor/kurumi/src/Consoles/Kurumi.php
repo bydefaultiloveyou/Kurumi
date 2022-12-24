@@ -34,7 +34,7 @@ class Kurumi
       $this->createModel($model);
     }
 
-    if (@$this->argv[1] == 'desah') {
+    if (@$this->argv[1] == 'server') {
       $this->server();
     }
   }
@@ -184,12 +184,6 @@ public static function DB()
    */
   public function server()
   {
-<<<<<<< HEAD
-    global $argv;
-    if (@$argv[1] == 'server') {
-      echo "
- Kurumi server running:
-=======
     echo "
   Kurumi server is running:
 
@@ -199,8 +193,6 @@ public static function DB()
 
     Tokisaki Kurumi:
     {$this->randQuotes()}
->>>>>>> a5a7e582691e56e6cca4ed0d88251295cb41b2e9
-
 ";
     if (PHP_OS === 'Linux') {
       exec('cd public/ && php -S localhost:3000 > /dev/null 2>&1');
