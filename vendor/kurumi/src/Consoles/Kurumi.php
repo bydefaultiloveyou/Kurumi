@@ -184,22 +184,19 @@ public static function DB()
    */
   public function server()
   {
-    echo "
-  Kurumi server is running:
+    echo "Kurumi server is running:
 
-    \033 [0;32m local: http://localhost:3000/
-    \033 [0;32m ip: http://127.0.0.1:3000/
-    \033 [0;0m
+\033 [0;32m local: http://localhost:3000/
+\033 [0;32m ip: http://127.0.0.1:3000/
+\033 [0;0m
 
-    Tokisaki Kurumi:
-    {$this->randQuotes()}
+Tokisaki Kurumi:
+{$this->randQuotes()}
 ";
     if (PHP_OS === 'Linux') {
       exec('cd public/ && php -S localhost:3000 > /dev/null 2>&1');
-      // system('php -S localhost:3000 public/index.php > /dev/null 2>&1');
     } else {
       exec('cd public/ && php -S localhost:3000 > NUL');
-      // system('php -S localhost:3000 public/index.php > NUL');
     }
   }
 }
