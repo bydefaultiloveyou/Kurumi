@@ -1,4 +1,4 @@
-<h1 align="center" id="title">Kurumi Framework</h1>
+<!-- <h1 align="center" id="title">Kurumi Framework</h1>
 
 <p align="center"><img src="https://socialify.git.ci/bydefaultiloveyou/Kurumi/image?description=1&descriptionEditable=Native%20Framework%20for%20Koneksi.php&font=Source%20Code%20Pro&forks=1&language=1&logo=https%3A%2F%2Fi.redd.it%2Fq4y7hxtq1g161.png&name=1&pulls=1&stargazers=1&theme=Light" alt="Kurumi"/>
 </p>
@@ -42,3 +42,6 @@ Untuk menjalankan server, ketik ` php kurumi server ` di terminal / cmd
 Kami mempunyai `kurumi`, dia adalah sebuah program simple yang akan membantu masa development aplikasi kalian. Di dalamnya ada berbagai macam command yang bisa kalian gunakan
 
 ketikan `php kurumi -h` ini untuk melihat command apa aja yang tersedia
+ -->
+ 
+ 
