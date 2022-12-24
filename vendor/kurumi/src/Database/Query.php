@@ -6,82 +6,85 @@ use PDOException;
 
 /** -------------
  *  new Query
- *  sebuah method untuk Query database
+ *  sebuah class untuk Query database
  */
-
 class Query
 {
-
-  private function Select()
+  private function select()
   {
-
-    ($this->distinct) ? $query = "SELECT DISTINCT $this->column FROM $this->table " : $query = "SELECT $this->column FROM $this->table ";
+    $distinct = ($this->distinct) ? 'DISTINCT' : '';
+    $query = "SELECT $distinct {$this->column} FROM {$this->table}";
 
     if (isset($this->where)) {
-      $query .= "WHERE " . $this->where[0] . " " . $this->where[1] . " " . (string)$this->where[2];
+      $query .= " WHERE {$this->where[0]} {$this->where[1]} " . (string)$this->where[2];
     }
 
     if (isset($this->join)) {
-      $query .= " JOIN " . $this->joinTable . " ON " . $this->joinOn[0] . " = " . $this->joinOn[1];
+      $query .= " JOIN {$this->joinTable} ON {$this->joinOn[0]} = {$this->joinOn[1]}";
     }
 
     if (isset($this->by)) {
-      $query .= " ORDER BY " . $this->by;
+      $query .= " ORDER BY {$this->by}";
     }
 
-    $result = $this->connect->prepare($query . ";");
+    $result = $this->connection->prepare("$query;");
     $result->execute();
     return $result;
   }
 
+
   private function delete()
   {
-    $query =  "DELETE FROM $this->table WHERE " . $this->where[0] . " " . $this->where[1] . " " . (string)$this->where[2];
+    $query = "DELETE FROM {$this->table}
+      WHERE {$this->where[0]} {$this->where[1]} " . (string)$this->where[2];
     try {
-      $this->connect->exec($query);
+      $this->connection->exec("$query;");
     } catch (PDOException $error) {
-      return $query . "<br>" . $error->getMessage();
+      return "$query <br/>{$error->getMessage()}";
     }
   }
+
 
   private function update()
   {
     if (is_array($this->column)) {
-      $query = "UPDATE $this->table SET " . $this->column[0] . " = '" . $this->column[1] . "' WHERE " . $this->where[0] . " " . $this->where[1] . " " . (string)$this->where[2] . ";";
+      $query = "UPDATE {$this->table}
+        SET {$this->column[0]} = '{$this->column[1]}'
+        WHERE {$this->where[0]} {$this->where[1]} " . (string)$this->where[2];
       try {
-        $result = $this->connect->prepare($query);
+        $result = $this->connect->prepare("$query;");
         $result->execute();
         return $result;
       } catch (PDOException $error) {
-        echo $query . "<br>" . $error->getMessage();
+        echo "$query <br/>{$error->getMessage()}";
       }
     }
   }
+
 
   private function insert()
   {
     try {
       foreach ($this->value as $value) {
-        $query =  "INSERT INTO $this->table ( $this->column ) VALUES ( '" . implode("' , '", array_values($value)) . "');";
-        return $this->connect->exec($query);
+        $val = implode("' , '", array_values($value));
+        $query =  "INSERT INTO {$this->table} ( {$this->column} ) VALUES ( '$val' )";
+        return $this->connection->exec("$query;");
       }
     } catch (PDOException $error) {
-      echo $query . "<br>" . $error->getMessage();
+      echo "$query <br/>{$error->getMessage()}";
     }
   }
 
+
   protected function query(string $type)
   {
-    if ($type == "SELECT") {
-      return $this->Select();
-    } elseif ($type === 'DELETE') {
-      return $this->delete();
-    } elseif ($type === "UPDATE") {
-      return $this->update();
-    } elseif ($type === "INSERT") {
-      return $this->insert();
-    }
+    [
+      'select' => fn () => $this->select(),
+      'delete' => fn () => $this->delete(),
+      'update' => fn () => $this->update(),
+      'insert' => fn () => $this->insert(),
+    ][$type]();
 
-    $this->connect = null;
+    $this->connection = null;
   }
 }

@@ -12,7 +12,11 @@
       </ul>
     </figcaption>
   </figure>
+<<<<<<< HEAD
 </main>
 <audio controls loop>
   <source type="audio/ogg" src="<?php echo 'music/backsound-kurumi.mp3' ?>">
 </audio>
+=======
+</main>
+>>>>>>> a5a7e582691e56e6cca4ed0d88251295cb41b2e9
