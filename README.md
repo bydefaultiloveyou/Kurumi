@@ -4,35 +4,38 @@
 </p>
 
 <h2>📕 Pengenalan Framework Kurumi</h2>
-<p><strong>Kurumi</strong> adalah sebuah Framework sederhana yang namanya terinspirasi dari sebuah karakter anime yaitu <strong>Tokisaki Kurumi</strong>, Kami membuat Framework ini bertujuan untuk memberi kemudahan kepada user untuk membuat sebuah web aplikasi mengunakan bahasa <strong>PHP NATIVE</strong></p>
+<p><strong>Kurumi</strong> adalah sebuah Framework sederhana yang namanya terinspirasi dari sebuah karakter anime yaitu <strong>Tokisaki Kurumi</strong> Kami membuat Framework ini bertujuan untuk memberi kemudahan kepada user untuk membuat sebuah web aplikasi mengunakan bahasa <strong>PHP NATIVE</strong></p>
 
-<br/>
 
 <h2>⚠️ Warning!!</h2>
-<p>Kami mengembangkan Framework ini tanpa mengunakan [Composer](https://www.markdownguide.org)</p>
+
+<p>
   
-<br/>
+_Kami mengembangkan Framework ini tanpa mengunakan [composer](https://getcomposer.org)_
+ 
+</p>
 
-<h2>🧐 Fitur"</h2>
 
-I love supporting the **[EFF](https://eff.org)**.
-This is the *[Markdown Guide](https://www.markdownguide.org)*.
-See the section on [`code`](#code).
+<h2>🧐 Fitur-Fitur</h2>
 
-Fitur-fitur yang kami sediakan :
-- <a href="#routing">Routing</a>
-- Database Query
-- Kurum
+<strong>Fitur-Fitur yang kami sediakan : </strong>
+- [Routing]("#routing")
+- [Database Query]("#database-query")
+- [Kurumi Template Engine]("#kurumi-template-engine")
+
 
 <h2>🛠️ Tahap instalasi</h2>
+
+Kami menyediakan 2 cara instalasi, yaitu dengan :
 
 <p>1. clone repository ini</p>
 
 ```
- git clone https://github.com/bydefaultiloveyou/Kurumi.git & cd Kurumi
+ git clone https://github.com/bydefaultiloveyou/Kurumi.git & cd Kurumi & rm -rf .git
 ```
 
-Untuk menjalankan server, ketik `php kurumi desah` di terminal / cmd
+<p></p>
+Untuk menjalankan server, ketik `php kurumi server` di terminal / cmd
 
 <h2>🔫 Kurumi</h2>
 
