@@ -89,19 +89,16 @@ please check in bottom for your input
   public function createController(string $controller_name): void
   {
     if (file_exists("./app/Controllers/$controller_name.php")) {
-      echo <<< CONTROLLER_EXIST
-
+      echo "
   Controller `$controller_name` Already Exist!
-
-CONTROLLER_EXIST;
+";
       die;
     }
 
     try {
       // test;  // matikan komentar untuk tes pesan error
       $newFile = fopen("./app/Controllers/$controller_name.php", 'w');
-      $string  = <<< CONTROLLER_CONTENT
-<?php
+      $string  = "<?php
 
 namespace App\Controllers;
 
@@ -109,31 +106,26 @@ class $controller_name
 {
   // write method in here
 }
-
-CONTROLLER_CONTENT;
+";
 
       fwrite($newFile, $string);
       fclose($newFile);
 
-      echo <<< GENERATE_CONTROLLER_ERROR
-
+      echo "
   Controller `$controller_name` created succesfully!
-
-GENERATE_CONTROLLER_ERROR;
+";
 
     } catch (\Throwable $th) {
       $last_trace = $th->getTrace()[0];
 
-      echo <<< GENERATE_CONTROLLER_ERROR
-
+      echo "
   Cannot Create Controller!
 
   {$th->getMessage()}
 
   {$last_trace['file']}
   from `{$last_trace['function']}` in line: {$last_trace['line']}
-
-GENERATE_CONTROLLER_ERROR;
+";
     }
   }
 
@@ -146,19 +138,16 @@ GENERATE_CONTROLLER_ERROR;
   public function createModel(string $model_name): void
   {
     if (file_exists("./app/Models/$model_name.php")) {
-      echo <<< MODEL_EXIST
-
+      echo "
   Model `$model_name` Already Exist
-
-MODEL_EXIST;
+";
       die;
     }
 
     try {
       // test;  // matikan komentar untuk tes pesan error
       $newFile = fopen("./app/Models/$model_name.php", 'w');
-      $string  = <<< MODEL_CONTENT
-<?php
+      $string  = "<?php
 
 namespace App\Models;
 
@@ -172,23 +161,19 @@ public static function DB()
   }
 
 }
-
-MODEL_CONTENT;
+";
 
       fwrite($newFile, $string);
       fclose($newFile);
 
-      echo <<< GENERATE_MODEL_SUCCESS
-
+      echo "
   Model `$model_name` created succesfully!
-
-GENERATE_MODEL_SUCCESS;
+";
 
     } catch (\Throwable $th) {
       $last_trace = $th->getTrace()[0];
 
-      echo <<< GENERATE_MODEL_ERROR
-
+      echo "
   Cannot Create Model!
 
   {$th->getMessage()}
@@ -196,8 +181,7 @@ GENERATE_MODEL_SUCCESS;
   {$last_trace['file']}
   from `{$last_trace['function']}` in line: {$last_trace['line']}
 
-
-GENERATE_MODEL_ERROR;
+";
     }
   }
 
@@ -207,8 +191,7 @@ GENERATE_MODEL_ERROR;
    */
   public function server()
   {
-    echo <<< START_SERVER
-
+    echo "
   Kurumi server is running:
 
   \033  0;32m local: http://localhost:3000/
@@ -218,8 +201,7 @@ GENERATE_MODEL_ERROR;
     Tokisaki Kurumi:
     {$this->randQuotes()}
 
-
-START_SERVER;
+";
 
     if (PHP_OS === 'Linux') {
       exec('cd public/ && php -S localhost:3000 > /dev/null 2>&1');
