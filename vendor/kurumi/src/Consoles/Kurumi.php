@@ -34,7 +34,7 @@ class Kurumi
       $this->createModel($model);
     }
 
-    if (@$this->argv[1] == 'desah') {
+    if (@$this->argv[1] == 'server') {
       $this->server();
     }
   }
@@ -42,8 +42,9 @@ class Kurumi
 
   /**
    *  handling error when no arguments given
+   *  @return void
    */
-  public function handleError()
+  public function handleError(): void
   {
     echo "
 Welcome to Kurumi Framework
@@ -64,8 +65,9 @@ please check in bottom for your input
 
   /**
    * generate random quotes when starting server
+   * @return string
    */
-  public function randQuotes()
+  public function randQuotes(): string
   {
     $quotes = [
       #"sebodoh bodohnya kamu \n  jangan pernah nyoba programming.",
@@ -81,22 +83,25 @@ please check in bottom for your input
 
   /**
    * creating controller with given name on console
+   * @param  string $controller_name
+   * @return void
    */
-  public function createController(string $controller_name)
+  public function createController(string $controller_name): void
   {
     if (file_exists("./app/Controllers/$controller_name.php")) {
-      echo "
+      echo <<< CONTROLLER_EXIST
 
   Controller `$controller_name` Already Exist!
 
-";
+CONTROLLER_EXIST;
       die;
     }
 
     try {
       // test;  // matikan komentar untuk tes pesan error
       $newFile = fopen("./app/Controllers/$controller_name.php", 'w');
-      $string  = "<?php
+      $string  = <<< CONTROLLER_CONTENT
+<?php
 
 namespace App\Controllers;
 
@@ -104,47 +109,56 @@ class $controller_name
 {
   // write method in here
 }
-      ";
+
+CONTROLLER_CONTENT;
 
       fwrite($newFile, $string);
       fclose($newFile);
-      echo "
+
+      echo <<< GENERATE_CONTROLLER_ERROR
 
   Controller `$controller_name` created succesfully!
 
-";
+GENERATE_CONTROLLER_ERROR;
+
     } catch (\Throwable $th) {
       $last_trace = $th->getTrace()[0];
-      echo "
+
+      echo <<< GENERATE_CONTROLLER_ERROR
+
   Cannot Create Controller!
 
   {$th->getMessage()}
 
   {$last_trace['file']}
   from `{$last_trace['function']}` in line: {$last_trace['line']}
-";
+
+GENERATE_CONTROLLER_ERROR;
     }
   }
 
 
   /**
    * creating model with given name on console
+   * @param  string $model_name
+   * @return void
    */
-  public function createModel(string $model_name)
+  public function createModel(string $model_name): void
   {
     if (file_exists("./app/Models/$model_name.php")) {
-      echo "
+      echo <<< MODEL_EXIST
 
   Model `$model_name` Already Exist
 
-  ";
+MODEL_EXIST;
       die;
     }
 
     try {
       // test;  // matikan komentar untuk tes pesan error
       $newFile = fopen("./app/Models/$model_name.php", 'w');
-      $string  = "<?php
+      $string  = <<< MODEL_CONTENT
+<?php
 
 namespace App\Models;
 
@@ -157,24 +171,33 @@ public static function DB()
     return new DB();
   }
 
-}";
+}
+
+MODEL_CONTENT;
+
       fwrite($newFile, $string);
       fclose($newFile);
-      echo "
+
+      echo <<< GENERATE_MODEL_SUCCESS
 
   Model `$model_name` created succesfully!
 
-      ";
+GENERATE_MODEL_SUCCESS;
+
     } catch (\Throwable $th) {
       $last_trace = $th->getTrace()[0];
-      echo "
+
+      echo <<< GENERATE_MODEL_ERROR
+
   Cannot Create Model!
 
   {$th->getMessage()}
 
   {$last_trace['file']}
   from `{$last_trace['function']}` in line: {$last_trace['line']}
-";
+
+
+GENERATE_MODEL_ERROR;
     }
   }
 
@@ -184,30 +207,24 @@ public static function DB()
    */
   public function server()
   {
-<<<<<<< HEAD
-    global $argv;
-    if (@$argv[1] == 'server') {
-      echo "
- Kurumi server running:
-=======
-    echo "
+    echo <<< START_SERVER
+
   Kurumi server is running:
 
-    \033 [0;32m local: http://localhost:3000/
-    \033 [0;32m ip: http://127.0.0.1:3000/
-    \033 [0;0m
+  \033  0;32m local: http://localhost:3000/
+  \033  0;32m ip: http://127.0.0.1:3000/
+  \033  0;0m
 
     Tokisaki Kurumi:
     {$this->randQuotes()}
->>>>>>> a5a7e582691e56e6cca4ed0d88251295cb41b2e9
 
-";
+
+START_SERVER;
+
     if (PHP_OS === 'Linux') {
       exec('cd public/ && php -S localhost:3000 > /dev/null 2>&1');
-      // system('php -S localhost:3000 public/index.php > /dev/null 2>&1');
     } else {
       exec('cd public/ && php -S localhost:3000 > NUL');
-      // system('php -S localhost:3000 public/index.php > NUL');
     }
   }
 }
