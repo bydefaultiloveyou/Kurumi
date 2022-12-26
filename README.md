@@ -64,3 +64,90 @@ Kami mempunyai `kurumi`, dia adalah sebuah program simple yang akan membantu mas
     - storage folder mengandung file generate dari folder resources
 - [__`vendor`__]("#vendor")
     - vendor adalah folder inti dari kurumi framework, yang di mana berisi semua code penting di kurumi, noted : kalo kamu punya trauma melihat yang rumit dilarang melihat folder ini
+    
+    
+<!-- routing -->
+## 📍 Routing
+__Kurumi__ Mengadaptasi konsep URI dan closure, menyediakan sebuah ekpresi simple dan method yang mendefinisikan routing tanpa komplikasi file konfigurasi routing
+
+```php
+use Kurumi\Http\Route;
+ 
+Route::get('/greeting', function () {
+    return 'Hello World';
+});
+
+```
+
+Semua routing __Kurumi__ di definisikan di file routing mu, yang berlokasi di `routes directory`, file ini otomatis dijalankan oleh aplikasimu. File routes/web.php itu mendefinisikan sebuah tampilan web mu.
+
+Kamu akan mendefinikan di file routes/web.php dan akan di akses setiap kamu mengunjungi url di browsermu. Seperti contoh, kamu mungkin mengakses routing mengikuti navigasi seperti http://kurumi.com/user di browser mu :
+
+```php
+use App\Controllers\UserController;
+ 
+Route::get('/user', [UserController::class, 'index']);
+```
+
+ini akan secara otomatis akan di akses jika kamu mengunjung route `/user` di web browsermu
+
+
+### 🥳 Routing Yang Tersedia
+Kurumi menyediakan beberapa pilihan routing seperti
+```php
+Route::get($uri, $callback);
+Route::post($uri, $callback);
+Route::put($uri, $callback);
+Route::delete($uri, $callback);
+```
+
+#### GET
+```php
+Route::get($uri, $callback);
+```
+Method GET biasanya digunakan hanya mengambil data. Disini juga tempat untuk menampilan halaman website mu dengan :
+```php
+view($filename)
+```
+
+#### POST
+```php
+Route::post($uri, $callback);
+```
+Method POST digunakan untuk mengirimkan data ke server yang ditentukan, sering menyebabkan perubahan pada keadaan atau efek samping pada server. bahasa simple nya nginsert data ke Database
+
+#### PUT
+```php
+Route::put($uri, $callback);
+```
+Method PUT menggantikan data yang ada dengan data yang dikirimkan / ngerubah data di Database.
+#### DELETE
+```php
+Route::delete($uri, $callback);
+```
+Method DELETE untuk menghapus data yang ada di Database.
+
+## 🗿 View
+View adalah sebuah function untuk menampilkan sebuah halaman HTML. Secara default file mengarah ke folder `resources/views` sebagai contoh
+di dalam folder
+```bash
+.
+└── resources
+    └── views
+         ├── components
+         │   └── lutfimiku.php
+         ├── kurumi.php
+         └── kaori.php
+```
+
+jika kamu ingin menampilkan file `kurumi.php` sebagai contoh kamu bisa mengetikan :
+```php
+view('kurumi')
+```
+Secara default view akan mengarahkan kamu ke file kurumi.php 
+
+#### ⚠️ Warning Sayangku
+Kurumi mengadaptasi `.` sebagai lambang folder. Sebagai Contoh jika kamu ingin menampilkan file yang ada di sub directory kamu harus menyertakan format `folder.file` contoh : 
+```php
+view('components.lutfimiku')
+```
