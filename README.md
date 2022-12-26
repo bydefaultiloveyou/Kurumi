@@ -34,7 +34,7 @@ Kami menyediakan 2 cara instalasi, yaitu dengan :
 __1. Clone repository ini__
 
 ```
- git clone https://github.com/bydefaultiloveyou/Kurumi.git & cd Kurumi & rm -rf .git
+ git clone https://github.com/bydefaultiloveyou/Kurumi.git && cd Kurumi && rm -rf .git
 ```
 
 __2. Download ZIP File__
