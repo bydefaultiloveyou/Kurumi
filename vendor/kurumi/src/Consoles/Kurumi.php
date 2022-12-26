@@ -71,10 +71,10 @@ please check in bottom for your input
   {
     $quotes = [
       #"sebodoh bodohnya kamu \n  jangan pernah nyoba programming.",
-      "jika mereka menolak untuk menerima mu \n    maka aku akan menerimamu apa adanya!.",
-      "apapun yang kamu lalukan pastikan \n    itu membuat kamu bahagia.",
-      "untuk mencapai tujuan kita \n    kita harus mengejarnya sendiri.",
-      "aku ingin memiliki kenangan bersama mu \n    dan juga aku ingin kau juga memiliki kenangan bersamaku."
+      "jika mereka menolak untuk menerima mu \nmaka aku akan menerimamu apa adanya!.",
+      "apapun yang kamu lalukan pastikan \nitu membuat kamu bahagia.",
+      "untuk mencapai tujuan kita \nkita harus mengejarnya sendiri.",
+      "aku ingin memiliki kenangan bersama mu \ndan juga aku ingin kau juga memiliki kenangan bersamaku."
     ];
 
     return $quotes[array_rand($quotes)];
@@ -89,14 +89,11 @@ please check in bottom for your input
   public function createController(string $controller_name): void
   {
     if (file_exists("./app/Controllers/$controller_name.php")) {
-      echo "
-  Controller `$controller_name` Already Exist!
-";
+      echo "Controller `$controller_name` Already Exist!";
       die;
     }
 
     try {
-      // test;  // matikan komentar untuk tes pesan error
       $newFile = fopen("./app/Controllers/$controller_name.php", 'w');
       $string  = "<?php
 
@@ -105,27 +102,22 @@ namespace App\Controllers;
 class $controller_name
 {
   // write method in here
-}
-";
+}";
 
       fwrite($newFile, $string);
       fclose($newFile);
 
-      echo "
-  Controller `$controller_name` created succesfully!
-";
-
+      echo "Controller `$controller_name` created succesfully!";
     } catch (\Throwable $th) {
       $last_trace = $th->getTrace()[0];
 
       echo "
-  Cannot Create Controller!
+Cannot Create Controller!
 
-  {$th->getMessage()}
+{$th->getMessage()}
 
-  {$last_trace['file']}
-  from `{$last_trace['function']}` in line: {$last_trace['line']}
-";
+{$last_trace['file']}
+from `{$last_trace['function']}` in line: {$last_trace['line']}";
     }
   }
 
@@ -138,50 +130,41 @@ class $controller_name
   public function createModel(string $model_name): void
   {
     if (file_exists("./app/Models/$model_name.php")) {
-      echo "
-  Model `$model_name` Already Exist
-";
+      echo "Model `$model_name` Already Exist";
       die;
     }
 
     try {
       // test;  // matikan komentar untuk tes pesan error
       $newFile = fopen("./app/Models/$model_name.php", 'w');
+      $name = strtolower($model_name) . "s";
       $string  = "<?php
 
 namespace App\Models;
 
-use Kurumi\Database\DB;
+use Kurumi\Database\Database;
 
 class $model_name
-public static function DB()
 {
+  public static function DB()
   {
-    return new DB();
+    return new Database('{$name}');
   }
-
-}
-";
+}";
 
       fwrite($newFile, $string);
       fclose($newFile);
 
-      echo "
-  Model `$model_name` created succesfully!
-";
-
+      echo "Model `$model_name` created succesfully!";
     } catch (\Throwable $th) {
       $last_trace = $th->getTrace()[0];
 
-      echo "
-  Cannot Create Model!
+      echo "Cannot Create Model!
 
-  {$th->getMessage()}
+{$th->getMessage()}
 
-  {$last_trace['file']}
-  from `{$last_trace['function']}` in line: {$last_trace['line']}
-
-";
+{$last_trace['file']}
+from `{$last_trace['function']}` in line: {$last_trace['line']}";
     }
   }
 
@@ -192,16 +175,14 @@ public static function DB()
   public function server()
   {
     echo "
-  Kurumi server is running:
+Kurumi server is running:
 
-  \033  0;32m local: http://localhost:3000/
-  \033  0;32m ip: http://127.0.0.1:3000/
-  \033  0;0m
+\033[0;32m local: http://localhost:3000/
+\033[0;32m ip: http://127.0.0.1:3000/
+\033[0;0m
 
-    Tokisaki Kurumi:
-    {$this->randQuotes()}
-
-";
+Tokisaki Kurumi:
+{$this->randQuotes()}";
 
     if (PHP_OS === 'Linux') {
       exec('cd public/ && php -S localhost:3000 > /dev/null 2>&1');
