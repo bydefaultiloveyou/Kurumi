@@ -72,7 +72,7 @@ class Route
     }
 
     if (!$handler) {
-      $handler = fn () => include __DIR__ . '/../Handlers/Web/404.phtml';
+      $handler = fn () => include __DIR__ . '/404.php';
     }
 
     call_user_func_array($handler, [

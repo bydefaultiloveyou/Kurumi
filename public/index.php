@@ -1,19 +1,4 @@
 <?php
-
-
-/*
-|--------------------------------------------------------------------------
-| Autoload class whoops 
-|--------------------------------------------------------------------------
-|
-| Untuk mengload seluruh class whoops
-| 
-*/
-
-require __DIR__ . "/../vendor/Whoops/load.php";
-
-
-
 /*
 |--------------------------------------------------------------------------
 | autoload Classs dan function
@@ -22,6 +7,5 @@ require __DIR__ . "/../vendor/Whoops/load.php";
 | Untuk mengload class yang berada dalam folder vendor/src 
 | 
 */
-
 
 require __DIR__ . "/../vendor/autoload.php";
