@@ -74,7 +74,7 @@ __Kurumi__ Mengadaptasi konsep URI dan closure, menyediakan sebuah ekpresi simpl
 use Kurumi\Http\Route;
  
 Route::get('/greeting', function () {
-    return 'Hello World';
+    echo 'Hello World';
 });
 
 ```
