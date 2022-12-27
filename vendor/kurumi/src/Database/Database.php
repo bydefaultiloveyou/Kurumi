@@ -18,7 +18,13 @@ class Database
     public function __construct($table)
     {
         $this->table = $table;
-        $this->connection = new PDO("mysql:host=localhost;dbname=todolist", "root", "180505");
+        $databaseConfig = require __DIR__ . "/../../../../config/database.php";
+        $this->connection = new PDO(
+            "$databaseConfig[dialect]:
+          host=$databaseConfig[host];dbname=$databaseConfig[database]",
+            $databaseConfig['user'],
+            $databaseConfig['password']
+        );
     }
 
     /* -----------------------------------
