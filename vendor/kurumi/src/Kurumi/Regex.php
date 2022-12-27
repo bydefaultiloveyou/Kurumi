@@ -29,21 +29,21 @@ class Regex
     // default variable data 
     $contents = preg_replace('/\!(.*)\!/', '$data["$1"]', $contents);
     // syntax if else 
-    $contents = preg_replace('/\@if (.*) \:/', '<?php if ($1): ?>', $contents);
-    $contents = preg_replace('/@elif (.*) \:/', '<?php elseif ($1): ?>', $contents);
+    $contents = preg_replace('/@if\s*\((.*)\)\s*:\s*/', '<?php if ($1): ?>', $contents);
+    $contents = preg_replace('/@elif\s*\((.*)\)\s*:\s*/', '<?php elseif ($1): ?>', $contents);
     $contents = preg_replace('/\@else/', '<?php else: ?>', $contents);
     $contents = preg_replace('/@endif/', '<?php endif; ?>', $contents);
     // syntax for each
-    $contents = preg_replace('/\@each (.*) \:/', '<?php foreach($1 $2): ?>', $contents);
+    $contents = preg_replace('/@each\s*\((.*)\)\s*:\s*/', '<?php foreach($1 $2): ?>', $contents);
     $contents = preg_replace('/@endeach/', '<?php endforeach; ?>', $contents);
     // view include 
-    $contents = preg_replace('/\@include (.*)/', '<?php require __DIR__ . "/" . $1 . ".kurumi.php" ?>', $contents);
+    $contents = preg_replace('/@include\s*\((.*)\)\s*:\s*/', '<?php require __DIR__ . "/" . $1 . ".kurumi.php" ?>', $contents);
     // asset
-    $contents = preg_replace('/\@asset (.*)\:/', '<?php echo $1 ?>', $contents);
-    // view yield 
-    $contents = preg_replace('/\@slot(.*)/', '<?php include $slot ?>', $contents);
-    // method
-    $contents = preg_replace('/\@method (.*)/', '<input type="hidden" name="_method" value=$1 />', $contents);
+    $contents = preg_replace('/\@asset\s*\((.*)\)\s*:\s*/', '<?php echo $1 ?>', $contents);
+    // view slot  
+    $contents = preg_replace('/@slot(.*)/', '<?php include $slot ?>', $contents);
+    // meth method 
+    $contents = preg_replace('/@method\s*\((.*)\)\s*:\s*/', '<input type="hidden" name="_method" value=$1 />', $contents);
 
     return $contents;
   }
