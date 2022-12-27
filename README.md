@@ -240,7 +240,7 @@ jika kamu ingin melakukan lebih dari satu pengondisian kamu melakukan `@elif` co
 ```
 
 ### @each
-jika kamu ingin menloopig data array daripada mengunakan syntax bawaan foreach php,lebih baik kalian mengunakan syntax kurumi `@each` yang memliki syntax lebih simple dan rapih.
+jika kamu ingin melooping data array daripada mengunakan syntax bawaan foreach php,lebih baik kalian mengunakan syntax kurumi `@each` yang memliki syntax lebih simple dan rapih.
 syntax `@each` harus di tutup mengunakan syntax `@endeach` contoh
 ```blade
 @each ( $waifus as $name ) :
