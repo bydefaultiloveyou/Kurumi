@@ -151,3 +151,68 @@ Kurumi mengadaptasi `.` sebagai lambang folder. Sebagai Contoh jika kamu ingin m
 ```php
 view('components.lutfimiku')
 ```
+## 🔫 Kurumi Template Engine
+Kurumi sangat simple, sebuah template engine lumayan powerfull yang ter included dengan __Kurumi__, tidak seperti php templating engine, kurumi tidak membatasi kamu dari mengunakan php code di template mu, faktanya, semua kurumi template di compiled menjadi php code dan cache sampai mereka di modifikasi. artinya Kurumi menambahkan esensial nol overhead di aplikasimu, File Kurumi template mengunakan extensi `.kurumi.php` dan mereka biasa disimpan di folder resources/views.
+
+kurumi views mungkin akan mengembalikan dari route atau controller mengunakan function global view. tentu saja, sebagai documentasi tersebut data mungkin akan di tambahakan ke Kurumi view mengunakan argument kedua, sebagai contoh :
+```php
+view('lutfimiku', ["waifu" => "Tokisaki Kurumi"]);
+```
+
+
+
+jika kamu ingin mengunakan data di template mu kamu hanya perlu menuliskan
+
+```php
+{{ $waifu }} 
+```
+_ini secara otomatis akan menambahkan function htmlspecialchars yang mengamankan string kamu_
+
+jika kamu tidak ingin ada htmlspecialchars, kamu bisa mengunakan syntax :
+```php
+{! $waifu !}
+```
+
+### 🥳 fitur fitur template engine yang tersedia
+
+di kurumi template semua syntax di awali dengan `@` sebagai contoh `@if`, `@endif`
+ 
+contoh
+```blade
+<div>
+ @if $kurumi === "sayang lutfi" :
+   <p> 😍 eh abang sayang</p>
+ @elseif $nakanoNino === "istri miko" :
+   <p>Betsuniiii >////< </p>
+ @endif
+</div>
+```
+
+### @if
+
+jika kamu ingin melakukan pengondisian kamu bisa mengunakan syntax yang di awali `@if` dan di akhiri `@endif`
+
+```
+@if $bumi === "waifu" :
+ <p>true</p>
+@endif
+```
+
+jika kamu ingin melakukan lebih dari satu pengondisian kamu melakukan `@elseif` contoh :
+
+```
+@if $bumi === "waifu" :
+ <p>false</p>
+@elseif $bumi === "datar" :
+ <p>false</p>
+@else
+ <p>true</p>
+@endif
+```
+
+_dalam pengunaan if ada peraturan sementara yang wajib di ikuti seperti contoh_ :
+```
+@if $bumi === "waifu":
+```
+ini akan menyebabkan error di karenakan tidak ada space antara argumen dan titik dua `:` jadi di wajibkan adanya space antara mereka ~~~~
+!! tenang ini adalah permasalahan sementara dan akan di perbaiki di versi berikutnya 
