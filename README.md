@@ -163,16 +163,45 @@ view('lutfimiku', ["waifu" => "Tokisaki Kurumi"]);
 
 jika kamu ingin mengunakan data di template mu kamu hanya perlu menuliskan
 
-```php
+```blade
 {{ $waifu }} 
 ```
 _ini secara otomatis akan menambahkan function htmlspecialchars yang mengamankan string kamu_
 
 jika kamu tidak ingin ada htmlspecialchars, kamu bisa mengunakan syntax :
-```php
+```blade
 {! $waifu !}
 ```
 
+### ⚠️ Warning!!
+_didalam kurumi template memiliki beberapa peraturan sementara yang wajib di ikuti seperti contoh_
+```blade
+{{$waifu}}
+```
+_code di atas akan menyebabkan error, dikarenakan tidak adanya space antara `{{` atau `}}` dengan variabel $waifu, code yang bener seharusnya di beri space diantara mereka, Selain itu ada peraturan di mana kode `{{` atau `}}` harus sejajar dengan variabel seperti contoh_
+```blade
+<p>
+ {{
+ $waifu
+ }}
+</p>
+```
+_jika kode tidak sejajar seperi contoh diatas akan menyebabkan error, contoh kode yang salah adalah_
+```blade
+<p>
+ {{
+ $waifu
+}}
+</p>
+```
+_atau terlalu dempet_
+```html
+<p>
+{{
+ $waifu
+}}
+</p>
+```
 ### 🥳 fitur fitur template engine yang tersedia
 
 di kurumi template semua syntax di awali dengan `@` sebagai contoh `@if`, `@endif`
@@ -180,9 +209,9 @@ di kurumi template semua syntax di awali dengan `@` sebagai contoh `@if`, `@endi
 contoh
 ```blade
 <div>
- @if $kurumi === "sayang lutfi" :
+ @if ( $kurumi === "sayang lutfi" ) :
    <p> 😍 eh abang sayang</p>
- @elseif $nakanoNino === "istri miko" :
+ @elseif ( $nakanoNino === "istri miko" ) :
    <p>Betsuniiii >////< </p>
  @endif
 </div>
@@ -192,27 +221,91 @@ contoh
 
 jika kamu ingin melakukan pengondisian kamu bisa mengunakan syntax yang di awali `@if` dan di akhiri `@endif`
 
-```
-@if $bumi === "waifu" :
+```blade
+@if ( $bumi === "waifu" ) :
  <p>true</p>
 @endif
 ```
 
-jika kamu ingin melakukan lebih dari satu pengondisian kamu melakukan `@elseif` contoh :
+jika kamu ingin melakukan lebih dari satu pengondisian kamu melakukan `@elif` contoh :
 
-```
-@if $bumi === "waifu" :
+```blade
+@if ( $bumi === "waifu" ) :
  <p>false</p>
-@elseif $bumi === "datar" :
+@elif ( $bumi === "datar" ) :
  <p>false</p>
 @else
  <p>true</p>
 @endif
 ```
 
-_dalam pengunaan if ada peraturan sementara yang wajib di ikuti seperti contoh_ :
+### @each
+jika kamu ingin menloopig data array daripada mengunakan syntax bawaan foreach php,lebih baik kalian mengunakan syntax kurumi `@each` yang memliki syntax lebih simple dan rapih.
+syntax `@each` harus di tutup mengunakan syntax `@endeach` contoh
+```blade
+@each ( $waifus as $name ) :
+ <p>{{ $name }}</p>
+@endeach
 ```
-@if $bumi === "waifu":
+
+### @include
+kadang kala kamu tidak ingin menuliskan kode HTML secara berulang, kamu mungkin akan merasa capek karena hal itu. maka dari itu kurumi menyediakan sebuah template engine `@include` yang berfungsi untuk memasukan kode html dari file yang berbeda sehingga kamu hanya perlu membuat 1 komponen untuk semua halaman,
+secara default `@include` mengarah ke folder `resources/views` sehingga jika kamu ingin membuat komponen harus berada di dalam folder `resources/views`
+
+seperti yang kamu tau kurumi mengadaptasi `.` sebagai folder, sehingga jika kamu ingin mengambil file yang berada di dalam sub folder harus di sambungkan dengan `.` seperti contoh
+```bash
+"components.navbar"
 ```
-ini akan menyebabkan error di karenakan tidak ada space antara argumen dan titik dua `:` jadi di wajibkan adanya space antara mereka ~~~~
-!! tenang ini adalah permasalahan sementara dan akan di perbaiki di versi berikutnya 
+
+syntax `@include` yaitu
+```blade
+@include ('filename')
+<!-- contoh -->
+@include ('components.navbar')
+```
+
+### @asset
+asset di gunakan untuk mengarahkan file css/javascript, secara default asset mengarahkan ke folder `public`, sehingga jika kamu ingin membuat file css/js bisa di lakukan di folder public
+
+contoh syntax `asset`
+```blade
+@asset ('filename');
+```
+
+### @slot
+`@slot` di gunakan untuk mengisi sebuah components ke layouts secara otomatis, layouts adalah sebuah main page yang dimana sebuah metadata berada, kadang kala kalian tidak ingin menuliskan metadata di setiap file halaman, seperti contoh cdn bootstrap. layouts ini bisa kalian atur di folder `config/layouts.php`, jika kalian ingin mematikan fitur ini / merubah folder dimana file layouts berada, semua bisa di rubah di file `config/layouts.php`
+
+contoh syntax `@slot`
+```blade
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kurumi Framework</title>
+  <link href="https://fonts.googleapis.com/css2?family=Radio+Canada&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link href="@asset('css/styles.css');" rel="stylesheet" />
+</head>
+
+<body>
+  @slot
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+```
+
+### @method
+method di gunakan untuk membuat request `DELETE` dan `PUT`, secara default HTML tidak mendukung kedua Http method tersebut sehingga memerlukan bantuan dari engine `@method`
+
+contoh syntax `@method`
+```php
+<form action="/user" method="POST">
+ @method('DELETE')
+ <input type="text" name="user">
+ <button>DELETE</button>
+</form>
+```
