@@ -14,12 +14,13 @@
 
 function view(string $filename, $data = [])
 {
+
   $dir = __DIR__ . "/../../../../storage/framework/views/" . $filename;
 
   new \Kurumi\Kurumi\Generate();
 
   if (!file_exists($dir . '.php') and !file_exists($dir . '.kurumi.php')) {
-    throw new Exception('trying to access a file that doesnt exist.');
+    return;
   } else if (file_exists($dir . '.php')) {
     include $dir . '.php';
   } else if (file_exists($dir . '.kurumi.php')) {
