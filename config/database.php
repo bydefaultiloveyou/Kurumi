@@ -4,11 +4,6 @@
 |--------------------------------------------------------------------------
 | Database config 
 |--------------------------------------------------------------------------
-| 
-|
-|
-|
-|
  */
 
 
@@ -21,21 +16,21 @@ return [
    * default localhost
    */
 
-  "host" =>  parse_ini_file('./../.env')["DATABASE_HOST"] ?? "localhost",
+  "host" =>  parse_ini_file(__DIR__ . '/../.env')["DATABASE_HOST"] ?? "localhost",
 
   /** 
    * @database
    * ini adalah nama dari database kalian
    * default kurumi
    */
-  "database" => parse_ini_file('./../.env')["DATABASE_NAME"] ?? "kurumi",
+  "database" => parse_ini_file(__DIR__ . '/../.env')["DATABASE_NAME"] ?? "kurumi",
 
   /** 
    * @user
    * user login dari dbms kalian default root
    */
 
-  "user" => parse_ini_file('./../.env')["DATABASE_USER"] ?? "root",
+  "user" => parse_ini_file(__DIR__ . '/../.env')["DATABASE_USER"] ?? "root",
 
   /**
    * @password
@@ -43,12 +38,12 @@ return [
    * default null
    */
 
-  "password" => parse_ini_file('./../.env')["DATABASE_PASSWORD"],
+  "password" => parse_ini_file(__DIR__ . '/../.env')["DATABASE_PASSWORD"],
 
   /** 
    * @dialect
    * jenis dbms yang kalian pakai
    */
 
-  "dialect" => parse_ini_file('./../.env')["DIALECT"] ?? "mysql",
+  "dialect" => parse_ini_file(__DIR__ . '/../.env')["DIALECT"] ?? "mysql",
 ];

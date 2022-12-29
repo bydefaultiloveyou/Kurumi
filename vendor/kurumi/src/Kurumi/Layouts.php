@@ -16,26 +16,27 @@ class Layouts
 
   public function __construct(string $filename, array $data = [])
   {
-    $this->render($filename, $data);
-  }
 
-  private function render(string $filename, array $data = [])
-  {
+    // ambil config dari folder config
     $config = require __DIR__ . '/../../../../config/layout.php';
 
-    if ($config['enable']) {
-      foreach ($data as $key => $value) {
-        eval('$$key = $value;');
-      }
+    // looping data dan jadikan variabel biasa
+    foreach ($data as $key => $value) {
+      eval('$$key = $value;');
+    }
 
-      $slot = $this->dir . $filename . '.kurumi.php';
-      include $this->dir . $config['filename'] . '.kurumi.php';
-    } else {
-      foreach ($data as $key => $value) {
-        eval('$$key = $value;');
-      }
+    // check config enable
+    switch ($config['enable']) {
 
-      include $this->dir . $filename . '.kurumi.php';
+        // jika true maka jalankan layouts
+      case true:
+        $slot = $this->dir . $filename . '.kurumi.php';
+        include $this->dir . $config['filename'] . '.kurumi.php';
+        break;
+
+        // jika false ya tidak di jalankan
+      default:
+        include $this->dir . $filename . '.kurumi.php';
     }
   }
 }
