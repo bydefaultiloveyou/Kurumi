@@ -1,0 +1,15 @@
+{
+  "short_name": "Framework Kurumi",
+  "name": "Welcome to Framework Kurumi",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "800x800",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#F380AB",
+  "background_color": "#F380AB"
+}
