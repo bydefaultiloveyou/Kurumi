@@ -9,4 +9,5 @@ spl_autoload_register(function ($class) {
 });
 
 require __DIR__ . '/src/Functions/view.php';
+require __DIR__ . '/src/Functions/dd.php';
 require __DIR__ . '/src/Functions/redirect.php';
