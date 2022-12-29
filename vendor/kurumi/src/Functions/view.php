@@ -20,7 +20,7 @@ function view(string $filename, $data = [])
   new \Kurumi\Kurumi\Generate();
 
   if (!file_exists($dir . '.php') and !file_exists($dir . '.kurumi.php')) {
-    return;
+    throw new Exception("trying to access a file that doesnt exist. {$filename} not found");
   } else if (file_exists($dir . '.php')) {
     include $dir . '.php';
   } else if (file_exists($dir . '.kurumi.php')) {
