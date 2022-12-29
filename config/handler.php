@@ -4,17 +4,10 @@
 |--------------------------------------------------------------------------
 | handler config 
 |--------------------------------------------------------------------------
-| 
-|
-|
-|
-|
  */
 
 
 return [
-
-
   /**
    * @mode [ "PrettyPageHandler", "PlainTextHandler",
    *        "XmlResponseHandler", "JsonResponseHandler",
@@ -25,7 +18,7 @@ return [
    *
    */
 
-
   "mode" => "PrettyPageHandler",
+
   "enable" => true
 ];

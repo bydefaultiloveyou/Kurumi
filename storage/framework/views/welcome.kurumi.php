@@ -13,21 +13,3 @@
     </figcaption>
   </figure>
 </main>
-
-<audio class="d-none" controls loop>
-  <source type="audio/ogg" src="<?php echo 'music/backsound-kurumi.mp3' ?>" />
-</audio>
-
-<div class="modal fade show d-block mt-5" id="welcome-modal" style="z-index: 100">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header px-3">
-        <h1 class="modal-title fs-5">Welcome to Kurumi Framework</h1>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
-      </div>
-    </div>
-  </div>
-</div>
-<div id="backdrop" class="modal-backdrop fade show" style="z-index: 99"></div>
-
-<script src="js/welcome.js"></script>
