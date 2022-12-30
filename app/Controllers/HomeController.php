@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 
 /**
- * Disini kamu bisa mengatur operasi yang diilakukan
+ * Disini kamu bisa mengatur operasi yang ddilakukan
  * sesuai dengan route yang sudah dibuat.
  */
 class HomeController
