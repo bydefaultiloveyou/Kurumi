@@ -1,49 +1,40 @@
 <?php
 
-/* 
-|--------------------------------------------------------------------------
-| Database config 
-|--------------------------------------------------------------------------
+/** 
+ * Database configuration
  */
 
-
+// load base configuration file `.env`
+$config_list = parse_ini_file(__DIR__ . '/../.env');
 
 return [
+  /** 
+   * host [default = localhost]
+   * nama host dari server database yang digunakan
+   */
+  "host" =>  $config_list["DATABASE_HOST"] ?? "localhost",
 
   /** 
-   * @host
-   * ini adalah tempat kalian untuk mementukan host dari database
-   * default localhost
+   * database [default = kurumi]
+   * nama database yang digunakan
    */
-
-  "host" =>  parse_ini_file(__DIR__ . '/../.env')["DATABASE_HOST"] ?? "localhost",
+  "database" => $config_list["DATABASE_NAME"] ?? "kurumi",
 
   /** 
-   * @database
-   * ini adalah nama dari database kalian
-   * default kurumi
+   * user [default = root]
+   * username dari server database yang digunakan
    */
-  "database" => parse_ini_file(__DIR__ . '/../.env')["DATABASE_NAME"] ?? "kurumi",
-
-  /** 
-   * @user
-   * user login dari dbms kalian default root
-   */
-
-  "user" => parse_ini_file(__DIR__ . '/../.env')["DATABASE_USER"] ?? "root",
+  "user" => $config_list["DATABASE_USER"] ?? "root",
 
   /**
-   * @password
-   * password login dari dbms kalian
-   * default null
+   * password [default = ]
+   * password dari server database yang digunakan
    */
-
-  "password" => parse_ini_file(__DIR__ . '/../.env')["DATABASE_PASSWORD"],
+  "password" => $config_list["DATABASE_PASSWORD"],
 
   /** 
-   * @dialect
-   * jenis dbms yang kalian pakai
+   * dialect [default = mysql]
+   * jenis dbms yang digunakan
    */
-
-  "dialect" => parse_ini_file(__DIR__ . '/../.env')["DIALECT"] ?? "mysql",
+  "dialect" => $config_list["DIALECT"] ?? "mysql",
 ];
