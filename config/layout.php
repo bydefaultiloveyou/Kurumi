@@ -1,23 +1,17 @@
 <?php
 
-/* 
-|--------------------------------------------------------------------------
-| layout config 
-|--------------------------------------------------------------------------
+/**
+ * Konfigurasi layout
  */
 
 return [
+  /**
+   * filename [default = 'components.layouts' (components/layouts)]
+   */
+  'filename' => 'components.layouts',
 
   /**
-   *
-   * @filename components => folder
-   *                 .    => /
-   *               layout => filename 
-   *
-   * @enable [ true, false ] 
-   *
+   * enable [default = true]
    */
-
-  "filename" => "components.layouts",
-  "enable" => true,
+  'enable' => true,
 ];
