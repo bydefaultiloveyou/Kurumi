@@ -4,8 +4,20 @@ namespace Kurumi\Consoles;
 
 class Kurumi
 {
+  /**
+   * @var string $argv    berisi argumen dari konsol.
+   */
   private $argv;
+
+  /**
+   * @var array  $options berisi argumen dari konsol (berbentuk array).
+   */
   private $options;
+
+  /**
+   * @var string $short_options  pilihan argumen yang tersedia
+   * @var array  $long_options   ______________ ,, _____________
+   */
   private $short_options = 'c:m:';
   private $long_options = [
     'make::Model:',
@@ -14,34 +26,49 @@ class Kurumi
 
   public function __construct()
   {
+    /**
+     * mengisi properti $argv dengan argumen dari konsol
+     */
     global $argv;
     $this->argv = $argv;
     $this->options = getopt($this->short_options, $this->long_options);
 
+    /**
+     * hentikan program bila tidak ada argumen yang diberikan
+     */
     if ($this->options === [] and @!$this->argv[1]) {
       $this->handleError();
     }
 
+    /**
+     * membuat controller bila terdapat argumen -c atau --make::Controller
+     */
     if (isset($this->options['c']) or isset($this->options['make::Controller'])) {
       $controller = isset($this->options['c']) ?
         $this->options['c'] : $this->options['make::Controller'];
-      $this->createController($controller);
+      $this->createController(ucfirst($controller));
     }
 
+    /**
+     * membuat model bila terdapat argumen -m atau --make::Model
+     */
     if (isset($this->options['m']) or isset($this->options['make::Model'])) {
       $model = isset($this->options['m']) ?
         $this->options['m'] : $this->options['make::Model'];
-      $this->createModel($model);
+      $this->createModel(ucfirst($model));
     }
 
-    if (@$this->argv[1] == 'server') {
+    /**
+     * menjalankan server
+     */
+    if (@$this->argv[1] === 'server') {
       $this->server();
     }
   }
 
 
   /**
-   *  handling error when no arguments given
+   *  memunculkan pesan bila tidak ada argumen yang diberikan
    *  @return void
    */
   public function handleError(): void
@@ -64,7 +91,7 @@ please check in bottom for your input
 
 
   /**
-   * generate random quotes when starting server
+   * jalankan server sambil memberikan kata-kata mutiara :v
    * @return string
    */
   public function randQuotes(): string
@@ -82,14 +109,14 @@ please check in bottom for your input
 
 
   /**
-   * creating controller with given name on console
+   * membuat controller dengan nama yang diberikan di konsol
    * @param  string $controller_name
    * @return void
    */
   public function createController(string $controller_name): void
   {
     if (file_exists("./app/Controllers/$controller_name.php")) {
-      echo "Controller `$controller_name` Already Exist!";
+      echo "\ncontroller `$controller_name` sudah ada!\n";
       die;
     }
 
@@ -99,20 +126,23 @@ please check in bottom for your input
 
 namespace App\Controllers;
 
+/**
+ * Disini kamu bisa mengatur logika dan operasi
+ * yang dijalankan sesuai dengan route yang sudah dibuat.
+ */
 class $controller_name
 {
   // write method in here
 }";
-
       fwrite($newFile, $string);
       fclose($newFile);
+      echo "\ncontroller `$controller_name` berhasil dibuat!\n";
 
-      echo "Controller `$controller_name` created succesfully!";
     } catch (\Throwable $th) {
       $last_trace = $th->getTrace()[0];
 
       echo "
-Cannot Create Controller!
+gagal membuat controller!
 
 {$th->getMessage()}
 
@@ -123,41 +153,57 @@ from `{$last_trace['function']}` in line: {$last_trace['line']}";
 
 
   /**
-   * creating model with given name on console
+   * membuat model (sekaligus tabel) dengan nama yang diberikan di konsol
    * @param  string $model_name
    * @return void
    */
   public function createModel(string $model_name): void
   {
     if (file_exists("./app/Models/$model_name.php")) {
-      echo "Model `$model_name` Already Exist";
+      echo "\nmodel `$model_name` sudah ada!\n";
       die;
     }
 
     try {
       // test;  // matikan komentar untuk tes pesan error
       $newFile = fopen("./app/Models/$model_name.php", 'w');
-      $name = strtolower($model_name) . "s";
+
+      // memaksa nama tabel berbentuk jamak
+      /*match (true) {
+        // ex: studies, properties, flies, skies
+        preg_match('/y$/', $model_name) => preg_replace('/y$/', 'ies', $model_name),
+        // ex: classes, glasses, potatoes, mangoes
+        preg_match('/[o|ss]$/', $model_name) => $model_name .= 'es',
+        // ex: books, users, players, students
+        default => $model_name .= 's',
+      };*/
+      $table_name = strtolower($model_name) . 's';
       $string  = "<?php
 
 namespace App\Models;
+use Kurumi\Database\Database;
 
+
+/**
+ * Disini kamu bisa menuliskan logika dan operasi
+ * yang biasa dilakukan pada database (misalnya query).
+ */
 class $model_name
 {
   public static function DB()
   {
-    return new \Rasiel\Connect('{$name}');
+    return new Database('{$table_name}');
   }
 }";
-
       fwrite($newFile, $string);
       fclose($newFile);
+      echo "\nmodel `$model_name` berhasil dibuat!\n";
 
-      echo "Model `$model_name` created succesfully!";
     } catch (\Throwable $th) {
       $last_trace = $th->getTrace()[0];
 
-      echo "Cannot Create Model!
+      echo "
+gagal membuat model!
 
 {$th->getMessage()}
 
@@ -167,9 +213,6 @@ from `{$last_trace['function']}` in line: {$last_trace['line']}";
   }
 
 
-  /**
-   * starting server
-   */
   public function server()
   {
     echo "
@@ -183,9 +226,9 @@ Tokisaki Kurumi:
 {$this->randQuotes()}";
 
     if (PHP_OS === 'Linux') {
-      exec('cd public/ && php -S localhost:3000');
+      exec('cd public/ && php -S localhost:3000 > /dev/null 2>&1');
     } else {
-      exec('cd public/ && php -S localhost:3000');
+      exec('cd public/ && php -S localhost:3000 > NUL');
     }
   }
 }
