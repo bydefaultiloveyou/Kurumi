@@ -142,13 +142,11 @@ from `{$last_trace['function']}` in line: {$last_trace['line']}";
 
 namespace App\Models;
 
-use Kurumi\Database\Database;
-
 class $model_name
 {
   public static function DB()
   {
-    return new Database('{$name}');
+    return new \Rasiel\Connect('{$name}');
   }
 }";
 

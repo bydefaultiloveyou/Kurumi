@@ -1,13 +1,11 @@
 <?php
 
-
-namespace Kurumi\Database;
+namespace Rasiel;
 
 use PDO;
 
-class Database
+class Connect
 {
-
     private string
         $table,
         $query = "",
@@ -18,81 +16,58 @@ class Database
     public function __construct($table)
     {
         $this->table = $table;
-        $databaseConfig = require __DIR__ . "/../../../config/database.php";
+        $databaseConfig = require __DIR__ . "/../../config/database.php";
         $this->connection = new PDO(
             "$databaseConfig[dialect]:
-          host=$databaseConfig[host];dbname=$databaseConfig[database]",
+            host=$databaseConfig[host];
+            dbname=$databaseConfig[database]",
             $databaseConfig['user'],
             $databaseConfig['password']
         );
     }
 
-    /* -----------------------------------
-    *               COLUMN
-    *------------------------------------*/
     public function column(string $column = "*")
     {
         $this->column = $column;
         return $this;
     }
 
-    /* -----------------------------------
-    *               WHERE
-    *------------------------------------*/
     public function where(string $column, string $operator, string $value)
     {
         $this->query .= " WHERE $column $operator '$value' ";
         return $this;
     }
 
-    /* -----------------------------------
-    *               NOT
-    *------------------------------------*/
     public function not(string $condition)
     {
         $this->query = " WHERE NOT $condition";
         return $this;
     }
 
-    /* -----------------------------------
-    *               ORDER
-    *------------------------------------*/
     public function order(string $column)
     {
         $this->query .= "ORDER BY $column";
         return $this;
     }
 
-    /* -----------------------------------
-    *               LIMIT
-    *------------------------------------*/
     public function limit($limit)
     {
         $this->query .= " LIMIT " . (string)$limit;
         return $this;
     }
 
-    /* -----------------------------------
-    *               offset
-    *------------------------------------*/
     public function offset($offset)
     {
         $this->query .= " OFFSET " . (string)$offset;
         return $this;
     }
 
-    /* -----------------------------------
-    *               JOIN
-    *------------------------------------*/
     public function join(string $table, array $condition, string $type = "INNER")
     {
         $this->query = "{$type} JOIN {$table} ON {$condition[0]} {$condition[1]} {$condition[0]}";
         return $this;
     }
 
-    /* -----------------------------------
-    *               GET
-    *------------------------------------*/
     public function get()
     {
         $result = $this->connection->prepare("SELECT {$this->column} FROM tasks {$this->query};");
@@ -100,9 +75,6 @@ class Database
         return $result->fetchAll();
     }
 
-    /* -----------------------------------
-    *               FETCH
-    *------------------------------------*/
     public function fetch()
     {
         $result = $this->connection->prepare("SELECT {$this->column} FROM tasks {$this->query};");
@@ -110,9 +82,6 @@ class Database
         return $result->fetch();
     }
 
-    /* -----------------------------------
-    *               CREATE
-    *------------------------------------*/
     public function create(array $values)
     {
         $value = implode("' , '", array_values($values));
@@ -121,10 +90,6 @@ class Database
         return $this->connection->exec("$query;");
     }
 
-
-    /* -----------------------------------
-    *               UPDATE
-    *------------------------------------*/
     public function update(array $values)
     {
         foreach ($values as $key => $value) {
@@ -134,10 +99,6 @@ class Database
         }
     }
 
-
-    /* -----------------------------------
-    *               DELETE
-    *------------------------------------*/
     public function delete()
     {
         $query = "DELETE FROM {$this->table} {$this->query}";
