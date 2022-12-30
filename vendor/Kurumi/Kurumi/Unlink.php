@@ -8,7 +8,7 @@ class Unlink
     {
 
         // global dir on storage/framework/views
-        $dir = __DIR__ . "/../../../../storage/framework/views/";
+        $dir = __DIR__ . "/../../../storage/framework/views/";
 
 
         // ambil nama file di folder storage/framework/views
@@ -28,7 +28,7 @@ class Unlink
 
 
             // check jika file di resources/views tidak ada maka hapus file itu di storage/framework/push
-            if (!file_exists(__DIR__ . '/../../../../resources/views/' . $basename . '.kurumi.php')) {
+            if (!file_exists(__DIR__ . '/../../../resources/views/' . $basename . '.kurumi.php')) {
 
                 // hapus file
                 unlink($dir . $filename);

@@ -71,10 +71,10 @@ please check in bottom for your input
   {
     $quotes = [
       #"sebodoh bodohnya kamu \n  jangan pernah nyoba programming.",
-      "jika mereka menolak untuk menerima mu \nmaka aku akan menerimamu apa adanya!.",
-      "apapun yang kamu lalukan pastikan \nitu membuat kamu bahagia.",
-      "untuk mencapai tujuan kita \nkita harus mengejarnya sendiri.",
-      "aku ingin memiliki kenangan bersama mu \ndan juga aku ingin kau juga memiliki kenangan bersamaku."
+      "jika mereka menolak untuk menerima mu \nmaka aku akan menerimamu apa adanya!.\n",
+      "apapun yang kamu lalukan pastikan \nitu membuat kamu bahagia.\n",
+      "untuk mencapai tujuan kita \nkita harus mengejarnya sendiri.\n",
+      "aku ingin memiliki kenangan bersama mu \ndan juga aku ingin kau juga memiliki kenangan bersamaku.\n"
     ];
 
     return $quotes[array_rand($quotes)];
@@ -185,9 +185,9 @@ Tokisaki Kurumi:
 {$this->randQuotes()}";
 
     if (PHP_OS === 'Linux') {
-      exec('cd public/ && php -S localhost:3000 > /dev/null 2>&1');
+      exec('cd public/ && php -S localhost:3000');
     } else {
-      exec('cd public/ && php -S localhost:3000 > NUL');
+      exec('cd public/ && php -S localhost:3000');
     }
   }
 }

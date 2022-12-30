@@ -12,13 +12,13 @@ namespace Kurumi\Kurumi;
 class Layouts
 {
 
-  private string $dir = __DIR__ . "/../../../../storage/framework/views/";
+  private string $dir = __DIR__ . "/../../../storage/framework/views/";
 
   public function __construct(string $filename, array $data = [])
   {
 
     // ambil config dari folder config
-    $config = require __DIR__ . '/../../../../config/layout.php';
+    $config = require __DIR__ . '/../../../config/layout.php';
 
     // looping data dan jadikan variabel biasa
     foreach ($data as $key => $value) {

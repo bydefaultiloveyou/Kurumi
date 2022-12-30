@@ -1,0 +1,13 @@
+{
+ "name" : "Kurumi App",
+ "description" : "test",
+ "version" : "1.0.0",
+ "autoload" : {
+   "psr4" : [
+      "app/",
+      "vendor/Whoops/",
+      "vendor/Kurumi/",
+      "vendor/Testing/"
+   ]
+ }
+}

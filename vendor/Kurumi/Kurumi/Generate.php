@@ -17,18 +17,18 @@ class Generate extends Regex
 
     // mengambil semua file di folder resources/views
     $files = array_merge(
-      glob(__DIR__ . '/../../../../resources/views/*php'),
-      glob(__DIR__ . '/../../../../resources/views/**/*php'),
-      glob(__DIR__ . '/../../../../resources/views/**/**/*php'),
-      glob(__DIR__ . '/../../../../resources/views/**/**/**/*php'),
-      glob(__DIR__ . '/../../../../resources/views/**/**/**/**/*php')
+      glob(__DIR__ . '/../../../resources/views/*php'),
+      glob(__DIR__ . '/../../../resources/views/**/*php'),
+      glob(__DIR__ . '/../../../resources/views/**/**/*php'),
+      glob(__DIR__ . '/../../../resources/views/**/**/**/*php'),
+      glob(__DIR__ . '/../../../resources/views/**/**/**/**/*php')
     );
 
     // looping semua file di resources/view
     foreach ($files as $file) {
 
       // hapus string '/../../../../resources/views/' sehingga hanya menampilkan nama file
-      $filename = str_replace(__DIR__ . '/../../../../resources/views/', "", $file);
+      $filename = str_replace(__DIR__ . '/../../../resources/views/', "", $file);
 
 
       // ganti / dengan .
@@ -40,7 +40,7 @@ class Generate extends Regex
 
 
       // buat file
-      $file_new = fopen(__DIR__ . "/../../../../storage/framework/views/" . $filename, 'w');
+      $file_new = fopen(__DIR__ . "/../../../storage/framework/views/" . $filename, 'w');
 
 
       // dan isi dengan content

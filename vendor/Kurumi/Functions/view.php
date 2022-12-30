@@ -15,7 +15,7 @@
 function view(string $filename, $data = [])
 {
 
-  $dir = __DIR__ . "/../../../../storage/framework/views/" . $filename;
+  $dir = __DIR__ . "/../../../storage/framework/views/" . $filename;
 
   new \Kurumi\Kurumi\Generate();
 

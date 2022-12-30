@@ -18,7 +18,7 @@ class Database
     public function __construct($table)
     {
         $this->table = $table;
-        $databaseConfig = require __DIR__ . "/../../../../config/database.php";
+        $databaseConfig = require __DIR__ . "/../../../config/database.php";
         $this->connection = new PDO(
             "$databaseConfig[dialect]:
           host=$databaseConfig[host];dbname=$databaseConfig[database]",

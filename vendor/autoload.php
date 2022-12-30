@@ -1,34 +1,14 @@
 <?php
-/*
-|--------------------------------------------------------------------------
-| Autoload class whoops 
-|--------------------------------------------------------------------------
-|
-| Untuk mengload seluruh class whoops
-| 
-*/
 
-require __DIR__ . "/Whoops/load.php";
+use Zafkiel\Classloader;
 
-/*
-|--------------------------------------------------------------------------
-| autoload Classs dan function
-|--------------------------------------------------------------------------
-|
-| Untuk mengload class yang berada dalam folder vendor/src 
-| 
-*/
+require __DIR__ . "/Zafkiel/Classloader.php";
 
+Classloader::initialize();
 
-require __DIR__ . "/kurumi/load.php";
+$whoops = new \Whoops\Run;
+$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+$whoops->register();
 
-
-spl_autoload_register(function ($class) {
-  $class = explode('\\', $class);
-  $class = @$class[1] . '/' . end($class);
-  if (file_exists($path = __DIR__ . '/../app/' . $class . '.php')) {
-    require $path;
-  }
-});
-
+require __DIR__ . "/Kurumi/Functions/view.php";
 require __DIR__ . '/../routes/web.php';

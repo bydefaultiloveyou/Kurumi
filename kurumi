@@ -1,5 +1,5 @@
 <?php
 
-require_once __DIR__ . '/vendor/kurumi/src/Consoles/Kurumi.php';
+require_once __DIR__ . '/vendor/Kurumi/Consoles/Kurumi.php';
 
 new Kurumi\Consoles\Kurumi;
