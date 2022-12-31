@@ -1,29 +1,27 @@
 <?php
 
-/* use Kurumi\Handlers\Loads; */
+// use Kurumi\Handlers\Loads;
 
-/** -----------------
- *  Los
- *  digunakan untuk menampilkan design ke website
- *  
- *  @param string $filename
- *  menentukan nama file
- *  @param array $data
- *  data yang di beri di view ( optional )
+/**
+ * fungsi untuk menampilkan halaman
+ * @param  string $filename file view yang ingin ditampilkan
+ * @param  array  $data     data yang dikirimkan ke file view
+ * @return void
  */
-
-function view(string $filename, $data = [])
+function view(string $filename, array $data=[])
 {
+  $dir = __DIR__ . "/../../../storage/framework/views/$filename";
 
-  $dir = __DIR__ . "/../../../storage/framework/views/" . $filename;
+  /**
+   * membuat file baru dengan modifikasi pada directive yang ada pada file
+   */
+  new Kurumi\Kurumi\Generate;
 
-  new \Kurumi\Kurumi\Generate();
-
-  if (!file_exists($dir . '.php') and !file_exists($dir . '.kurumi.php')) {
-    throw new Exception("trying to access a file that doesnt exist. {$filename} not found");
-  } else if (file_exists($dir . '.php')) {
-    include $dir . '.php';
-  } else if (file_exists($dir . '.kurumi.php')) {
+  if (file_exists("$dir.php")) {
+    include_once "$dir.php";
+  } elseif (file_exists("$dir.kurumi.php")) {
     new \Kurumi\Kurumi\Layouts($filename, $data);
+  } else {
+    throw new Exception("view `{$filename}` tidak ditemukan!");
   }
 }
