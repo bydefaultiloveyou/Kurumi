@@ -9,20 +9,20 @@ namespace Kurumi\Kurumi;
  */
 class Generate extends Regex
 {
-  public function __construct()
+  public function __construct($views)
   {
-
-    // validasi file
-    (new Unlink())->remove();
+    // 
+    Unlink::parseFileName();
 
     // mengambil semua file di folder resources/views
     $files = array_merge(
-      glob(__DIR__ . '/../../../resources/views/*php'),
-      glob(__DIR__ . '/../../../resources/views/**/*php'),
-      glob(__DIR__ . '/../../../resources/views/**/**/*php'),
-      glob(__DIR__ . '/../../../resources/views/**/**/**/*php'),
-      glob(__DIR__ . '/../../../resources/views/**/**/**/**/*php')
+      glob(__DIR__ . "$views*php"),
+      glob(__DIR__ . "$views**/*php"),
+      glob(__DIR__ . "$views**/**/*php"),
+      glob(__DIR__ . "$views**/**/**/*php"),
+      glob(__DIR__ . "$views**/**/**/**/*php")
     );
+    
 
     // looping semua file di resources/view
     foreach ($files as $file) {
@@ -30,23 +30,17 @@ class Generate extends Regex
       // hapus string '/../../../../resources/views/' sehingga hanya menampilkan nama file
       $filename = str_replace(__DIR__ . '/../../../resources/views/', "", $file);
 
-
       // ganti / dengan .
       $filename = str_replace("/", ".", $filename);
-
 
       // ambil content di di setiap file resources/views
       $contents = file_get_contents($file);
 
-
       // buat file
       $file_new = fopen(__DIR__ . "/../../../storage/framework/views/" . $filename, 'w');
 
-
       // dan isi dengan content
       fwrite($file_new, $this->run($contents));
-
-
       fclose($file_new);
     }
   }
