@@ -29,7 +29,7 @@ class File
       glob("{$this->input_directory}**/**/*.kurumi.php"),
       glob("{$this->input_directory}**/**/**/*.kurumi.php"),
     );
-
+    // dd($this->files);
     $this->sterilize();
     $this->generate();
   }
@@ -43,17 +43,20 @@ class File
   public function sterilize(): void
   {
     // ambil nama file di folder storage/framework/views
-    $files = glob($this->output_directory . '*.kurumi.php');
+    $files = glob($this->output_directory . "*.php");
 
-    foreach ($this->files as $file)
+    foreach ($files as $file)
     {
       // ambil nama file yang berakhiran '.kurumi.php'
-      $base_name = basename($file, '.kurumi.php');
+      $base_name = str_replace('.kurumi.php', '', $file);
 
       // ubah simbol . menjadi /
       $base_name = str_replace('.', '/', $base_name);
+      $base_name = basename($file, '.kurumi.php');
 
       // hapus file output bila tidak ada di folder input
+      // var_dump("{$this->input_directory}{$base_name}.kurumi.php");
+      
       if (!file_exists("{$this->input_directory}{$base_name}.kurumi.php"))
       {
         unlink("{$this->output_directory}{$base_name}.kurumi.php");
