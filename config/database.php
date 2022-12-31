@@ -1,40 +1,40 @@
 <?php
 
 /** 
- * Database configuration
+ * Konfigurasi database
  */
 
-// load base configuration file `.env`
+// memuat file konfigurasi utama `.env`
 $config_list = parse_ini_file(__DIR__ . '/../.env');
 
 return [
   /** 
-   * host [default = localhost]
+   * host [default = 'localhost']
    * nama host dari server database yang digunakan
    */
-  "host" =>  $config_list["DATABASE_HOST"] ?? "localhost",
+  'host' =>  $config_list['DATABASE_HOST'] ?? 'localhost',
 
   /** 
-   * database [default = kurumi]
+   * database [default = 'kurumi']
    * nama database yang digunakan
    */
-  "database" => $config_list["DATABASE_NAME"] ?? "kurumi",
+  'database' => $config_list['DATABASE_NAME'] ?? 'kurumi',
 
   /** 
-   * user [default = root]
+   * user [default = 'root']
    * username dari server database yang digunakan
    */
-  "user" => $config_list["DATABASE_USER"] ?? "root",
+  'user' => $config_list['DATABASE_USER'] ?? 'root',
 
   /**
-   * password [default = ]
+   * password [default = '']
    * password dari server database yang digunakan
    */
-  "password" => $config_list["DATABASE_PASSWORD"],
+  'password' => $config_list['DATABASE_PASSWORD'],
 
   /** 
    * dialect [default = mysql]
    * jenis dbms yang digunakan
    */
-  "dialect" => $config_list["DIALECT"] ?? "mysql",
+  'dialect' => $config_list['DIALECT'] ?? 'mysql',
 ];
