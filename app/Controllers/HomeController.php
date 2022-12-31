@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Task;
 
 /**
  * Disini kamu bisa mengatur operasi yang dilakukan

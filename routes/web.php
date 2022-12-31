@@ -22,8 +22,10 @@ use Kurumi\Http\Route;
  *                 - Route::get('/about', [HomeController::class, 'about'])
  */
 
+
 Route::get('/', [HomeController::class, 'home']);
-Route::get('/hello', function() {
+
+Route::get('/hello', function () {
   echo 'Hello world!';
 });
 

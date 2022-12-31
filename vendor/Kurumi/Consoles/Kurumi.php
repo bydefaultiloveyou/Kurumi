@@ -137,7 +137,6 @@ class $controller_name
       fwrite($newFile, $string);
       fclose($newFile);
       echo "\ncontroller `$controller_name` berhasil dibuat!\n";
-
     } catch (\Throwable $th) {
       $last_trace = $th->getTrace()[0];
 
@@ -181,8 +180,6 @@ from `{$last_trace['function']}` in line: {$last_trace['line']}";
       $string  = "<?php
 
 namespace App\Models;
-use Kurumi\Database\Database;
-
 
 /**
  * Disini kamu bisa menuliskan logika dan operasi
@@ -190,15 +187,14 @@ use Kurumi\Database\Database;
  */
 class $model_name
 {
-  public static function DB()
+  public static function Rasiel()
   {
-    return new Database('{$table_name}');
+    return new \Rasiel\Connect('{$table_name}');
   }
 }";
       fwrite($newFile, $string);
       fclose($newFile);
       echo "\nmodel `$model_name` berhasil dibuat!\n";
-
     } catch (\Throwable $th) {
       $last_trace = $th->getTrace()[0];
 
@@ -226,9 +222,9 @@ Tokisaki Kurumi:
 {$this->randQuotes()}";
 
     if (PHP_OS === 'Linux') {
-      exec('cd public/ && php -S localhost:3000 > /dev/null 2>&1');
+      exec('cd public/ && php -S localhost:3000');
     } else {
-      exec('cd public/ && php -S localhost:3000 > NUL');
+      exec('cd public/ && php -S localhost:3000');
     }
   }
 }
