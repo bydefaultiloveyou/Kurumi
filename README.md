@@ -21,9 +21,9 @@ _Kami mengembangkan Framework ini tanpa mengunakan [composer](https://getcompose
 ## 🧐 Fitur-Fitur :
 
 __Fitur-Fitur yang kami sediakan__
-- [Routing]("#routing")
-- [Database Query]("#database-query")
-- [Kurumi Template Engine]("#kurumi-template-engine")
+- [Routing](#-routing)
+- [View](#-view)
+- [Kurumi Template Engine](#-kurumi-template-engine)
 
 <!-- installation -->
 
@@ -37,7 +37,7 @@ __1. Clone repository ini__
  git clone https://github.com/bydefaultiloveyou/Kurumi.git && cd Kurumi && rm -rf .git
 ```
 
-__2. Download ZIP File__
+[__2. Download ZIP File__](https://github.com/iqbalthex/Kurumi/archive/refs/heads/haniel.zip)
 
 Untuk menjalankan server, ketik `php kurumi server` di terminal / cmd
 
@@ -127,6 +127,7 @@ Route::delete($uri, $callback);
 ```
 Method DELETE untuk menghapus data yang ada di Database.
 
+<!-- view section -->
 ## 🗿 View
 View adalah sebuah function untuk menampilkan sebuah halaman HTML. Secara default file mengarah ke folder `resources/views` sebagai contoh
 di dalam folder
@@ -151,6 +152,8 @@ Kurumi mengadaptasi `.` sebagai lambang folder. Sebagai Contoh jika kamu ingin m
 ```php
 view('components.lutfimiku')
 ```
+
+<!-- template engine section -->
 ## 🔫 Kurumi Template Engine
 Kurumi sangat simple, sebuah template engine lumayan powerfull yang ter included dengan __Kurumi__, tidak seperti php templating engine, kurumi tidak membatasi kamu dari mengunakan php code di template mu, faktanya, semua kurumi template di compiled menjadi php code dan cache sampai mereka di modifikasi. artinya Kurumi menambahkan esensial nol overhead di aplikasimu, File Kurumi template mengunakan extensi `.kurumi.php` dan mereka biasa disimpan di folder resources/views.
 
