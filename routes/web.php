@@ -1,6 +1,8 @@
 <?php
 
 use App\Controllers\HomeController;
+use App\Controllers\TayoController;
+use App\Models\Task;
 use Kurumi\Http\Route;
 
 /**
@@ -26,7 +28,9 @@ use Kurumi\Http\Route;
 Route::get('/', [HomeController::class, 'home']);
 
 Route::get('/hello', function () {
-  echo 'Hello world!';
+  var_dump(
+    Task::Rasiel()->get()
+  );
 });
 
 // jangan hapus kode di bawah ini!

@@ -1,16 +1,29 @@
 <?php
 
-use Zafkiel\Classloader;
 
-require __DIR__ . "/Zafkiel/Classloader.php";
+/** -----------------------------------------------------
+ *  Require Autoload
+ */
+require __DIR__ . "/zafkiel/Classloader.php";
 
-Classloader::initialize();
+(new zafkiel\Classloader())->Intialize();
 
+
+/** --------------------------------------------------
+ * Run Whoops
+ */
 $whoops = new \Whoops\Run;
 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
 
-require __DIR__ . "/Kurumi/Functions/view.php";
-require __DIR__ . "/Kurumi/Functions/dd.php";
-require __DIR__ . "/Kurumi/Functions/redirect.php";
+
+/** -------------------------------------------------
+ *  Require Function
+ */
+require __DIR__ . '/kurumi/Functions/load.php';
+
+
+/** -----------------------------------------------
+ *  Require Routes
+ */
 require __DIR__ . '/../routes/web.php';

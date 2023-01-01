@@ -2,6 +2,8 @@
 
 namespace Rasiel;
 
+use Rasiel\Migration\MigrationQuery;
+
 use PDO;
 
 class Connect
@@ -103,5 +105,10 @@ class Connect
     {
         $query = "DELETE FROM {$this->table} {$this->query}";
         $result = $this->connection->exec($query);
+    }
+
+    public function createTable(callable $callback)
+    {
+        $callback(new MigrationQuery($this->table, $this->connection));
     }
 }

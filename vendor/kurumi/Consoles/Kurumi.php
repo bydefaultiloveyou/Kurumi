@@ -18,10 +18,11 @@ class Kurumi
    * @var string $short_options  pilihan argumen yang tersedia
    * @var array  $long_options   ______________ ,, _____________
    */
-  private $short_options = 'c:m:';
+  private $short_options = 'c:m:g:';
   private $long_options = [
     'make::Model:',
     'make::Controller:',
+    'make::Migrate:',
   ];
 
   public function __construct()
@@ -41,12 +42,21 @@ class Kurumi
     }
 
     /**
-     * membuat controller bila terdapat argumen -c atau --make::Controller
+     * membuat controller bila terdapat argumen -mg atau --make::Migrate
      */
     if (isset($this->options['c']) or isset($this->options['make::Controller'])) {
       $controller = isset($this->options['c']) ?
         $this->options['c'] : $this->options['make::Controller'];
       $this->createController(ucfirst($controller));
+    }
+
+    /**
+     * membuat controller bila terdapat argumen -mg atau --make::Migrate
+     */
+    if (isset($this->options['g']) or isset($this->options['make::Migrate'])) {
+      $migrate = isset($this->options['g']) ?
+        $this->options['g'] : $this->options['make::Migrate'];
+      $this->createMigrate($migrate);
     }
 
     /**
@@ -63,6 +73,10 @@ class Kurumi
      */
     if (@$this->argv[1] === 'server') {
       $this->server();
+    }
+
+    if (@$this->argv[1] === 'Migrate') {
+      system("php ./vendor/rasiel/Migration/Migrate.php");
     }
   }
 
@@ -107,6 +121,48 @@ please check in bottom for your input
     return $quotes[array_rand($quotes)];
   }
 
+  public function createMigrate(string $migrate_name): void
+  {
+    if (file_exists("./database/Migrations/$migrate_name.php")) {
+      echo "\nMigrations `$migrate_name` sudah ada!\n";
+      die;
+    }
+
+    try {
+      $newFile = fopen("./database/Migrations/$migrate_name.php", 'w');
+      $table_name =  str_replace('Migration', '', $migrate_name);
+      $table_name = strtolower($table_name . "s");
+      $string  = '<?php
+
+namespace Database\Migrations;
+
+class ' . $migrate_name . '
+{
+    public function up()
+    {
+        (new \Rasiel\Connect(' . "'" . $table_name . "'" . '))->createTable(function ($query) {
+
+            // jangan hapus code ini
+            $query->create();
+        });
+    }
+}
+      ';
+      fwrite($newFile, $string);
+      fclose($newFile);
+      echo "\nMigration `$migrate_name` berhasil dibuat!\n";
+    } catch (\Throwable $th) {
+      $last_trace = $th->getTrace()[0];
+
+      echo "
+gagal membuat Migrate!
+
+{$th->getMessage()}
+
+{$last_trace['file']}
+from `{$last_trace['function']}` in line: {$last_trace['line']}";
+    }
+  }
 
   /**
    * membuat controller dengan nama yang diberikan di konsol
@@ -164,18 +220,10 @@ from `{$last_trace['function']}` in line: {$last_trace['line']}";
     }
 
     try {
-      // test;  // matikan komentar untuk tes pesan error
+      // matikan komentar untuk tes pesan error
       $newFile = fopen("./app/Models/$model_name.php", 'w');
 
       // memaksa nama tabel berbentuk jamak
-      /*match (true) {
-        // ex: studies, properties, flies, skies
-        preg_match('/y$/', $model_name) => preg_replace('/y$/', 'ies', $model_name),
-        // ex: classes, glasses, potatoes, mangoes
-        preg_match('/[o|ss]$/', $model_name) => $model_name .= 'es',
-        // ex: books, users, players, students
-        default => $model_name .= 's',
-      };*/
       $table_name = strtolower($model_name) . 's';
       $string  = "<?php
 
@@ -221,10 +269,6 @@ Kurumi server is running:
 Tokisaki Kurumi:
 {$this->randQuotes()}";
 
-    if (PHP_OS === 'Linux') {
-      exec('cd public/ && php -S localhost:3000');
-    } else {
-      exec('cd public/ && php -S localhost:3000');
-    }
+    exec('cd public/ && php -S localhost:3000');
   }
 }
