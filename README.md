@@ -51,22 +51,21 @@ Kami mempunyai `kurumi`, dia adalah sebuah program simple yang akan membantu mas
 ## 📁 Pengenalan Struktur Folder
 
 - [__`app`__]("#app") 
-    - folder app mengandung inti kode dari aplikasi mu, jadi jelajahi folder ini lebih detail kemudian hari, hampir semua class di aplikasimu akan di buat di folder ini 
+    - Folder paling penting, sebagian besar komponen dari aplikasimu tersimpan disini.
 - [__`config`__]("#config") 
-    -  folder config sebagai menyiratkan nama, mengandung semua file configurasi di aplikasimu, ini sebuah ide bagus untuk membaca semua file ini dan dirimu familiar dengan semua pengaturan yang tersedia untuk mu
+    - Berisi file konfigurasi yang dapat diatur sesuai keinginanmu, dapat mempermudah pengaturan seperti database, aktivasi fitur, lokasi input dan output untuk view dan sebagainya.
 - [__`public`__]("#public")
-    - folder public mengandung file index.php yang menjadi inti point dari semua request yang di terima oleh aplikasimu dan configurasi autoloading. folder ini juga sebagai rumah untuk asset seperti images, JavaScript dan CSS.
+    - Berisi file-file yang boleh dilihat oleh user maupun developer secara publik.
 - [__`resources`__]("#resources")
     - folder resources mengandung view yang sebagai mentahanmu, tidak di compile asset seperti CSS atau JavaScript
 - [__`routes`__]("#routes")
-    - folder routes mengandung semua route yang di definisikan untuk aplikasimu, secara default, beberapa routing file mengambil routing di file web.php
+    - Berisi konfigurasi rute yang dapat diakses pada aplikasimu beserta handler-nya (fungsi atau controller).
 - [__`storage`__]("#storage")
-    - storage folder mengandung file generate dari folder resources
+    - Berisi file yang dibuat secara otomatis oleh kurumi framework.
 - [__`vendor`__]("#vendor")
-    - vendor adalah folder inti dari kurumi framework, yang di mana berisi semua code penting di kurumi, noted : kalo kamu punya trauma melihat yang rumit dilarang melihat folder ini
-    
-    
-<!-- routing -->
+    - Berisi file sistem dari framework ini. Disarankan tidak mengubah apapun yang ada di dalam sini.
+
+<!-- routing section -->
 ## 📍 Routing
 __Kurumi__ Mengadaptasi konsep URI dan closure, menyediakan sebuah ekpresi simple dan method yang mendefinisikan routing tanpa komplikasi file konfigurasi routing
 
