@@ -2,41 +2,31 @@
 
 namespace Kurumi\Kurumi;
 
-/** ----------------
- *  new Layouts
- *  adalah sebuah class yang dimana mengatur pengunaan layouts
- *  jika di dalam file config/layout -> enable = true
- *  maka otomatif akan mengaktif kan fitur layouts
+
+/**
+ * aktifkan fitur layouting dengan
+ * mengatur nilai enable menjadi true
+ * pada file 'config/layout.php'
  */
+class Layouts {
+  private string $dir = __DIR__ . '/../../../storage/framework/views/';
 
-class Layouts
-{
-
-  private string $dir = __DIR__ . "/../../../storage/framework/views/";
-
-  public function __construct(string $filename, array $data = [])
-  {
-
-    // ambil config dari folder config
-    $config = require __DIR__ . '/../../../config/layout.php';
-
+  public function __construct(string $filename, array $data = []) {
     // looping data dan jadikan variabel biasa
     foreach ($data as $key => $value) {
       eval('$$key = $value;');
     }
 
-    // check config enable
-    switch ($config['enable']) {
+    // ambil nilai dari file 'layout.php'
+    $config = require __DIR__ . '/../../../config/layout.php';
 
-        // jika true maka jalankan layouts
-      case true:
-        $slot = $this->dir . $filename . '.kurumi.php';
-        include $this->dir . $config['filename'] . '.kurumi.php';
-        break;
-
-        // jika false ya tidak di jalankan
-      default:
-        include $this->dir . $filename . '.kurumi.php';
+    // cek apakah fitur layouting aktif (true)
+    if (!$config['enable']) {
+      include $this->dir . $filename . '.kurumi.php';
+      return false;
     }
+
+    $slot = $this->dir . $filename . '.kurumi.php';
+    include $this->dir . $config['filename'] . '.kurumi.php';
   }
 }
