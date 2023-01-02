@@ -279,7 +279,7 @@ contoh syntax `@slot`
 <br/>
 
 ### @method
-Melengkapi form menggunakan method selain bawaan html (`GET` dan `POST`) seperti `PUT` dan `DELETE`.
+Melengkapi form menggunakan method selain bawaan html ( `GET` dan `POST` ) seperti `PUT` dan `DELETE`.
 
 ```
 <form action="/user" method="POST">
