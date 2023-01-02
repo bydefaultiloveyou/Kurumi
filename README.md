@@ -135,12 +135,12 @@ di dalam folder
 
 fungsi view secara otomatis akan menampilkan isi dari file `welcome.kurumi.php` cukup dengan menulisnya seperti di bawah ini
 ```php
-view('kurumi')
+view('welcome')
 ```
 
 kamu juga dapat mengirimkan data ke halaman view dengan mengirim data tersebut sebagai parameter kedua
 ```php
-view('kurumi', [ 'waifu' => 'Kurumi' ])
+view('welcome', [ 'waifu' => 'Kurumi' ])
 ```
 
 
