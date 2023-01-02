@@ -122,52 +122,60 @@ Method DELETE untuk menghapus data yang ada di Database.
 
 <!-- view section -->
 ## 🗿 View
-View adalah sebuah function untuk menampilkan sebuah halaman HTML. Secara default file mengarah ke folder `resources/views` sebagai contoh
+View adalah sebuah fungsi untuk menampilkan halaman web. Secara default file mengarah ke folder `resources/views` sebagai contoh
 di dalam folder
 ```bash
 .
 └── resources
     └── views
          ├── components
-         │   └── lutfimiku.php
-         ├── kurumi.php
-         └── kaori.php
+         │   └── layouts.kurumi.php
+         └── welcome.kurumi.php
 ```
 
-jika kamu ingin menampilkan file `kurumi.php` sebagai contoh kamu bisa mengetikan :
+fungsi view secara otomatis akan menampilkan isi dari file `welcome.kurumi.php` dengan menuliskan kode berikut
 ```php
 view('kurumi')
 ```
-Secara default view akan mengarahkan kamu ke file kurumi.php 
+
+kamu juga dapat mengirimkan data ke halaman view dengan mengirim data tersebut sebagai parameter kedua
+```php
+view('kurumi', [ 'waifu' => 'Kurumi' ])
+```
+
 
 #### ⚠️ Warning Sayangku
 Kurumi mengadaptasi `.` sebagai lambang folder. Sebagai Contoh jika kamu ingin menampilkan file yang ada di sub directory kamu harus menyertakan format `folder.file` contoh : 
 ```php
-view('components.lutfimiku')
+view('components.layouts')
 ```
+maka isi dari file `components/layouts.kurumi.php` akan ditampilkan
 
-<!-- template engine section -->
-## 🔫 Kurumi Template Engine
-Kurumi sangat simple, sebuah template engine lumayan powerfull yang ter included dengan __Kurumi__, tidak seperti php templating engine, kurumi tidak membatasi kamu dari mengunakan php code di template mu, faktanya, semua kurumi template di compiled menjadi php code dan cache sampai mereka di modifikasi. artinya Kurumi menambahkan esensial nol overhead di aplikasimu, File Kurumi template mengunakan extensi `.kurumi.php` dan mereka biasa disimpan di folder resources/views.
 
-kurumi views mungkin akan mengembalikan dari route atau controller mengunakan function global view. tentu saja, sebagai documentasi tersebut data mungkin akan di tambahakan ke Kurumi view mengunakan argument kedua, sebagai contoh :
-```php
-view('lutfimiku', ["waifu" => "Tokisaki Kurumi"]);
+## 🔫 Haniel
+Haniel adalah nama angel milik Natsumi yang dapat merubah wujud benda apapun. Dia dapat merubah expression dan directive pada template html kamu menjadi kode php. Di bawah ini beberapa expression dan directive yang dapat digunakan :
+
+- __normal expression__
 ```
-
-
-
-jika kamu ingin mengunakan data di template mu kamu hanya perlu menuliskan
-
-```blade
-{{ $waifu }} 
+{ $waifu = 'kurumi' }
 ```
-_ini secara otomatis akan menambahkan function htmlspecialchars yang mengamankan string kamu_
+baris di atas akan diterjemahkan menjadi
+```
+<?php $waifu = 'kurumi' ?>
+```
+<br/>
 
-jika kamu tidak ingin ada htmlspecialchars, kamu bisa mengunakan syntax :
-```blade
+- __normal echo expression__ (memunculkan nilai dari variabel)
+```
 {! $waifu !}
 ```
+<br/>
+
+- __special echo expression__ (memunculkan nilai dari variabel yang dibungkus fungsi built-in php yaitu `htmlspecialchars` )
+```
+{{ $waifu }}
+```
+<br/>
 
 ### ⚠️ Warning!!
 _didalam kurumi template memiliki beberapa peraturan sementara yang wajib di ikuti seperti contoh_
@@ -198,75 +206,51 @@ _atau terlalu dempet_
 }}
 </p>
 ```
-### 🥳 fitur fitur template engine yang tersedia
+<br/>
 
-di kurumi template semua syntax di awali dengan `@` sebagai contoh `@if`, `@endif`
- 
-contoh
-```blade
+Note: directive diawali dengan tanda `@`
+
+### @if, @elif, @else & @endif
+
+```
 <div>
- @if ( $kurumi === "sayang lutfi" ) :
-   <p> 😍 eh abang sayang</p>
- @elseif ( $nakanoNino === "istri miko" ) :
-   <p>Betsuniiii >////< </p>
- @endif
+  @if ( $kurumi === "sayang lutfi" ):
+    <p> 😍 eh abang sayang</p>
+  @elseif ( $nakanoNino === "istri miko" ):
+    <p>Betsuniiii >////< </p>
+  @else:
+    <p>ayangku siapa? 🗿</p>
+  @endif
 </div>
 ```
+<br/>
 
-### @if
+### @each & endeach
 
-jika kamu ingin melakukan pengondisian kamu bisa mengunakan syntax yang di awali `@if` dan di akhiri `@endif`
-
-```blade
-@if ( $bumi === "waifu" ) :
- <p>true</p>
-@endif
 ```
-
-jika kamu ingin melakukan lebih dari satu pengondisian kamu melakukan `@elif` contoh :
-
-```blade
-@if ( $bumi === "waifu" ) :
- <p>false</p>
-@elif ( $bumi === "datar" ) :
- <p>false</p>
-@else
- <p>true</p>
-@endif
-```
-
-### @each
-jika kamu ingin melooping data array daripada mengunakan syntax bawaan foreach php,lebih baik kalian mengunakan syntax kurumi `@each` yang memliki syntax lebih simple dan rapih.
-syntax `@each` harus di tutup mengunakan syntax `@endeach` contoh
-```blade
-@each ( $waifus as $name ) :
+@each ( $waifus as $name ):
  <p>{{ $name }}</p>
 @endeach
 ```
+<br/>
 
 ### @include
-kadang kala kamu tidak ingin menuliskan kode HTML secara berulang, kamu mungkin akan merasa capek karena hal itu. maka dari itu kurumi menyediakan sebuah template engine `@include` yang berfungsi untuk memasukan kode html dari file yang berbeda sehingga kamu hanya perlu membuat 1 komponen untuk semua halaman,
-secara default `@include` mengarah ke folder `resources/views` sehingga jika kamu ingin membuat komponen harus berada di dalam folder `resources/views`
+Sama seperti fungsi built-in milik php yakni include, namun tidak perlu menggunakan tag pembuka `<?php` dan penutup `?>`. @include secara default memanggil file pada folder `resources/views`. Dan perlu diingat bahwa kurumi membaca tanda titik `.` sebagai tanda garis miring `/` yang biasa menjadi pemisah antara folder.
 
-seperti yang kamu tau kurumi mengadaptasi `.` sebagai folder, sehingga jika kamu ingin mengambil file yang berada di dalam sub folder harus di sambungkan dengan `.` seperti contoh
-```bash
-"components.navbar"
 ```
-
-syntax `@include` yaitu
-```blade
-@include ('filename')
-<!-- contoh -->
+@include ('components.header')
 @include ('components.navbar')
 ```
+<br/>
 
 ### @asset
-asset di gunakan untuk mengarahkan file css/javascript, secara default asset mengarahkan ke folder `public`, sehingga jika kamu ingin membuat file css/js bisa di lakukan di folder public
+Dapat digunakan untuk mengambil file dari folder `public` misal kamu memiliki file css dan javascript di dalamnya.
 
-contoh syntax `asset`
-```blade
-@asset ('filename');
 ```
+@asset ('css/style.css')
+@asset ('js/script.js')
+```
+<br/>
 
 ### @slot
 `@slot` di gunakan untuk mengisi sebuah components ke layouts secara otomatis, layouts adalah sebuah main page yang dimana sebuah metadata berada, kadang kala kalian tidak ingin menuliskan metadata di setiap file halaman, seperti contoh cdn bootstrap. layouts ini bisa kalian atur di folder `config/layouts.php`, jika kalian ingin mematikan fitur ini / merubah folder dimana file layouts berada, semua bisa di rubah di file `config/layouts.php`
@@ -291,17 +275,16 @@ contoh syntax `@slot`
 </body>
 
 </html>
-
 ```
+<br/>
 
 ### @method
-method di gunakan untuk membuat request `DELETE` dan `PUT`, secara default HTML tidak mendukung kedua Http method tersebut sehingga memerlukan bantuan dari engine `@method`
+Melengkapi form menggunakan method selain bawaan html (`GET` dan `POST`) seperti `PUT` dan `DELETE`.
 
-contoh syntax `@method`
-```php
+```
 <form action="/user" method="POST">
- @method('DELETE')
- <input type="text" name="user">
- <button>DELETE</button>
+  @method(DELETE)
+  <input type="text" name="user" />
+  <button>DELETE</button>
 </form>
 ```
