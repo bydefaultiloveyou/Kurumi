@@ -37,6 +37,8 @@ __1. Clone repository ini__
  git clone https://github.com/bydefaultiloveyou/Kurumi.git && cd Kurumi && rm -rf .git
 ```
 
+_ini akan mendownload versi yang ada di branch default, jika ingin mendownload versi stable bisa menambahkan `-b 1.x` di depan clone_
+
 [__2. Download ZIP File__](https://github.com/iqbalthex/Kurumi/archive/refs/heads/haniel.zip)
 
 Untuk menjalankan server, ketik `php kurumi server` di terminal / cmd
