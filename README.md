@@ -133,7 +133,7 @@ di dalam folder
          └── welcome.kurumi.php
 ```
 
-fungsi view secara otomatis akan menampilkan isi dari file `welcome.kurumi.php` dengan menuliskan kode berikut
+fungsi view secara otomatis akan menampilkan isi dari file `welcome.kurumi.php` cukup dengan menulisnya seperti di bawah ini
 ```php
 view('kurumi')
 ```
