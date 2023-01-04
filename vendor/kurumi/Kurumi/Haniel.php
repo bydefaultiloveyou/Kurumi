@@ -26,10 +26,12 @@ namespace Kurumi\Kurumi;
  * -> @css ("index.css")       ==> <link href="index.css" rel="stylesheet" />
  * -> @javascript ("main.js")  ==> <script src="main.js"></script>
  */
-class Haniel {
+class Haniel
+{
   private static string $contents;
 
-  private static function _parse($pattern, $replace, bool $isPHP=TRUE): void {
+  private static function _parse($pattern, $replace, bool $isPHP = TRUE): void
+  {
     if ($isPHP) {
       $replace = '<?php ' . $replace . ' ?>';
     }
@@ -37,7 +39,8 @@ class Haniel {
     self::$contents = preg_replace($pattern, $replace, self::$contents);
   }
 
-  public static function transform(string $contents): string {
+  public static function transform(string $contents): string
+  {
     self::$contents = $contents;
 
     self::_parse('/\{{ (.*) \}}/', 'echo htmlspecialchars($1)');
@@ -55,7 +58,9 @@ class Haniel {
     self::_parse('/@method\s*\((.*)\)\s*/', '<input type="hidden" name="_method" value=$1 />', FALSE);
     self::_parse('/@css\s*\((.*)\)\s*/', '<link href=$1 rel="stylesheet" />', FALSE);
     self::_parse('/@javascript\s*\((.*)\)\s*/', '<script src=$1></script>', FALSE);
-
+    self::_parse('/@deus\s*\((.*)\)\s*/', '$__deus->deusContent($1)');
+    self::_parse('/@section\s*\((.*)\)\s*/', '');
+    self::_parse('/@endsectio\s*(.*)\s*/', '');
     return self::$contents;
   }
 }
