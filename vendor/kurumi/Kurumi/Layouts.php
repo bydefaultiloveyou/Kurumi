@@ -8,10 +8,12 @@ namespace Kurumi\Kurumi;
  * mengatur nilai enable menjadi true
  * pada file 'config/layout.php'
  */
-class Layouts {
+class Layouts
+{
   private string $dir = __DIR__ . '/../../../storage/framework/views/';
 
-  public function __construct(string $filename, array $data = []) {
+  public function __construct(string $filename, array $data = [])
+  {
     // looping data dan jadikan variabel biasa
     foreach ($data as $key => $value) {
       eval('$$key = $value;');
@@ -26,7 +28,7 @@ class Layouts {
       return false;
     }
 
-    $slot = $this->dir . $filename . '.kurumi.php';
+    $__deus = new \Kurumi\Kurumi\Deus;
     include $this->dir . $config['filename'] . '.kurumi.php';
   }
 }
