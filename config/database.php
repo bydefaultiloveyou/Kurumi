@@ -1,7 +1,13 @@
 <?php
 
-/** 
- * Konfigurasi database
+
+/*
+|--------------------------------------------------------------------------
+| Database Config 
+|--------------------------------------------------------------------------
+|
+| Konfigurasi database
+|
  */
 
 // memuat file konfigurasi utama `.env`

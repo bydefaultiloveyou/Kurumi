@@ -1,7 +1,13 @@
 <?php
 
+/*
+|--------------------------------------------------------------------------
+| redirect Function 
+|--------------------------------------------------------------------------
+|
+ */
+
 function redirect(string $path, array $flash = [])
 {
-    !empty($flash) ? false :
-        header("location: {$path}");
+  !empty($flash) ? false : header("location: {$path}");
 }

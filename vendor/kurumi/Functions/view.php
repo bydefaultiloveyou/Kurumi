@@ -1,26 +1,32 @@
 <?php
 
-// use Kurumi\Handlers\Loads;
+/*
+|--------------------------------------------------------------------------
+| Function View 
+|--------------------------------------------------------------------------
+|
+|  fungsi untuk menampilkan halaman
+|  @param  string $filename # file view yang ingin ditampilkan
+|  @param  array  $data     # data yang dikirimkan ke file view
+|  @return void
+| 
+|  @_path     -> path ke folder storage 
+|  @_path_php -> path ke folder resources 
+| 
+|  @_file -> membuat file baru dengan modifikasi pada directive yang ada pada file 
+|
+*/
 
-/**
- * fungsi untuk menampilkan halaman
- * @param  string $filename # file view yang ingin ditampilkan
- * @param  array  $data     # data yang dikirimkan ke file view
- * @return void
- */
-function view(string $filename, array $data=[])
+
+function view(string $filename, array $data = [])
 {
-  $dir = __DIR__ . "/../../../storage/framework/views/$filename";
+  $_path     = __DIR__ . PATH_VIEW_STORAGE . $filename . ".kurumi.php";
+  $_path_php = __DIR__ . PATH_VIEW_RESOURCES . $filename . ".php";
+  $_file     = new Kurumi\Kurumi\File;
 
-  /**
-   * membuat file baru dengan modifikasi pada directive yang ada pada file
-   */
-  $file = new Kurumi\Kurumi\File;
-  
-
-  if (file_exists("$dir.php")) {
-    include_once "$dir.php";
-  } elseif (file_exists("$dir.kurumi.php")) {
+  if (file_exists($_path_php)) {
+    include_once $_path_php;
+  } elseif (file_exists($_path)) {
     new Kurumi\Kurumi\Layouts($filename, $data);
   } else {
     throw new Exception("view `{$filename}` tidak ditemukan!");

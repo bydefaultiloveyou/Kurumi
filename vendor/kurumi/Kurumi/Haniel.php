@@ -2,30 +2,33 @@
 
 namespace Kurumi\Kurumi;
 
+/*
+|--------------------------------------------------------------------------
+| Layouts Class 
+|--------------------------------------------------------------------------
+|
+| Haniel adalah nama angel milik Natsumi yang dapat merubah 
+| wujud benda apapun. Dia dapat merubah directive pada template 
+| html kamu menjadi kode php.
+|
+| directive yang tersedia:
+|  -> {{ 'hello' }}            ==> <?php echo htmlspecialchars('hello') ?>
+|  -> {! 'hello' !}            ==> <?php echo 'hello' ?>
+|  -> { $var = 123 }           ==> <?php $var = 123 ?>
+|  -> @if (true):              ==> <?php if (true): ?>
+|  -> @elif (true):            ==> <?php elseif (true): ?>
+|  -> @else:                   ==> <?php else: ?>
+|  -> @endif                   ==> <?php endif; ?>
+|  -> @each ($items as $i):    ==> <?php foreach ($items as $i): ?>
+|  -> @endeach                 ==> <?php endforeach; ?>
+|  -> @include ('home')        ==> <?php require __DIR__ . '/home.kurumi.php' ?>
+|  -> @asset ('style.css')     ==> <?php echo 'style.css' ?>
+|  -> @slot                    ==> <?php include $slot ?>
+|  -> @method ("put")          ==> <input type="hidden" name="_method" value="put" />
+|  -> @css ("index.css")       ==> <link href="index.css" rel="stylesheet" />
+|  -> @javascript ("main.js")  ==> <script src="main.js"></script>
+*/
 
-/**
- * Haniel adalah nama angel milik Natsumi
- * yang dapat merubah wujud benda apapun.
- * Dia dapat merubah directive pada
- * template html kamu menjadi kode php.
- * 
- * directive yang tersedia:
- * -> {{ 'hello' }}            ==> <?php echo htmlspecialchars('hello') ?>
- * -> {! 'hello' !}            ==> <?php echo 'hello' ?>
- * -> { $var = 123 }           ==> <?php $var = 123 ?>
- * -> @if (true):              ==> <?php if (true): ?>
- * -> @elif (true):            ==> <?php elseif (true): ?>
- * -> @else:                   ==> <?php else: ?>
- * -> @endif                   ==> <?php endif; ?>
- * -> @each ($items as $i):    ==> <?php foreach ($items as $i): ?>
- * -> @endeach                 ==> <?php endforeach; ?>
- * -> @include ('home')        ==> <?php require __DIR__ . '/home.kurumi.php' ?>
- * -> @asset ('style.css')     ==> <?php echo 'style.css' ?>
- * -> @slot                    ==> <?php include $slot ?>
- * -> @method ("put")          ==> <input type="hidden" name="_method" value="put" />
- * -> @css ("index.css")       ==> <link href="index.css" rel="stylesheet" />
- * -> @javascript ("main.js")  ==> <script src="main.js"></script>
- */
 class Haniel
 {
   private static string $contents;
@@ -58,9 +61,6 @@ class Haniel
     self::_parse('/@method\s*\((.*)\)\s*/', '<input type="hidden" name="_method" value=$1 />', FALSE);
     self::_parse('/@css\s*\((.*)\)\s*/', '<link href=$1 rel="stylesheet" />', FALSE);
     self::_parse('/@javascript\s*\((.*)\)\s*/', '<script src=$1></script>', FALSE);
-    self::_parse('/@deus\s*\((.*)\)\s*/', '$__deus->deusContent($1)');
-    self::_parse('/@section\s*\((.*)\)\s*/', '');
-    self::_parse('/@endsectio\s*(.*)\s*/', '');
     return self::$contents;
   }
 }
