@@ -1,12 +1,20 @@
 <?php
 
 namespace Kurumi\Kurumi;
+
 use Kurumi\Kurumi\Haniel;
 
-/**
- * Class untuk mengelola file dan directive
- */
-class File {
+/*
+|--------------------------------------------------------------------------
+| Layouts Class 
+|--------------------------------------------------------------------------
+|
+| Class untuk mengelola file dan directive
+| 
+*/
+
+class File
+{
   /**
    * @var array $input_files  # berisi nama-nama file dari folder input
    * @var array $output_files # berisi nama-nama file dari folder output
@@ -18,15 +26,16 @@ class File {
    * @var $input_directory  # nama folder input
    * @var $output_directory # nama folder output
    */
-  private $input_directory  = __DIR__ . '/../../../resources/views/';
-  private $output_directory = __DIR__ . '/../../../storage/framework/views/';
+  private $input_directory  = __DIR__ . PATH_VIEW_RESOURCES;
+  private $output_directory = __DIR__ . PATH_VIEW_STORAGE;
 
 
   /**
    * Mengambil semua file di folder input dan output.
    * Memperbarui file view (sterilize & generate).
    */
-  public function __construct() {
+  public function __construct()
+  {
     $this->input_files = array_merge(
       glob("{$this->input_directory}*.kurumi.php"),
       glob("{$this->input_directory}**/*.kurumi.php"),
@@ -47,10 +56,11 @@ class File {
    * -> hapus file output bila tidak ada di folder input  # (unlink)
    * @return void
    */
-  public function sterilize(): void {
+  public function sterilize(): void
+  {
     foreach ($this->output_files as $file) {
       $base_name = str_replace('.kurumi.php', '', basename($file));
-      
+
       $output_dir = $this->output_directory . $base_name;
       $input_dir  = $this->input_directory . str_replace('.', '/', $base_name);
 
@@ -70,7 +80,8 @@ class File {
    * -> buat file di folder output  # (fopen, fwrite, fclose)
    * @return void
    */
-  public function generate(): void {
+  public function generate(): void
+  {
     foreach ($this->input_files as $file) {
       $filename = str_replace($this->input_directory, '', $file);
       $filename = str_replace('/', '.', $filename);

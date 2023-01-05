@@ -16,6 +16,10 @@ $whoops = new \Whoops\Run;
 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
 
+/** --------------------------------------------------
+ * Run define variable
+ */
+$_define = new \Kurumi\Variable\define;
 
 /** -------------------------------------------------
  *  Require Function
