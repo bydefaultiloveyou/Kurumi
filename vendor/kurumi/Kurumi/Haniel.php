@@ -61,6 +61,10 @@ class Haniel
     self::_parse('/@method\s*\((.*)\)\s*/', '<input type="hidden" name="_method" value=$1 />', FALSE);
     self::_parse('/@css\s*\((.*)\)\s*/', '<link href=$1 rel="stylesheet" />', FALSE);
     self::_parse('/@javascript\s*\((.*)\)\s*/', '<script src=$1></script>', FALSE);
+    self::_parse('/@deus\s*\((.*)\)\s*/', '$this->deusContent($1)');
+    self::_parse('/@extends\s*\((.*)\)\s*/', '$__deus->extendContent($1)');
+    self::_parse('/@section\s*\((.*)\)\s*/', '$__deus->startContent($1)');
+    self::_parse('/@endsection/', '$__deus->stopContent()');
     return self::$contents;
   }
 }
