@@ -27,6 +27,7 @@ class Layouts
       eval('$$key = $value;');
     }
 
+    $__deus = new \Kurumi\Kurumi\TemplateInheritance;
     include __DIR__ . PATH_VIEW_STORAGE . $filename . '.kurumi.php';
   }
 }
