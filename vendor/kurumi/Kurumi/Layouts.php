@@ -28,6 +28,7 @@ class Layouts
     }
 
     $__deus = new \Kurumi\Kurumi\TemplateInheritance;
+    $__comp = new \Kurumi\Kurumi\Component;
     include __DIR__ . PATH_VIEW_STORAGE . $filename . '.kurumi.php';
   }
 }

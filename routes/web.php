@@ -31,7 +31,7 @@ use Kurumi\Http\Route;
 Route::get('/', [HomeController::class, 'home']);
 
 Route::get('/about', function () {
-    echo "Hello World!";
+  echo "Hello World!";
 });
 
 // jangan hapus kode di bawah sini
