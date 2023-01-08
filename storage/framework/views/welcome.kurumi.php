@@ -1,4 +1,6 @@
-<?php $__deus->startContent("layouts") ?><main class="container">
+<?php $__deus->startContent("layouts") ?><?php $__comp->extendContent("header","title") ?>
+
+<main class="container">
   <figure class="text-center p-5">
     <img width="400" src="https://pbs.twimg.com/media/FJxua79XwAMXzND?format=jpg&name=900x900" alt="Kurumi" />
     <h2>WELCOME TO KURUMI FRAMEWORK</h2>
@@ -13,6 +15,8 @@
     </figcaption>
   </figure>
 </main>
+
+<?php $__comp->extendContent("footer",) ?>
 
 <?php $__deus->stopContent() ?>
 

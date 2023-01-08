@@ -46,9 +46,9 @@ class Haniel
   {
     self::$contents = $contents;
 
-    self::_parse('/\{{ (.*) \}}/', 'echo htmlspecialchars($1)');
-    self::_parse('/\{! (.*) \!}/', 'echo $1');
-    self::_parse('/\{ (.*) \}/', '$1');
+    self::_parse('/\{{([\s\S]*?)\}}/', 'echo htmlspecialchars($1)');
+    self::_parse('/\{!([\s\S]*?)\!}/', 'echo $1');
+    self::_parse('/\{([\s\S]*?)\}/', '$1');
     self::_parse('/@if\s*\((.*)\)\s*:\s*/', 'if ($1):');
     self::_parse('/@elif\s*\((.*)\)\s*:\s*/', 'elseif ($1):');
     self::_parse('/\@else\s*:\s*/', 'else:');
@@ -65,6 +65,8 @@ class Haniel
     self::_parse('/@extends\s*\((.*)\)\s*/', '$__deus->extendContent($1)');
     self::_parse('/@section\s*\((.*)\)\s*/', '$__deus->startContent($1)');
     self::_parse('/@endsection/', '$__deus->stopContent()');
+    self::_parse('/@component\s*\((.*)\)\s*/', '$this->slot($1)');
+    self::_parse('/<x-(.*?)\s*(data=(.*?))?\s*\/>/', '$__comp->extendContent("$1",$3)');
     return self::$contents;
   }
 }
