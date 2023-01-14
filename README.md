@@ -212,37 +212,7 @@ baris di atas akan diterjemahkan menjadi
 ```
 <br/>
 
-### ⚠️ Warning!!
-_didalam kurumi template memiliki beberapa peraturan sementara yang wajib di ikuti seperti contoh_
-```blade
-{{$waifu}}
-```
-_code di atas akan menyebabkan error, dikarenakan tidak adanya space antara `{{` atau `}}` dengan variabel $waifu, code yang bener seharusnya di beri space diantara mereka, Selain itu ada peraturan di mana kode `{{` atau `}}` harus sejajar dengan variabel seperti contoh_
-```blade
-<p>
- {{
- $waifu
- }}
-</p>
-```
-_jika kode tidak sejajar seperi contoh diatas akan menyebabkan error, contoh kode yang salah adalah_
-```blade
-<p>
- {{
- $waifu
-}}
-</p>
-```
-_atau terlalu dempet_
-```html
-<p>
-{{
- $waifu
-}}
-</p>
-```
-<br/>
-
+#
 Note: directive diawali dengan tanda `@`
 
 ### @if, @elif, @else & @endif
@@ -269,6 +239,72 @@ Note: directive diawali dengan tanda `@`
 ```
 <br/>
 
+### 🎉 Template 
+
+kami menyediakan template yang sederhana, template ini didorong oleh inheritance. Semua template ini harus menggunakan extension `.kurumi.php`.
+
+## menentukan layout
+
+```blade
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F380AB" />
+  <link rel="manifest" href="@asset('manifest.json')" />
+  <title></title>
+  @css ("https://fonts.googleapis.com/css2?family=Radio+Canada&display=swap" rel="stylesheet")
+  @css ("https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css")
+  @css ("css/styles.css")
+</head>
+
+<body>
+
+  @deus ("layouts")
+
+  @javascript ("https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js")
+</body>
+
+</html>
+```
+
+<br/>
+
+### menggunakan layouts
+
+```blade
+@section ("layouts")
+
+<main class="container">
+  <figure class="text-center p-5">
+    <img width="400" src="https://pbs.twimg.com/media/FJxua79XwAMXzND?format=jpg&name=900x900" alt="Kurumi" />
+    <h2>WELCOME TO KURUMI FRAMEWORK</h2>
+    <figcaption>
+      <p class="text-secondary">Simple framework for Koneksi.php</p>
+      <ul class="d-flex w-100 justify-content-center">
+        <a href="https://github.com/bydefaultiloveyou/Kurumi.git" target="__blank" style="text-decoration: none;" class="px-4 rounded-5 m-2 py-1 bg-primary text-white">
+          <li>Documentation</li>
+        </a>
+        <li class="px-4 py-1 bg-primary text-white rounded-5 m-2">Lincense MIT</li>
+      </ul>
+    </figcaption>
+  </figure>
+</main>
+
+@endsection
+
+@extends ("layouts.main")
+```
+
+Perhatikan bahwa `@deus` berfungsi sebagai parent dari layout, `@deus('layouts)'` akan di isi oleh child dari layout yang telah di tentukan di `@section ('layouts')`.
+
+untuk parameter dari parent `@deus` nya harus sama dengan child di `@section`.
+
+Perhatikan juga `@extends ('layouts.main')` ini parameter nya adalah `path` dari file parent layout yang kamu punya, untuk penulisan `@extends` harus ditulis dipaling  bawah code kamu.
+
+
 ### @include
 Sama seperti fungsi built-in milik php yakni include, namun tidak perlu menggunakan tag pembuka `<?php` dan penutup `?>`. @include secara default memanggil file pada folder `resources/views`. Dan perlu diingat bahwa kurumi membaca tanda titik `.` sebagai tanda garis miring `/` yang biasa menjadi pemisah antara folder.
 
@@ -284,32 +320,6 @@ Dapat digunakan untuk mengambil file dari folder `public` misal kamu memiliki fi
 ```
 @asset ('css/style.css')
 @asset ('js/script.js')
-```
-<br/>
-
-### @slot
-`@slot` di gunakan untuk mengisi sebuah components ke layouts secara otomatis, layouts adalah sebuah main page yang dimana sebuah metadata berada, kadang kala kalian tidak ingin menuliskan metadata di setiap file halaman, seperti contoh cdn bootstrap. layouts ini bisa kalian atur di folder `config/layouts.php`, jika kalian ingin mematikan fitur ini / merubah folder dimana file layouts berada, semua bisa di rubah di file `config/layouts.php`
-
-contoh syntax `@slot`
-```blade
-<!doctype html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kurumi Framework</title>
-  <link href="https://fonts.googleapis.com/css2?family=Radio+Canada&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <link href="@asset('css/styles.css');" rel="stylesheet" />
-</head>
-
-<body>
-  @slot
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-</body>
-
-</html>
 ```
 <br/>
 
