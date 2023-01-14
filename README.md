@@ -5,6 +5,8 @@
  <img src="https://socialify.git.ci/bydefaultiloveyou/Kurumi/image?description=1&descriptionEditable=Native%20Framework%20for%20Koneksi.php&font=Source%20Code%20Pro&forks=1&language=1&logo=https%3A%2F%2Fi.redd.it%2Fq4y7hxtq1g161.png&name=1&pulls=1&stargazers=1&theme=Light" alt="Kurumi"/>
 </p>
 
+<p align="center">* * * * * * * * * * * * * * * * * * * * * * * * *</p>
+<hr><br>
 
 <!-- introduction section -->
 ## 📕 Pengenalan Framework
@@ -16,7 +18,9 @@ __Kurumi__ adalah sebuah Framework sederhana yang namanya terinspirasi dari sebu
 
 _Kami mengembangkan Framework ini tanpa mengunakan [composer](https://getcomposer.org)_
  
- 
+ <p align="center">* * * * * * * * * * * * * * * * * * * * * * * * *</p>
+<hr><br>
+
 <!-- feature section -->
 ## 🧐 Fitur Framework
 
@@ -25,6 +29,8 @@ __Fitur-Fitur yang tersedia:__
 - [View](#-view)
 - [Kurumi Template Engine](#-kurumi-template-engine)
 
+<p align="center">* * * * * * * * * * * * * * * * * * * * * * * * *</p>
+<hr><br>
 
 <!-- installation -->
 ## 🛠️ Instalasi Framework
@@ -45,6 +51,9 @@ __2. Unduh file ZIP__
 
 Kamu juga bisa mengunduhnya secara manual dengan menekan tombol di samping. [`Download`](https://github.com/iqbalthex/Kurumi/archive/refs/heads/haniel.zip)
 
+<p align="center">* * * * * * * * * * * * * * * * * * * * * * * * *</p>
+<hr><br>
+
 ## 🛠️ Penggunaan
 
 Setelah melakukan cloning repo atau download zip, masuk ke repo/folder 'Kurumi' melalui terminal dengan menjalankan perintah:
@@ -56,7 +65,8 @@ Lalu, untuk menjalankan server, jalankan perintah:
 ```
 php kurumi server
 ```
-
+<p align="center">* * * * * * * * * * * * * * * * * * * * * * * * *</p>
+<hr><br>
 
 <!-- kurumi cli section -->
 ## 🔫 Kurumi
@@ -74,6 +84,8 @@ Kami mempunyai `kurumi`, dia adalah sebuah program simple yang akan membantu mas
 - `storage` Berisi file yang dibuat secara otomatis oleh kurumi framework.
 - `vendor` Berisi file sistem dari framework ini. Disarankan tidak mengubah apapun yang ada di dalam sini.
 
+<p align="center">* * * * * * * * * * * * * * * * * * * * * * * * *</p>
+<hr><br>
 
 <!-- routing section -->
 ## 📍 Routing
@@ -99,7 +111,6 @@ Route::get('/user', [UserController::class, 'index']);
 ```
 
 ini akan secara otomatis akan di akses jika kamu mengunjung route `/user` di web browsermu
-
 
 ### 🥳 Routing Yang Tersedia
 Kurumi menyediakan beberapa pilihan routing seperti
@@ -136,6 +147,9 @@ Route::delete($uri, $callback);
 ```
 Method DELETE untuk menghapus data yang ada di Database.
 
+<p align="center">* * * * * * * * * * * * * * * * * * * * * * * * *</p>
+<hr><br>
+
 <!-- view section -->
 ## 🗿 View
 View adalah sebuah fungsi untuk menampilkan halaman web. Secara default file mengarah ke folder `resources/views` sebagai contoh
@@ -167,6 +181,8 @@ view('components.layouts')
 ```
 maka isi dari file `components/layouts.kurumi.php` akan ditampilkan
 
+<p align="center">* * * * * * * * * * * * * * * * * * * * * * * * *</p>
+<hr><br>
 
 ## 🔫 Haniel
 Haniel adalah nama angel milik Natsumi yang dapat merubah wujud benda apapun. Dia dapat merubah expression dan directive pada template html kamu menjadi kode php. Di bawah ini beberapa expression dan directive yang dapat digunakan :
