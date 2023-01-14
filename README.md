@@ -31,17 +31,31 @@ __Fitur-Fitur yang tersedia:__
 
 Kami menyediakan 2 cara instalasi, yaitu dengan :
 
-__1. Clone repository ini__
+__1. Clone repository__
+
+Kamu dapat membuka terminal dan menggunakan perintah berikut.
 
 ```
  git clone https://github.com/bydefaultiloveyou/Kurumi.git && cd Kurumi && rm -rf .git
 ```
 
-_ini akan mendownload versi yang ada di branch default, jika ingin mendownload versi stable bisa menambahkan `-b 1.x` di depan clone_
+Secara otomatis akan melakukan cloning pada source code yang ada di branch default ( `master` ), jika ingin mengunduh versi stable bisa menambahkan `-b 1.x` di depan clone.
 
-[__2. Download ZIP File__](https://github.com/iqbalthex/Kurumi/archive/refs/heads/haniel.zip)
+__2. Unduh file ZIP__
 
-Untuk menjalankan server, ketik `php kurumi server` di terminal / cmd
+Kamu juga bisa mengunduhnya secara manual dengan menekan tombol di samping. [`Download`](https://github.com/iqbalthex/Kurumi/archive/refs/heads/haniel.zip)
+
+## 🛠️ Penggunaan
+
+Setelah melakukan cloning repo atau download zip, masuk ke repo/folder 'Kurumi' melalui terminal dengan menjalankan perintah:
+```
+cd Kurumi
+```
+
+Lalu, untuk menjalankan server, jalankan perintah:
+```
+php kurumi server
+```
 
 
 <!-- kurumi cli section -->
