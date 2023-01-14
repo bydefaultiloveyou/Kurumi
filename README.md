@@ -61,10 +61,13 @@ Setelah melakukan cloning repo atau download zip, masuk ke repo/folder 'Kurumi' 
 cd Kurumi
 ```
 
-Lalu, untuk menjalankan server, jalankan perintah:
+Untuk menjalankan server, jalankan perintah:
 ```
 php kurumi server
 ```
+
+Kemudian, buka `localhost:3000` pada browser.
+
 <p align="center">* * * * * * * * * * * * * * * * * * * * * * * * *</p>
 <hr><br>
 
