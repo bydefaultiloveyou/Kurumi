@@ -28,6 +28,7 @@ __Fitur-Fitur yang tersedia:__
 - [Routing](#-routing)
 - [View](#-view)
 - [Kurumi Template Engine](#-kurumi-template-engine)
+- [Database Query]
 
 <p align="center">* * * * * * * * * * * * * * * * * * * * * * * *</p>
 <hr><br>
