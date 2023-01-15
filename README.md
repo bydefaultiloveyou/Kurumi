@@ -5,7 +5,7 @@
  <img src="https://socialify.git.ci/bydefaultiloveyou/Kurumi/image?description=1&descriptionEditable=Native%20Framework%20for%20Koneksi.php&font=Source%20Code%20Pro&forks=1&language=1&logo=https%3A%2F%2Fi.redd.it%2Fq4y7hxtq1g161.png&name=1&pulls=1&stargazers=1&theme=Light" alt="Kurumi"/>
 </p>
 
-<p align="center">* * * * * * * * * * * * * * * * * * * * * * * * *</p>
+<p align="center">* * * * * * * * * * * * * * * * * * * * * * * *</p>
 <hr><br>
 
 <!-- introduction section -->
@@ -18,7 +18,7 @@ __Kurumi__ adalah sebuah Framework sederhana yang namanya terinspirasi dari sebu
 
 _Kami mengembangkan Framework ini tanpa mengunakan [composer](https://getcomposer.org)_
  
- <p align="center">* * * * * * * * * * * * * * * * * * * * * * * * *</p>
+ <p align="center">* * * * * * * * * * * * * * * * * * * * * * * *</p>
 <hr><br>
 
 <!-- feature section -->
@@ -29,7 +29,7 @@ __Fitur-Fitur yang tersedia:__
 - [View](#-view)
 - [Kurumi Template Engine](#-kurumi-template-engine)
 
-<p align="center">* * * * * * * * * * * * * * * * * * * * * * * * *</p>
+<p align="center">* * * * * * * * * * * * * * * * * * * * * * * *</p>
 <hr><br>
 
 <!-- installation -->
@@ -51,7 +51,7 @@ __2. Unduh file ZIP__
 
 Kamu juga bisa mengunduhnya secara manual dengan menekan tombol di samping. [`Download`](https://github.com/iqbalthex/Kurumi/archive/refs/heads/haniel.zip)
 
-<p align="center">* * * * * * * * * * * * * * * * * * * * * * * * *</p>
+<p align="center">* * * * * * * * * * * * * * * * * * * * * * * *</p>
 <hr><br>
 
 ## 🛠️ Penggunaan
@@ -68,7 +68,7 @@ php kurumi server
 
 Kemudian, buka `localhost:3000` pada browser.
 
-<p align="center">* * * * * * * * * * * * * * * * * * * * * * * * *</p>
+<p align="center">* * * * * * * * * * * * * * * * * * * * * * * *</p>
 <hr><br>
 
 <!-- kurumi cli section -->
@@ -87,7 +87,7 @@ Kami mempunyai `kurumi`, dia adalah sebuah program simple yang akan membantu mas
 - `storage` Berisi file yang dibuat secara otomatis oleh kurumi framework.
 - `vendor` Berisi file sistem dari framework ini. Disarankan tidak mengubah apapun yang ada di dalam sini.
 
-<p align="center">* * * * * * * * * * * * * * * * * * * * * * * * *</p>
+<p align="center">* * * * * * * * * * * * * * * * * * * * * * * *</p>
 <hr><br>
 
 <!-- routing section -->
@@ -150,7 +150,7 @@ Route::delete($uri, $callback);
 ```
 Method DELETE untuk menghapus data yang ada di Database.
 
-<p align="center">* * * * * * * * * * * * * * * * * * * * * * * * *</p>
+<p align="center">* * * * * * * * * * * * * * * * * * * * * * * *</p>
 <hr><br>
 
 <!-- view section -->
@@ -184,30 +184,30 @@ view('components.layouts')
 ```
 maka isi dari file `components/layouts.kurumi.php` akan ditampilkan
 
-<p align="center">* * * * * * * * * * * * * * * * * * * * * * * * *</p>
+<p align="center">* * * * * * * * * * * * * * * * * * * * * * * *</p>
 <hr><br>
 
 ## 🔫 Haniel
 Haniel adalah nama angel milik Natsumi yang dapat merubah wujud benda apapun. Dia dapat merubah expression dan directive pada template html kamu menjadi kode php. Di bawah ini beberapa expression dan directive yang dapat digunakan :
 
 - __normal expression__
-```
+```blade
 { $waifu = 'kurumi' }
 ```
 baris di atas akan diterjemahkan menjadi
-```
+```php
 <?php $waifu = 'kurumi' ?>
 ```
 <br/>
 
 - __normal echo expression__ (memunculkan nilai dari variabel)
-```
+```blade
 {! $waifu !}
 ```
 <br/>
 
 - __special echo expression__ (memunculkan nilai dari variabel yang dibungkus fungsi built-in php yaitu `htmlspecialchars` )
-```
+```blade
 {{ $waifu }}
 ```
 <br/>
@@ -217,7 +217,7 @@ Note: directive diawali dengan tanda `@`
 
 ### @if, @elif, @else & @endif
 
-```
+```blade
 <div>
   @if ( $kurumi === "sayang lutfi" ):
     <p> 😍 eh abang sayang</p>
@@ -232,12 +232,44 @@ Note: directive diawali dengan tanda `@`
 
 ### @each & endeach
 
-```
+```blade
 @each ( $waifus as $name ):
  <p>{{ $name }}</p>
 @endeach
 ```
 <br/>
+
+### @include
+Sama seperti fungsi built-in milik php yakni include, namun tidak perlu menggunakan tag pembuka `<?php` dan penutup `?>`. @include secara default memanggil file pada folder `resources/views`. Dan perlu diingat bahwa kurumi membaca tanda titik `.` sebagai tanda garis miring `/` yang biasa menjadi pemisah antara folder.
+
+```blade
+@include ('components.header')
+@include ('components.navbar')
+```
+<br/>
+
+### @asset
+Dapat digunakan untuk mengambil file dari folder `public` misal kamu memiliki file css dan javascript di dalamnya.
+
+```blade
+@asset ('css/style.css')
+@asset ('js/script.js')
+```
+<br/>
+
+### @method
+Melengkapi form menggunakan method selain bawaan html ( `GET` dan `POST` ) seperti `PUT` dan `DELETE`.
+
+```blade
+<form action="/user" method="POST">
+  @method(DELETE)
+  <input type="text" name="user" />
+  <button>DELETE</button>
+</form>
+```
+
+<p align="center">* * * * * * * * * * * * * * * * * * * * * * * *</p>
+<hr><br>
 
 ### 🎉 Template 
 
@@ -304,32 +336,38 @@ untuk parameter dari parent `@deus` nya harus sama dengan child di `@section`.
 
 Perhatikan juga `@extends ('layouts.main')` ini parameter nya adalah `path` dari file parent layout yang kamu punya, untuk penulisan `@extends` harus ditulis dipaling  bawah code kamu.
 
+<br>
 
-### @include
-Sama seperti fungsi built-in milik php yakni include, namun tidak perlu menggunakan tag pembuka `<?php` dan penutup `?>`. @include secara default memanggil file pada folder `resources/views`. Dan perlu diingat bahwa kurumi membaca tanda titik `.` sebagai tanda garis miring `/` yang biasa menjadi pemisah antara folder.
+### Component
 
+Component akan memudahkan kamu dalam menerapkan layouting, kamu dapat memecah bagian-bagian web menjadi komponen yang lebih kecil sehingga 1 komponen hanya mewakili bagian tertentu misalnya header, footer, navigation bar, hidden element dan lain-lain.
+
+Contoh pada file view utama yang terletak di `resources/views/welcome.kurumi.php`
+
+```blade
+@section ("layouts")
+
+<x-header x-title="Kurumi" />
+
+<main class="container">
+  <h2>Halo semua</h2>
+</main>
+
+@endsection
+
+@extends ("layouts.main")
 ```
-@include ('components.header')
-@include ('components.navbar')
-```
-<br/>
 
-### @asset
-Dapat digunakan untuk mengambil file dari folder `public` misal kamu memiliki file css dan javascript di dalamnya.
+Seperti yang kamu lihat terdapat tag yang diawali 'x-' seperti berikut
 
+```blade
+<x-header x-title="Kurumi" />
 ```
-@asset ('css/style.css')
-@asset ('js/script.js')
-```
-<br/>
 
-### @method
-Melengkapi form menggunakan method selain bawaan html ( `GET` dan `POST` ) seperti `PUT` dan `DELETE`.
+Maka bagian tersebut akan diisi oleh komponen yang terletak di `resources/views/components/header.kurumi.php` . Selain itu, atribut yang diawali 'x-' dapat digunakan pada file ini juga. 
 
-```
-<form action="/user" method="POST">
-  @method(DELETE)
-  <input type="text" name="user" />
-  <button>DELETE</button>
-</form>
+```blade
+<div>
+  <h1>Welcome to {{ $title }} Framework!</h1>
+</div>
 ```
