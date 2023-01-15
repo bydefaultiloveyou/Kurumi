@@ -18,7 +18,6 @@ __Kurumi__ adalah sebuah Framework sederhana yang namanya terinspirasi dari sebu
 
 _Kami mengembangkan Framework ini tanpa mengunakan [composer](https://getcomposer.org)_
  
- <p align="center">* * * * * * * * * * * * * * * * * * * * * * * *</p>
 <hr><br>
 
 <!-- feature section -->
@@ -28,9 +27,8 @@ __Fitur-Fitur yang tersedia:__
 - [Routing](#-routing)
 - [View](#-view)
 - [Kurumi Template Engine](#-kurumi-template-engine)
-- [Database Query]
+- [Database Query](#)
 
-<p align="center">* * * * * * * * * * * * * * * * * * * * * * * *</p>
 <hr><br>
 
 <!-- installation -->
@@ -52,7 +50,6 @@ __2. Unduh file ZIP__
 
 Kamu juga bisa mengunduhnya secara manual dengan menekan tombol di samping. [`Download`](https://github.com/iqbalthex/Kurumi/archive/refs/heads/haniel.zip)
 
-<p align="center">* * * * * * * * * * * * * * * * * * * * * * * *</p>
 <hr><br>
 
 ## 🛠️ Penggunaan
@@ -69,7 +66,6 @@ php kurumi server
 
 Kemudian, buka `localhost:3000` pada browser.
 
-<p align="center">* * * * * * * * * * * * * * * * * * * * * * * *</p>
 <hr><br>
 
 <!-- kurumi cli section -->
@@ -88,7 +84,6 @@ Kami mempunyai `kurumi`, dia adalah sebuah program simple yang akan membantu mas
 - `storage` Berisi file yang dibuat secara otomatis oleh kurumi framework.
 - `vendor` Berisi file sistem dari framework ini. Disarankan tidak mengubah apapun yang ada di dalam sini.
 
-<p align="center">* * * * * * * * * * * * * * * * * * * * * * * *</p>
 <hr><br>
 
 <!-- routing section -->
@@ -151,7 +146,6 @@ Route::delete($uri, $callback);
 ```
 Method DELETE untuk menghapus data yang ada di Database.
 
-<p align="center">* * * * * * * * * * * * * * * * * * * * * * * *</p>
 <hr><br>
 
 <!-- view section -->
@@ -185,7 +179,6 @@ view('components.layouts')
 ```
 maka isi dari file `components/layouts.kurumi.php` akan ditampilkan
 
-<p align="center">* * * * * * * * * * * * * * * * * * * * * * * *</p>
 <hr><br>
 
 ## 🔫 Haniel
@@ -269,7 +262,6 @@ Melengkapi form menggunakan method selain bawaan html ( `GET` dan `POST` ) seper
 </form>
 ```
 
-<p align="center">* * * * * * * * * * * * * * * * * * * * * * * *</p>
 <hr><br>
 
 ### 🎉 Template 
