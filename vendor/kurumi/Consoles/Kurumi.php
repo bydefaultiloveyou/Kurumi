@@ -72,7 +72,8 @@ class Kurumi
      * menjalankan server
      */
     if (@$this->argv[1] === 'server') {
-      $this->server();
+      $portserve = @$this->argv[2] !== null && (@$this->argv[2] === '-p') ? @$this->argv[3] : 3000;
+      $this->server($portserve);
     }
 
     if (@$this->argv[1] === 'Migrate') {
@@ -98,6 +99,8 @@ please check in bottom for your input
 
 ======================== kurumi command list ========================
 
+server                                 Jalanin Server
+server -p <custom port>                Jalanin server dengan custom port
 --make::Controller <NameController>    membuat controller handler
   | -c <NameController>                sama seperti --make::Controller
 ";
@@ -257,18 +260,20 @@ from `{$last_trace['function']}` in line: {$last_trace['line']}";
   }
 
 
-  public function server()
+  public function server($port)
   {
     echo "
 Kurumi server is running:
 
-\033[0;32m local: http://localhost:3000/
-\033[0;32m ip: http://127.0.0.1:3000/
+\033[0;32m local: http://localhost:{$port}/
+\033[0;32m ip: http://127.0.0.1:{$port}/
 \033[0;0m
 
 Tokisaki Kurumi:
 {$this->randQuotes()}";
 
-    exec('cd public/ && php -S localhost:3000');
+$commandExec = "cd public/ && php -S localhost:{$port}";
+
+    exec($commandExec);
   }
 }
