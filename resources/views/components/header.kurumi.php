@@ -1,5 +1,3 @@
-<div>
-  <h1>
-    {{ $this->data }}
-  </h1>
-</div>
+<h1 class="{{ $bg }} text-{{ $align }}">
+  {{ $text }}
+</h1>

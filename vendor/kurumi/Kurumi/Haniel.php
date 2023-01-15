@@ -36,7 +36,7 @@ class Haniel
   private static function _parse($pattern, $replace, bool $isPHP = TRUE): void
   {
     if ($isPHP) {
-      $replace = '<?php ' . $replace . ' ?>';
+      $replace = "<?php $replace ?>\n";
     }
 
     self::$contents = preg_replace($pattern, $replace, self::$contents);
@@ -66,7 +66,29 @@ class Haniel
     self::_parse('/@section\s*\((.*)\)\s*/', '$__deus->startContent($1)');
     self::_parse('/@endsection/', '$__deus->stopContent()');
     self::_parse('/@component\s*\((.*)\)\s*/', '$this->slot($1)');
-    self::_parse('/<x-(.*?)\s*(data=(.*?))?\s*\/>/', '$__comp->extendContent("$1",$3)');
+    // self::_parse('/<x-(.*?)\s*(data=(.*?))?\s*\/>/', '$__comp->extendContent("$1",$3)');
+
+    self::$contents = preg_replace_callback('/\s*<x-(.*)\s*\/>/', function($m){
+      $matches = trim($m[1]);
+      $matches = explode(' ', $matches);
+      $name = $matches[0];
+      unset($matches[0]);
+
+      $data = [];
+      foreach ($matches as $match) {
+        if (preg_match('/x-(.*)/', $match)) {
+          $match = str_replace('x-', '', $match);
+          $match = preg_replace('/(.*)="(.*)"/', '"$1"=>"$2"', $match);
+          array_push($data, $match);
+        }
+      }
+
+      $data = implode(', ', $data);
+      $result = "\n<?php \$__comp->extendContent(\"$name\", [$data]) ?>\n";
+      return $result;
+      
+    }, self::$contents);
+
     return self::$contents;
   }
 }
