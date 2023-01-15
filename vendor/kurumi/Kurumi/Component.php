@@ -54,6 +54,10 @@ class Component
 
   public function render()
   {
+    foreach ($this->data as $key => $value) {
+      $$key = $value;
+    }
+
     $path = __DIR__ . PATH_VIEW_STORAGE . "components." . trim($this->component) . ".kurumi.php";
     if (file_exists($path)) {
       include $path;

@@ -1,11 +1,9 @@
 @section ("layouts")
 
-
-
-<x-header data="title" />
+<x-header x-text="HEADER" x-bg="bg-info" x-align="center"/>
 
 <main class="container">
-  <figure class="text-center p-5">
+  <figure class="text-center">
     <img width="400" src="https://pbs.twimg.com/media/FJxua79XwAMXzND?format=jpg&name=900x900" alt="Kurumi" />
     <h2>WELCOME TO KURUMI FRAMEWORK</h2>
     <figcaption>
@@ -20,7 +18,7 @@
   </figure>
 </main>
 
-<x-footer />
+<x-footer x-class="justify-content-center" x-year="2023" x-bg="bg-secondary" />
 
 @endsection
 
