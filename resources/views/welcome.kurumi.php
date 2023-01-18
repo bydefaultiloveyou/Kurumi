@@ -2,7 +2,7 @@
 
 <main class="container">
     <figure class="text-center p-5">
-        <x-logo />
+        <img width="400" src="https://pbs.twimg.com/media/FJxua79XwAMXzND?format=jpg&name=900x900" alt="Kurumi" />
         <h2>WELCOME TO KURUMI FRAMEWORK</h2>
         <figcaption>
             <p class="text-secondary">Simple framework for Koneksi.php</p>
